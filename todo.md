@@ -72,9 +72,9 @@
 - [x] Publish the mapped media to the chosen fixed URL destination.
 - [ ] Replace the production image references, verify the Vercel site, and publish the GitHub revision.
 
-- [ ] Audit the Muons homepage at 375px and 768px widths for overflow, tap targets, and section hierarchy.
-- [ ] Implement mobile-first navigation, typography, spacing, grids, and media cropping improvements.
-- [ ] Validate mobile and desktop builds and save the responsive revision.
+- [x] Audit the Muons homepage at 375px and 768px widths for overflow, tap targets, and section hierarchy.
+- [x] Implement mobile-first navigation, typography, spacing, grids, and media cropping improvements.
+- [x] Validate mobile and desktop builds and save the responsive revision.
 - [ ] Publish the responsive revision to the connected GitHub main branch.
 
 ## Style Decisions

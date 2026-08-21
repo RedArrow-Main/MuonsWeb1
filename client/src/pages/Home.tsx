@@ -187,7 +187,7 @@ export default function Home() {
             className="group flex items-center gap-2.5 text-left"
             aria-label="Muons Technology home"
           >
-            <span className="block w-[205px] sm:w-[240px]"><img src={muonsLogo} alt="Muons Technology" className="h-auto w-full object-contain" /></span>
+            <span className="block w-[min(180px,calc(100vw-88px))] sm:w-[240px]"><img src={muonsLogo} alt="Muons Technology" className="h-auto w-full object-contain" /></span>
           </button>
 
           <nav className="hidden items-center gap-6 xl:flex" aria-label="Primary navigation">
@@ -252,20 +252,20 @@ export default function Home() {
       </header>
 
       <main>
-        <section id="top" className="relative min-h-[760px] overflow-hidden bg-[#0b211b] text-white sm:min-h-[800px]">
+        <section id="top" className="relative min-h-[700px] overflow-hidden bg-[#0b211b] text-white sm:min-h-[800px]">
           <img src={heroImage} alt="Agronomist standing in a maize field" className="absolute inset-0 h-full w-full object-cover object-[69%_center]" />
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,26,21,0.97)_0%,rgba(7,26,21,0.78)_37%,rgba(7,26,21,0.22)_72%,rgba(7,26,21,0.38)_100%)]" />
           <div className="contours absolute inset-0 opacity-45" aria-hidden="true" />
-          <div className="relative z-10 mx-auto flex min-h-[760px] max-w-[1440px] flex-col justify-end px-5 pb-16 pt-36 md:min-h-[800px] md:px-8 md:pb-20 lg:pb-24">
+          <div className="relative z-10 mx-auto flex min-h-[700px] max-w-[1440px] flex-col justify-end px-5 pb-12 pt-32 sm:pb-16 sm:pt-36 md:min-h-[800px] md:px-8 md:pb-20 lg:pb-24">
             <div className="max-w-4xl">
-              <div className="animate-rise flex items-center gap-3 text-[0.68rem] font-extrabold uppercase tracking-[0.23em] text-[#c8ff2b]">
+              <div className="animate-rise flex max-w-[19rem] items-start gap-3 text-[0.62rem] font-extrabold uppercase leading-5 tracking-[0.2em] text-[#c8ff2b] sm:max-w-none sm:items-center sm:text-[0.68rem] sm:leading-normal sm:tracking-[0.23em]">
                 <span className="grid h-6 w-6 place-items-center rounded-full border border-[#c8ff2b]/45 bg-[#c8ff2b]/10"><span className="h-1.5 w-1.5 rounded-full bg-[#c8ff2b]" /></span>
                 Agricultural intelligence for America’s working lands
               </div>
-              <h1 className="animate-rise animate-delay-1 mt-7 font-display text-[clamp(3.6rem,8vw,7.85rem)] font-normal leading-[0.86] tracking-[-0.055em] text-white">
+              <h1 className="animate-rise animate-delay-1 mt-6 max-w-[20rem] font-display text-[clamp(3.35rem,14vw,7.85rem)] font-normal leading-[0.88] tracking-[-0.055em] text-white sm:mt-7 sm:max-w-4xl sm:text-[clamp(3.6rem,8vw,7.85rem)] sm:leading-[0.86]">
                 Make every growing season <em className="font-display text-[#c8ff2b]">more knowable.</em>
               </h1>
-              <div className="animate-rise animate-delay-2 mt-8 grid max-w-2xl gap-6 md:grid-cols-[1fr_auto] md:items-end">
+              <div className="animate-rise animate-delay-2 mt-6 grid max-w-2xl gap-5 sm:mt-8 sm:gap-6 md:grid-cols-[1fr_auto] md:items-end">
                 <p className="max-w-xl text-[1rem] leading-7 text-white/78 md:text-[1.08rem]">
                   Muons Technology brings crop, climate, and operational signals into one clear view — so the people closest to the land can move with more confidence.
                 </p>
@@ -279,18 +279,18 @@ export default function Home() {
                   </button>
                 </div>
               </div>
-              <div className="mt-7 flex flex-wrap gap-2.5">
+              <div className="mt-6 flex max-w-[22rem] flex-wrap gap-2 sm:mt-7 sm:max-w-none sm:gap-2.5">
                 {["Local context", "Shared view", "Timely action", "Season memory"].map((item, index) => (
                   <span key={item} className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-[#09251e]/50 px-3 py-1.5 text-[0.59rem] font-extrabold uppercase tracking-[0.12em] text-white/78 backdrop-blur-sm"><span className={index === 2 ? "h-1.5 w-1.5 rounded-full bg-[#c8ff2b]" : "h-1.5 w-1.5 rounded-full bg-white/45"} />{item}</span>
                 ))}
               </div>
             </div>
-            <div className="animate-rise animate-delay-3 mt-14 grid max-w-3xl gap-5 border-t border-white/20 pt-5 sm:grid-cols-3">
+            <div className="animate-rise animate-delay-3 mt-10 grid max-w-3xl gap-4 border-t border-white/20 pt-5 sm:mt-14 sm:gap-5 sm:grid-cols-3">
               <p className="text-[0.7rem] font-bold uppercase tracking-[0.15em] text-white/55">A clearer read</p>
               <p className="text-[0.7rem] font-bold uppercase tracking-[0.15em] text-white/55">A stronger season</p>
               <p className="text-[0.7rem] font-bold uppercase tracking-[0.15em] text-white/55">A shared direction</p>
             </div>
-            <div className="mt-5 flex max-w-3xl items-center justify-between border-t border-white/10 pt-4 text-[0.6rem] font-bold uppercase tracking-[0.15em] text-white/45">
+            <div className="mt-5 flex max-w-3xl flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-white/10 pt-4 text-[0.55rem] font-bold uppercase tracking-[0.13em] text-white/45 sm:text-[0.6rem] sm:tracking-[0.15em]">
               <span>Field record / 2026.07</span><span className="hidden sm:inline">Parcel: 08 / maize belt</span><span>Signal: active</span>
             </div>
           </div>

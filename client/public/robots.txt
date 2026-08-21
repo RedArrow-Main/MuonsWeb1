@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://muons-web1-63hi.vercel.app/sitemap.xml

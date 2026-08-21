@@ -71,3 +71,11 @@
 - [x] Inventory each Manus-only image reference and map it to a fixed production URL.
 - [x] Publish the mapped media to the chosen fixed URL destination.
 - [ ] Replace the production image references, verify the Vercel site, and publish the GitHub revision.
+
+- [ ] Audit the Muons homepage at 375px and 768px widths for overflow, tap targets, and section hierarchy.
+- [ ] Implement mobile-first navigation, typography, spacing, grids, and media cropping improvements.
+- [ ] Validate mobile and desktop builds and save the responsive revision.
+- [ ] Publish the responsive revision to the connected GitHub main branch.
+
+## Style Decisions
+- Mobile layouts preserve the Field Ledger rhythm while prioritizing readable editorial type, thumb-friendly controls, and intentional image crops.

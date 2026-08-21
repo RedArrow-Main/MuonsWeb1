@@ -26,3 +26,6 @@
 - [x] Add the supplied Intellectual Property and filed U.S. patent application details with clear status language.
 - [x] Add navigation access and visual integration for the patent asset section.
 - [x] Verify the intellectual property update and save a new project version.
+- [x] Add the supplied four-person Muons leadership profile section with image-ready portrait placeholders.
+- [x] Add navigation access and responsive styling for the leadership section.
+- [x] Verify the leadership update and save a new project version.

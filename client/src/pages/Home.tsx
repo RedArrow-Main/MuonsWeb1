@@ -23,6 +23,7 @@ const brandMark = "/manus-storage/fieldwise-mark_a6ef5b98.png";
 
 const navItems = [
   { label: "Muons", href: "#muons" },
+  { label: "Team", href: "#team" },
   { label: "Approach", href: "#approach" },
   { label: "Regenerative", href: "#regenerative" },
   { label: "Security", href: "#security" },
@@ -105,6 +106,33 @@ const trustStages = [
     copy: "The record can support clearer conversations with advisors, programs, partners, and future teams.",
     label: "Review-ready context",
     details: ["Grower", "Advisor", "Program"],
+  },
+];
+
+const leaders = [
+  {
+    initials: "AJ",
+    name: "Andre James",
+    role: "Founder & CEO",
+    bio: "10+ years of experience in digital transformation across emerging markets. Specialized in designing mission-critical infrastructure and offline-first digital rails for national-scale coordination.",
+  },
+  {
+    initials: "AK",
+    name: "Arslaan Khan",
+    role: "Co-Founder & CTO",
+    bio: "7+ years building secure, scalable data and blockchain systems, specializing in audit-grade infrastructure, traceability, and national-scale digital platforms.",
+  },
+  {
+    initials: "NM",
+    name: "Nadia Momple",
+    role: "Co-Founder, Global COO",
+    bio: "Focused on building innovative, values-based businesses. Oversees global operations, strategic partnerships, and mission alignment across international borders.",
+  },
+  {
+    initials: "GM",
+    name: "Gordon Mitchell",
+    role: "Chief Operating Officer",
+    bio: "Operations, market expansion, and business development. Leading operational strategy and market growth initiatives.",
   },
 ];
 
@@ -362,18 +390,33 @@ export default function Home() {
               </article>
             </div>
 
-            <div className="mt-8 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-              <div className="border-l-2 border-[#c8ff2b] bg-white/[0.05] p-7 md:p-9">
-                <div className="flex items-center justify-between border-b border-white/15 pb-4"><p className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">Team</p><span className="text-[0.58rem] font-bold uppercase tracking-[0.13em] text-white/42">Technical leadership / USA</span></div>
-                <div className="mt-7 grid gap-6 sm:grid-cols-[auto_1fr] sm:items-start">
-                  <span className="grid h-16 w-16 place-items-center rounded-full border border-[#c8ff2b]/55 bg-[#09231d] font-display text-3xl text-[#c8ff2b]">A</span>
-                  <div><p className="text-[0.65rem] font-extrabold uppercase tracking-[0.16em] text-[#c8ff2b]">Co-Founder &amp; CTO</p><h3 className="mt-2 font-display text-4xl tracking-[-0.04em] text-white">Arsalan</h3><p className="mt-3 max-w-2xl text-sm leading-7 text-white/66">With approximately 8–9 years across cybersecurity and software engineering, spanning web, mobile, blockchain, and AI, Arsalan leads product architecture and technical strategy.</p></div>
-                </div>
-              </div>
-              <aside className="flex flex-col justify-between rounded-[1.45rem] border border-white/10 bg-[#d6d8c9] p-7 text-[#113128] md:p-9">
-                <div><div className="h-1 w-11 bg-[#c8ff2b]" /><p className="mt-5 text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#355243]">Contact</p><h3 className="mt-5 font-display text-4xl leading-[0.96] tracking-[-0.04em]">Let’s make the field more knowable.</h3></div>
-                <div className="mt-10 space-y-3 border-t border-[#113128]/15 pt-5 text-sm font-bold"><p>Delaware, USA</p><p className="text-[#355243]">Email address to be confirmed</p></div>
-              </aside>
+            <div className="mt-8 flex flex-col justify-between gap-7 rounded-[1.45rem] border border-white/15 bg-white/[0.05] p-7 md:flex-row md:items-end md:p-9">
+              <div><p className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">Headquartered in Delaware</p><p className="mt-4 max-w-2xl font-display text-3xl leading-[0.98] tracking-[-0.03em] text-white">Building values-led agricultural infrastructure with a global operating perspective.</p></div>
+              <div className="border-l-2 border-[#c8ff2b] pl-4 text-sm font-bold text-white/72"><p>Delaware, USA</p><p className="mt-1 text-white/45">Email address to be confirmed</p></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="team" className="relative overflow-hidden bg-[#f7f6ef] px-5 py-24 md:px-8 md:py-32">
+          <div className="absolute left-[-10rem] top-24 h-80 w-80 rounded-full border border-[#123329]/10" aria-hidden="true" />
+          <div className="relative mx-auto max-w-[1440px]">
+            <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
+              <div><div className="flex items-center justify-between gap-4"><p className="section-kicker">Muons leadership</p><span className="flex items-center gap-2 text-[0.52rem] font-extrabold uppercase tracking-[0.13em] text-[#58776c]"><span className="grid h-7 w-7 place-items-center rounded-md border border-[#123329]/20 bg-white/50 p-0.5"><img src={brandMark} alt="" className="h-full w-full" /></span>Leadership dossier / 04</span></div><h2 className="mt-6 max-w-xl font-display text-5xl leading-[0.93] tracking-[-0.05em] text-[#113128] md:text-7xl">People building the rails behind Fieldwise.</h2></div>
+              <p className="max-w-2xl text-[1.02rem] leading-8 text-[#4e6c62] lg:justify-self-end">A multidisciplinary team spanning digital transformation, secure systems, global operations, and agricultural infrastructure. Each portrait panel is reserved for an approved leadership image.</p>
+            </div>
+
+            <div className="mt-16 grid gap-7 md:grid-cols-2 xl:grid-cols-4">
+              {leaders.map((leader, index) => (
+                <article key={leader.name} className="group overflow-hidden rounded-[1.5rem] border border-[#123329]/12 bg-[#e6e6dc] transition-transform duration-300 hover:-translate-y-1">
+                  <div className={`relative aspect-[4/5] overflow-hidden border-b border-[#123329]/12 ${index % 2 === 0 ? "bg-[#153b30] text-white" : "bg-[#d4d7c7] text-[#113128]"}`}>
+                    <div className="absolute inset-0 opacity-35 [background-image:linear-gradient(135deg,transparent_30%,rgba(200,255,43,0.22)_30%,rgba(200,255,43,0.22)_31%,transparent_31%)] [background-size:34px_34px]" aria-hidden="true" />
+                    <div className="absolute inset-5 flex items-center justify-between border-b border-current/20 pb-3 text-[0.54rem] font-extrabold uppercase tracking-[0.13em] opacity-70"><span>Leadership record</span><span>0{index + 1}</span></div>
+                    <div className="absolute inset-0 grid place-items-center"><span className={`grid h-24 w-24 place-items-center rounded-full border text-4xl font-display ${index % 2 === 0 ? "border-[#c8ff2b]/60 bg-black/15 text-[#c8ff2b]" : "border-[#113128]/25 bg-white/20 text-[#113128]"}`}>{leader.initials}</span></div>
+                    <p className="absolute inset-x-5 bottom-5 text-[0.55rem] font-bold uppercase tracking-[0.12em] opacity-70">Approved portrait / record slot</p>
+                  </div>
+                  <div className="p-6"><p className="text-[0.62rem] font-extrabold uppercase tracking-[0.15em] text-[#607e73]">{leader.role}</p><h3 className="mt-3 font-display text-3xl tracking-[-0.035em] text-[#113128]">{leader.name}</h3><p className="mt-4 text-sm leading-6 text-[#4e6d63]">{leader.bio}</p></div>
+                </article>
+              ))}
             </div>
           </div>
         </section>

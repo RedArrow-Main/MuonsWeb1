@@ -25,6 +25,7 @@ const navItems = [
   { label: "Muons", href: "#muons" },
   { label: "Approach", href: "#approach" },
   { label: "Regenerative", href: "#regenerative" },
+  { label: "Security", href: "#security" },
   { label: "Signals", href: "#signals" },
   { label: "Cycle", href: "#cycle" },
   { label: "Outcomes", href: "#outcomes" },
@@ -394,6 +395,46 @@ export default function Home() {
                     ["A clearer market story", "Organize stewardship notes into a more coherent record for programs, partners, and future decisions."],
                   ].map(([title, copy], index) => <div key={title} className="grid grid-cols-[1.75rem_1fr] gap-3"><span className="pt-0.5 text-[0.7rem] font-extrabold tracking-[0.14em] text-[#738f84]">0{index + 1}</span><div><h3 className="font-display text-2xl tracking-[-0.03em] text-[#113128]">{title}</h3><p className="mt-2 text-sm leading-6 text-[#4e6d63]">{copy}</p></div></div>)}
                 </div>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <section id="security" className="relative overflow-hidden bg-[#0b211b] px-5 py-24 text-white md:px-8 md:py-32">
+          <div className="contours absolute inset-0 opacity-30" aria-hidden="true" />
+          <div className="absolute right-[-4rem] top-20 h-72 w-72 rounded-full border border-[#c8ff2b]/15" aria-hidden="true" />
+          <div className="relative mx-auto max-w-[1440px]">
+            <div className="grid gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
+              <div>
+                <p className="section-kicker section-kicker--light">Blockchain &amp; quantum security</p>
+                <h2 className="mt-6 max-w-2xl font-display text-5xl leading-[0.92] tracking-[-0.05em] text-white md:text-7xl">Trust matters when the record needs to travel.</h2>
+              </div>
+              <div className="max-w-2xl lg:justify-self-end">
+                <p className="text-[1.05rem] leading-8 text-white/72">Muons is shaping Fieldwise around record integrity: a clear chain of field events that can be reviewed in context, connected to the people and decisions behind it, and carried forward with the farm.</p>
+                <p className="mt-5 border-l-2 border-[#c8ff2b] pl-4 text-sm leading-6 text-white/56">The goal is practical trust — not complexity for its own sake. Farmers and operators should be able to understand what was recorded, when it changed, and why it matters.</p>
+              </div>
+            </div>
+
+            <div className="mt-16 grid gap-7 lg:grid-cols-[1.1fr_0.9fr]">
+              <div className="grid gap-px overflow-hidden rounded-[1.7rem] border border-white/15 bg-white/15 md:grid-cols-3">
+                {[
+                  ["01", "Field event", "A meaningful observation or action becomes part of the seasonal record."],
+                  ["02", "Record chain", "Blockchain architecture is intended to help create a more traceable history of that record."],
+                  ["03", "Shared proof", "The record can support clearer conversations with advisors, programs, partners, and future teams."],
+                ].map(([number, title, copy], index) => (
+                  <article key={number} className={`min-h-[310px] p-7 md:p-8 ${index === 1 ? "bg-[#183d32]" : "bg-[#0b211b]"}`}><div className="flex items-center justify-between"><span className="text-[0.68rem] font-extrabold tracking-[0.15em] text-[#c8ff2b]">{number}</span><span className="h-2 w-2 rounded-full bg-[#c8ff2b]/70" /></div><h3 className="mt-16 font-display text-3xl tracking-[-0.035em] text-white">{title}</h3><p className="mt-4 text-sm leading-6 text-white/63">{copy}</p></article>
+                ))}
+              </div>
+              <aside className="relative overflow-hidden rounded-[1.7rem] border border-[#c8ff2b]/25 bg-[#11342a] p-7 md:p-9">
+                <div className="absolute right-5 top-5 grid h-10 w-10 place-items-center rounded-lg border border-[#c8ff2b]/45 bg-black/15 p-1"><img src={brandMark} alt="" className="h-full w-full" /></div>
+                <p className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">Security posture</p>
+                <h3 className="mt-7 max-w-md font-display text-4xl leading-[0.98] tracking-[-0.04em] text-white">Prepared to evolve as the threat landscape does.</h3>
+                <div className="mt-8 space-y-5 border-t border-white/15 pt-6">
+                  <div className="grid grid-cols-[1.7rem_1fr] gap-3"><span className="text-[0.7rem] font-extrabold tracking-[0.14em] text-[#c8ff2b]">01</span><p className="text-sm leading-6 text-white/67"><strong className="font-semibold text-white">Identity-aware design.</strong> Security planning starts by protecting how people, devices, and records relate.</p></div>
+                  <div className="grid grid-cols-[1.7rem_1fr] gap-3"><span className="text-[0.7rem] font-extrabold tracking-[0.14em] text-[#c8ff2b]">02</span><p className="text-sm leading-6 text-white/67"><strong className="font-semibold text-white">Quantum-resilient planning.</strong> Architecture should be ready to adopt stronger cryptographic standards as they mature.</p></div>
+                  <div className="grid grid-cols-[1.7rem_1fr] gap-3"><span className="text-[0.7rem] font-extrabold tracking-[0.14em] text-[#c8ff2b]">03</span><p className="text-sm leading-6 text-white/67"><strong className="font-semibold text-white">Plain-language trust.</strong> A sound security approach should make the record easier to trust, not harder to use.</p></div>
+                </div>
+                <p className="mt-8 text-[0.62rem] font-bold uppercase tracking-[0.12em] text-white/40">Architecture direction — not a claim of certification or invulnerability.</p>
               </aside>
             </div>
           </div>

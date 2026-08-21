@@ -4,6 +4,7 @@
  */
 import { toast } from "sonner";
 import {
+  Atom,
   ArrowDownRight,
   ArrowUpRight,
   Check,
@@ -18,8 +19,7 @@ import { FormEvent, useEffect, useState } from "react";
 const heroImage = "/manus-storage/fieldwise-hero_ed35bf47.jpg";
 const sensorImage = "/manus-storage/fieldwise-sensor_51b4f852.jpg";
 const aerialImage = "/manus-storage/fieldwise-aerial_75761800.jpg";
-const harvestImage = "/manus-storage/fieldwise-harvest_c1f9f93a.jpg";
-const brandMark = "/manus-storage/fieldwise-mark_a6ef5b98.png";
+const harvestImage = "/manus-storage/fieldwise-harvest_c1f93a.jpg";
 
 const navItems = [
   { label: "Approach", href: "#approach" },
@@ -157,7 +157,7 @@ export default function Home() {
       return;
     }
     form.reset();
-    toast.success("You’re on the Fieldwise briefing list.", {
+  toast.success("You’re on the Muons briefing list.", {
       description: "Expect occasional notes from the growing edge.",
     });
   };
@@ -181,10 +181,10 @@ export default function Home() {
             type="button"
             onClick={() => scrollToSection("#top")}
             className="group flex items-center gap-2.5 text-left"
-            aria-label="Fieldwise home"
+            aria-label="Muons Technology home"
           >
-            <span className="grid h-12 w-12 place-items-center rounded-xl border border-[#c8ff2b]/60 bg-[#09231c]/75 p-1.5 shadow-[0_0_0_5px_rgba(200,255,43,0.09)]"><img src={brandMark} alt="" className="h-full w-full object-contain transition-transform duration-200 group-hover:rotate-[-6deg]" /></span>
-            <span><span className="block text-[0.82rem] font-extrabold uppercase tracking-[0.2em] text-white">Fieldwise</span><span className="mt-0.5 block text-[0.52rem] font-bold uppercase tracking-[0.18em] text-[#c8ff2b]">Field intelligence</span></span>
+            <span className="grid h-14 w-14 place-items-center rounded-xl border border-[#c8ff2b]/60 bg-[#09231c]/75 p-1.5 text-[#c8ff2b] shadow-[0_0_0_5px_rgba(200,255,43,0.09)]"><Atom className="h-full w-full transition-transform duration-200 group-hover:rotate-[14deg]" strokeWidth={1.6} /></span>
+            <span><span className="block text-[0.82rem] font-extrabold uppercase tracking-[0.2em] text-white">Muons</span><span className="mt-0.5 block text-[0.52rem] font-bold uppercase tracking-[0.18em] text-[#c8ff2b]">Agricultural infrastructure</span></span>
           </button>
 
           <nav className="hidden items-center gap-6 xl:flex" aria-label="Primary navigation">
@@ -201,7 +201,7 @@ export default function Home() {
           </nav>
 
           <div className="hidden items-center gap-3 xl:flex">
-            <a href="mailto:hello@fieldwise.ag" className="text-[0.72rem] font-bold uppercase tracking-[0.15em] text-white/75 transition-colors hover:text-[#c8ff2b]">
+            <a href="#contact" className="text-[0.72rem] font-bold uppercase tracking-[0.15em] text-white/75 transition-colors hover:text-[#c8ff2b]">
               Talk to us
             </a>
             <button
@@ -264,7 +264,7 @@ export default function Home() {
               </h1>
               <div className="animate-rise animate-delay-2 mt-8 grid max-w-2xl gap-6 md:grid-cols-[1fr_auto] md:items-end">
                 <p className="max-w-xl text-[1rem] leading-7 text-white/78 md:text-[1.08rem]">
-                  Fieldwise brings crop, climate, and operational signals into one clear view — so the people closest to the land can move with more confidence.
+                  Muons Technology brings crop, climate, and operational signals into one clear view — so the people closest to the land can move with more confidence.
                 </p>
                 <div className="flex items-center gap-3">
                   <button
@@ -300,7 +300,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section aria-label="Fieldwise operating principles" className="overflow-hidden bg-[#0d2d24] px-5 py-3.5 md:px-8">
+        <section aria-label="Muons operating principles" className="overflow-hidden bg-[#0d2d24] px-5 py-3.5 md:px-8">
           <div className="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-x-8 gap-y-3 text-[0.63rem] font-extrabold uppercase tracking-[0.15em] text-white/67">
             {["Local context", "Shared view", "Timely action", "Season memory"].map((item) => <span key={item} className="flex items-center gap-2.5"><span className="h-1.5 w-1.5 rounded-full bg-[#c8ff2b]" />{item}</span>)}
           </div>
@@ -310,7 +310,7 @@ export default function Home() {
           <div className="absolute right-[-9rem] top-10 h-[31rem] w-[31rem] rounded-full border border-[#123329]/10" aria-hidden="true" />
           <div className="mx-auto grid max-w-[1440px] items-start gap-12 lg:grid-cols-[0.86fr_1.14fr] lg:gap-20">
             <div className="sticky top-28 max-w-sm">
-              <p className="section-kicker">The Fieldwise approach</p>
+              <p className="section-kicker">The Muons approach</p>
               <h2 className="mt-6 font-display text-5xl leading-[0.95] tracking-[-0.045em] text-[#113128] md:text-6xl">
                 The field is already speaking.
               </h2>
@@ -342,7 +342,7 @@ export default function Home() {
                     Reliable decisions begin with a shared picture of the ground.
                   </p>
                   <p className="mt-6 text-[0.95rem] leading-7 text-[#496b61]">
-                    Fieldwise unifies environmental and operational context without losing the local detail that makes it useful.
+                    Muons unifies environmental and operational context without losing the local detail that makes it useful.
                   </p>
                 </div>
                 <div className="mt-7 flex gap-3 border-t border-[#153c31]/15 pt-5">
@@ -393,7 +393,7 @@ export default function Home() {
                   {fieldLenses[activeLens].details.map((detail) => <span key={detail} className="border-t border-white/15 pt-3 text-[0.6rem] font-bold uppercase tracking-[0.13em] text-white/58">{detail}</span>)}
                 </div>
               </div>
-              <div className="p-3 md:p-4" role="tablist" aria-label="Fieldwise data lenses">
+              <div className="p-3 md:p-4" role="tablist" aria-label="Muons data lenses">
                 {fieldLenses.map((lens, index) => (
                   <button
                     key={lens.label}
@@ -419,7 +419,7 @@ export default function Home() {
                 <p className="section-kicker">The season cycle</p>
                 <h2 className="mt-6 max-w-xl font-display text-5xl leading-[0.94] tracking-[-0.05em] text-[#113128] md:text-6xl">From field observation to a stronger next move.</h2>
               </div>
-              <p className="max-w-lg text-base leading-7 text-[#4d6c62] lg:justify-self-end">A useful system should clarify the work in front of people, then carry the record forward when the season turns. Fieldwise keeps that cycle legible.</p>
+              <p className="max-w-lg text-base leading-7 text-[#4d6c62] lg:justify-self-end">A useful system should clarify the work in front of people, then carry the record forward when the season turns. Muons keeps that cycle legible.</p>
             </div>
             <div className="mt-16 grid gap-px overflow-hidden border border-[#123329]/15 bg-[#123329]/15 md:grid-cols-2 lg:grid-cols-4">
               {[
@@ -444,7 +444,7 @@ export default function Home() {
                 </h2>
               </div>
               <p className="max-w-lg text-[1rem] leading-7 text-[#4e6b62] lg:justify-self-end">
-                Fieldwise is built around the decisions that have to happen season after season — from the individual growing block to the regional production plan.
+                Muons is built around the decisions that have to happen season after season — from the individual growing block to the regional production plan.
               </p>
             </div>
 
@@ -499,7 +499,7 @@ export default function Home() {
                 <h2 className="mt-6 max-w-xl font-display text-5xl leading-[0.93] tracking-[-0.05em] text-[#113128] md:text-7xl">Stewardship gets stronger when the field can remember.</h2>
               </div>
               <div className="max-w-2xl lg:justify-self-end">
-                <p className="text-[1.05rem] leading-8 text-[#49685e]">Regenerative agriculture is built on attention: keeping soil covered, using water thoughtfully, supporting diversity, and learning season by season. Fieldwise helps turn those ground-level observations into a record people can revisit, discuss, and use.</p>
+                <p className="text-[1.05rem] leading-8 text-[#49685e]">Regenerative agriculture is built on attention: keeping soil covered, using water thoughtfully, supporting diversity, and learning season by season. Muons helps turn those ground-level observations into a record people can revisit, discuss, and use.</p>
                 <p className="mt-5 border-l-2 border-[#c8ff2b] pl-4 text-sm leading-6 text-[#4f6d63]">It does not prescribe a single practice. It makes the context behind each farm’s choices more visible.</p>
               </div>
             </div>
@@ -509,7 +509,7 @@ export default function Home() {
                 <div className="contours contours--dark absolute inset-0 opacity-25" aria-hidden="true" />
                 <div className="relative">
                   <div className="flex items-center justify-between border-b border-white/15 pb-4"><p className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">American field record</p><span className="rounded-full border border-white/20 px-3 py-1 text-[0.56rem] font-bold uppercase tracking-[0.13em] text-white/67">Growing season</span></div>
-                  <div className="mt-5 flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-lg border border-[#c8ff2b]/45 bg-black/15 p-1"><img src={brandMark} alt="" className="h-full w-full" /></span><span className="text-[0.57rem] font-extrabold uppercase tracking-[0.16em] text-white/55">Fieldwise record stamp / stewardship log</span></div>
+                  <div className="mt-5 flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-lg border border-[#c8ff2b]/45 bg-black/15 p-1 text-[#c8ff2b]"><Atom className="h-6 w-6" strokeWidth={1.6} /></span><span className="text-[0.57rem] font-extrabold uppercase tracking-[0.16em] text-white/55">Muons record stamp / stewardship log</span></div>
                   <h3 className="mt-8 max-w-lg font-display text-4xl leading-[0.98] tracking-[-0.04em] text-white">The practices are local. The learning should travel.</h3>
                   <div className="mt-10 grid gap-px overflow-hidden rounded-xl border border-white/15 bg-white/15 sm:grid-cols-2">
                     {[
@@ -524,7 +524,7 @@ export default function Home() {
                 </div>
               </div>
               <aside className="rounded-[1.7rem] border border-[#123329]/12 bg-[#d6d8c9] p-7 md:p-10">
-                <div className="flex items-center justify-between border-b border-[#123329]/15 pb-4"><p className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#44675c]">What Fieldwise contributes</p><span className="h-2.5 w-2.5 rounded-full bg-[#c8ff2b] shadow-[0_0_0_5px_rgba(200,255,43,0.23)]" /></div>
+                <div className="flex items-center justify-between border-b border-[#123329]/15 pb-4"><p className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#44675c]">What Muons contributes</p><span className="h-2.5 w-2.5 rounded-full bg-[#c8ff2b] shadow-[0_0_0_5px_rgba(200,255,43,0.23)]" /></div>
                 <div className="mt-8 space-y-7">
                   {[
                     ["A useful seasonal record", "Keep practical observations from disappearing when teams, seasons, or locations change."],
@@ -555,7 +555,7 @@ export default function Home() {
                 <h2 className="mt-6 max-w-2xl font-display text-5xl leading-[0.92] tracking-[-0.05em] text-white md:text-7xl">Trust matters when the record needs to travel.</h2>
               </div>
               <div className="max-w-2xl lg:justify-self-end">
-                <p className="text-[1.05rem] leading-8 text-white/72">Muons is shaping Fieldwise around record integrity: a clear chain of field events that can be reviewed in context, connected to the people and decisions behind it, and carried forward with the farm.</p>
+                <p className="text-[1.05rem] leading-8 text-white/72">Muons is shaping agricultural infrastructure around record integrity: a clear chain of field events that can be reviewed in context, connected to the people and decisions behind it, and carried forward with the farm.</p>
                 <p className="mt-5 border-l-2 border-[#c8ff2b] pl-4 text-sm leading-6 text-white/56">The goal is practical trust — not complexity for its own sake. Farmers and operators should be able to understand what was recorded, when it changed, and why it matters.</p>
               </div>
             </div>
@@ -581,7 +581,7 @@ export default function Home() {
                 ))}
               </div>
               <aside className="relative h-full overflow-hidden rounded-[1.7rem] border border-[#c8ff2b]/25 bg-[#11342a] p-7 md:p-9">
-                <div className="absolute right-5 top-5 grid h-10 w-10 place-items-center rounded-lg border border-[#c8ff2b]/45 bg-black/15 p-1"><img src={brandMark} alt="" className="h-full w-full" /></div>
+                <div className="absolute right-5 top-5 grid h-12 w-12 place-items-center rounded-lg border border-[#c8ff2b]/45 bg-black/15 p-1 text-[#c8ff2b]"><Atom className="h-7 w-7" strokeWidth={1.6} /></div>
                 <p className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">Security posture</p>
                 <h3 className="mt-7 max-w-md font-display text-4xl leading-[0.98] tracking-[-0.04em] text-white">Prepared to evolve as the threat landscape does.</h3>
                 <div className="mt-8 space-y-5 border-t border-white/15 pt-6">
@@ -600,7 +600,7 @@ export default function Home() {
           <div className="relative mx-auto max-w-[1440px]">
             <div className="grid gap-10 border-b border-[#123329]/15 pb-12 lg:grid-cols-[0.87fr_1.13fr] lg:items-end">
               <div>
-                <p className="section-kicker">Intellectual property</p>
+                <div className="flex items-center gap-3"><span className="grid h-9 w-9 place-items-center rounded-lg border border-[#123329]/20 bg-white/55 text-[#113128]"><Atom className="h-5 w-5" strokeWidth={1.6} /></span><p className="section-kicker">Intellectual property / Muons asset file</p></div>
                 <h2 className="mt-6 max-w-2xl font-display text-5xl leading-[0.93] tracking-[-0.05em] text-[#113128] md:text-7xl">American patent assets for American agricultural infrastructure.</h2>
               </div>
               <div className="max-w-2xl lg:justify-self-end">
@@ -646,7 +646,7 @@ export default function Home() {
             <div className="grid gap-10 border-b border-white/15 pb-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
               <div>
                 <p className="section-kicker section-kicker--light">About Muons</p>
-                <h2 className="mt-6 font-display text-5xl leading-[0.92] tracking-[-0.05em] text-white md:text-7xl">The company behind <span className="text-[#c8ff2b]">Fieldwise.</span></h2>
+                <h2 className="mt-6 font-display text-5xl leading-[0.92] tracking-[-0.05em] text-white md:text-7xl">Agricultural intelligence built by <span className="text-[#c8ff2b]">Muons.</span></h2>
               </div>
               <p className="max-w-2xl text-[1.05rem] leading-8 text-white/73 lg:justify-self-end">Muons Technology builds tools that turn agricultural and environmental data into decisions farmers and operators can actually act on — even in places with unreliable internet or infrastructure.</p>
             </div>
@@ -684,16 +684,16 @@ export default function Home() {
           <div className="absolute left-[-10rem] top-24 h-80 w-80 rounded-full border border-[#123329]/10" aria-hidden="true" />
           <div className="relative mx-auto max-w-[1440px]">
             <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
-              <div><div className="flex items-center justify-between gap-4"><p className="section-kicker">Muons leadership</p><span className="flex items-center gap-2 text-[0.52rem] font-extrabold uppercase tracking-[0.13em] text-[#58776c]"><span className="grid h-7 w-7 place-items-center rounded-md border border-[#123329]/20 bg-white/50 p-0.5"><img src={brandMark} alt="" className="h-full w-full" /></span>Leadership dossier / 04</span></div><h2 className="mt-6 max-w-xl font-display text-5xl leading-[0.93] tracking-[-0.05em] text-[#113128] md:text-7xl">People building the rails behind Fieldwise.</h2></div>
+              <div><div className="flex items-center justify-between gap-4"><p className="section-kicker">Muons leadership</p><span className="flex items-center gap-2 text-[0.52rem] font-extrabold uppercase tracking-[0.13em] text-[#58776c]"><span className="grid h-7 w-7 place-items-center rounded-md border border-[#123329]/20 bg-white/50 p-0.5 text-[#113128]"><Atom className="h-full w-full" strokeWidth={1.6} /></span>Leadership dossier / 03</span></div><h2 className="mt-6 max-w-xl font-display text-5xl leading-[0.93] tracking-[-0.05em] text-[#113128] md:text-7xl">People building agricultural infrastructure with Muons.</h2></div>
               <p className="max-w-2xl text-[1.02rem] leading-8 text-[#4e6c62] lg:justify-self-end">A multidisciplinary team spanning digital transformation, secure systems, global operations, and agricultural infrastructure. Each portrait panel is reserved for an approved leadership image.</p>
             </div>
 
             <div className="mt-16 grid gap-7 md:grid-cols-2 xl:grid-cols-3">
               {leaders.map((leader, index) => (
-                <article key={leader.name} className="group overflow-hidden rounded-[1.5rem] border border-[#123329]/12 bg-[#e6e6dc] transition-transform duration-300 hover:-translate-y-1">
+                <article key={leader.name} className={`group overflow-hidden rounded-[1.5rem] border border-[#123329]/12 bg-[#e6e6dc] transition-transform duration-300 hover:-translate-y-1 ${index === 1 ? "xl:mt-10" : index === 2 ? "xl:mt-5" : ""}`}>
                   <div className={`relative aspect-[4/5] overflow-hidden border-b border-[#123329]/12 ${index % 2 === 0 ? "bg-[#153b30] text-white" : "bg-[#d4d7c7] text-[#113128]"}`}>
                     {leader.image ? <><img src={leader.image} alt={`Andre James, ${leader.role}`} className="absolute inset-0 h-full w-full object-cover object-center" /><div className="absolute inset-0 bg-gradient-to-t from-[#0b211b]/82 via-[#0b211b]/5 to-transparent" /></> : <div className="absolute inset-0 opacity-35 [background-image:linear-gradient(135deg,transparent_30%,rgba(200,255,43,0.22)_30%,rgba(200,255,43,0.22)_31%,transparent_31%)] [background-size:34px_34px]" aria-hidden="true" />}
-                    <div className="absolute inset-5 flex items-center justify-between border-b border-current/20 pb-3 text-[0.54rem] font-extrabold uppercase tracking-[0.13em] opacity-70"><span>Leadership record</span><span>0{index + 1}</span></div>
+                    <div className="absolute inset-5 flex items-center justify-between border-b border-current/20 pb-3 text-[0.54rem] font-extrabold uppercase tracking-[0.13em] opacity-70"><span>Muons dossier</span><span>Record 0{index + 1}</span></div>
                     {!leader.image && <div className="absolute inset-0 grid place-items-center"><span className={`grid h-24 w-24 place-items-center rounded-full border text-4xl font-display ${index % 2 === 0 ? "border-[#c8ff2b]/60 bg-black/15 text-[#c8ff2b]" : "border-[#113128]/25 bg-white/20 text-[#113128]"}`}>{leader.initials}</span></div>}
                     <p className="absolute inset-x-5 bottom-5 text-[0.55rem] font-bold uppercase tracking-[0.12em] opacity-70">{leader.image ? "Leadership portrait / approved" : "Portrait pending / record slot"}</p>
                   </div>
@@ -712,9 +712,7 @@ export default function Home() {
               <h2 className="mt-6 max-w-3xl font-display text-5xl leading-[0.92] tracking-[-0.05em] text-white md:text-7xl">
                 Ready for a more useful view of the season?
               </h2>
-              <a href="mailto:hello@fieldwise.ag" className="group mt-9 inline-flex items-center gap-4 text-xl font-semibold text-[#c8ff2b] transition-colors hover:text-white md:text-2xl">
-                hello@fieldwise.ag <span className="grid h-9 w-9 place-items-center rounded-full border border-current"><ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></span>
-              </a>
+              <p className="mt-9 text-xl font-semibold text-[#c8ff2b] md:text-2xl">Contact details to be confirmed</p>
             </div>
             <div className="rounded-[1.5rem] border border-white/15 bg-white/[0.06] p-6 backdrop-blur-sm md:p-8">
               <p className="text-[0.72rem] font-extrabold uppercase tracking-[0.16em] text-[#c8ff2b]">Field notes, occasionally</p>
@@ -731,8 +729,8 @@ export default function Home() {
 
       <footer className="bg-[#0c261f] px-5 py-6 text-white/56 md:px-8">
         <div className="mx-auto flex max-w-[1440px] flex-col gap-3 text-[0.67rem] font-bold uppercase tracking-[0.13em] sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-2"><span className="grid h-8 w-8 place-items-center rounded-md border border-[#c8ff2b]/40 bg-black/20 p-1"><img src={brandMark} alt="" className="h-full w-full" /></span> Fieldwise / Intelligence for America’s working lands</div>
-          <p>© 2026 Fieldwise. Built for the growing edge.</p>
+          <div className="flex items-center gap-2"><span className="grid h-8 w-8 place-items-center rounded-md border border-[#c8ff2b]/40 bg-black/20 p-1 text-[#c8ff2b]"><Atom className="h-5 w-5" strokeWidth={1.6} /></span> Muons Technology / Agricultural infrastructure</div>
+          <p>© 2026 Muons Technology. Built for the growing edge.</p>
         </div>
       </footer>
     </div>

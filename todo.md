@@ -42,3 +42,6 @@
 - [x] Reorder the page into a clear product-first narrative and simplify the navigation hierarchy.
 - [x] Verify the corrected section sequence on desktop and mobile.
 - [x] Save a new project version with the corrected structure.
+- [x] Remove Fieldwise naming and replace it with Muons Technology across branding, navigation, headings, and product narrative.
+- [x] Verify that no Fieldwise-visible references remain in the Muons-only website.
+- [x] Validate the Muons-only rebrand and save a new project version.

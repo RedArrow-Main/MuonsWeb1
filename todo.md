@@ -17,3 +17,5 @@
 - [x] Verify the panel update and save a new project version.
 - [x] Enrich the Field event, Record chain, and Shared proof panel with visual record-flow details and trust signals.
 - [x] Verify the enhanced flow panel and save a new project version.
+- [x] Redesign the Record chain card with a stronger traceability visual and clearer record metadata.
+- [x] Verify the redesigned card and save a new project version.

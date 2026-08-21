@@ -24,6 +24,7 @@ const brandMark = "/manus-storage/fieldwise-mark_a6ef5b98.png";
 const navItems = [
   { label: "Muons", href: "#muons" },
   { label: "Approach", href: "#approach" },
+  { label: "Regenerative", href: "#regenerative" },
   { label: "Signals", href: "#signals" },
   { label: "Cycle", href: "#cycle" },
   { label: "Outcomes", href: "#outcomes" },
@@ -131,11 +132,11 @@ export default function Home() {
             className="group flex items-center gap-2.5 text-left"
             aria-label="Fieldwise home"
           >
-            <span className="grid h-11 w-11 place-items-center rounded-xl border border-[#c8ff2b]/60 bg-[#09231c]/75 p-1.5 shadow-[0_0_0_4px_rgba(200,255,43,0.08)]"><img src={brandMark} alt="" className="h-full w-full object-contain transition-transform duration-200 group-hover:rotate-[-6deg]" /></span>
+            <span className="grid h-12 w-12 place-items-center rounded-xl border border-[#c8ff2b]/60 bg-[#09231c]/75 p-1.5 shadow-[0_0_0_5px_rgba(200,255,43,0.09)]"><img src={brandMark} alt="" className="h-full w-full object-contain transition-transform duration-200 group-hover:rotate-[-6deg]" /></span>
             <span><span className="block text-[0.82rem] font-extrabold uppercase tracking-[0.2em] text-white">Fieldwise</span><span className="mt-0.5 block text-[0.52rem] font-bold uppercase tracking-[0.18em] text-[#c8ff2b]">Field intelligence</span></span>
           </button>
 
-          <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary navigation">
+          <nav className="hidden items-center gap-6 xl:flex" aria-label="Primary navigation">
             {navItems.map((item) => (
               <button
                 type="button"
@@ -148,7 +149,7 @@ export default function Home() {
             ))}
           </nav>
 
-          <div className="hidden items-center gap-3 lg:flex">
+          <div className="hidden items-center gap-3 xl:flex">
             <a href="mailto:hello@fieldwise.ag" className="text-[0.72rem] font-bold uppercase tracking-[0.15em] text-white/75 transition-colors hover:text-[#c8ff2b]">
               Talk to us
             </a>
@@ -164,7 +165,7 @@ export default function Home() {
           <button
             type="button"
             onClick={() => setIsOpen((open) => !open)}
-            className="grid h-10 w-10 place-items-center rounded-full border border-white/25 text-white lg:hidden"
+            className="grid h-10 w-10 place-items-center rounded-full border border-white/25 text-white xl:hidden"
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
           >
@@ -173,7 +174,7 @@ export default function Home() {
         </div>
 
         {isOpen && (
-          <div className="absolute inset-x-4 top-[4.7rem] rounded-[1.5rem] border border-white/10 bg-[#102d25] p-3 shadow-2xl lg:hidden">
+          <div className="absolute inset-x-4 top-[4.7rem] rounded-[1.5rem] border border-white/10 bg-[#102d25] p-3 shadow-2xl xl:hidden">
             {navItems.map((item) => (
               <button
                 type="button"
@@ -205,7 +206,7 @@ export default function Home() {
             <div className="max-w-4xl">
               <div className="animate-rise flex items-center gap-3 text-[0.68rem] font-extrabold uppercase tracking-[0.23em] text-[#c8ff2b]">
                 <span className="grid h-6 w-6 place-items-center rounded-full border border-[#c8ff2b]/45 bg-[#c8ff2b]/10"><span className="h-1.5 w-1.5 rounded-full bg-[#c8ff2b]" /></span>
-                Agritech intelligence, rooted in the field
+                Agricultural intelligence for America’s working lands
               </div>
               <h1 className="animate-rise animate-delay-1 mt-7 font-display text-[clamp(3.6rem,8vw,7.85rem)] font-normal leading-[0.86] tracking-[-0.055em] text-white">
                 Make every growing season <em className="font-display text-[#c8ff2b]">more knowable.</em>
@@ -337,15 +338,62 @@ export default function Home() {
 
             <div className="mt-8 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
               <div className="border-l-2 border-[#c8ff2b] bg-white/[0.05] p-7 md:p-9">
-                <div className="flex items-center justify-between border-b border-white/15 pb-4"><p className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">Team</p><span className="text-[0.58rem] font-bold uppercase tracking-[0.13em] text-white/42">Technical leadership</span></div>
+                <div className="flex items-center justify-between border-b border-white/15 pb-4"><p className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">Team</p><span className="text-[0.58rem] font-bold uppercase tracking-[0.13em] text-white/42">Technical leadership / USA</span></div>
                 <div className="mt-7 grid gap-6 sm:grid-cols-[auto_1fr] sm:items-start">
                   <span className="grid h-16 w-16 place-items-center rounded-full border border-[#c8ff2b]/55 bg-[#09231d] font-display text-3xl text-[#c8ff2b]">A</span>
                   <div><p className="text-[0.65rem] font-extrabold uppercase tracking-[0.16em] text-[#c8ff2b]">Co-Founder &amp; CTO</p><h3 className="mt-2 font-display text-4xl tracking-[-0.04em] text-white">Arsalan</h3><p className="mt-3 max-w-2xl text-sm leading-7 text-white/66">With approximately 8–9 years across cybersecurity and software engineering, spanning web, mobile, blockchain, and AI, Arsalan leads product architecture and technical strategy.</p></div>
                 </div>
               </div>
-              <aside className="flex flex-col justify-between rounded-[1.45rem] bg-[#c8ff2b] p-7 text-[#113128] md:p-9">
-                <div><p className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#355243]">Contact</p><h3 className="mt-5 font-display text-4xl leading-[0.96] tracking-[-0.04em]">Let’s make the field more knowable.</h3></div>
+              <aside className="flex flex-col justify-between rounded-[1.45rem] border border-white/10 bg-[#d6d8c9] p-7 text-[#113128] md:p-9">
+                <div><div className="h-1 w-11 bg-[#c8ff2b]" /><p className="mt-5 text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#355243]">Contact</p><h3 className="mt-5 font-display text-4xl leading-[0.96] tracking-[-0.04em]">Let’s make the field more knowable.</h3></div>
                 <div className="mt-10 space-y-3 border-t border-[#113128]/15 pt-5 text-sm font-bold"><p>Delaware, USA</p><p className="text-[#355243]">Email address to be confirmed</p></div>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <section id="regenerative" className="relative overflow-hidden bg-[#ecede3] px-5 py-24 md:px-8 md:py-32">
+          <div className="absolute left-0 top-0 h-full w-full opacity-[0.045] [background-image:radial-gradient(#123329_1px,transparent_1px)] [background-size:15px_15px]" aria-hidden="true" />
+          <div className="relative mx-auto max-w-[1440px]">
+            <div className="grid gap-12 lg:grid-cols-[0.84fr_1.16fr] lg:items-end">
+              <div>
+                <p className="section-kicker">Regenerative agriculture</p>
+                <h2 className="mt-6 max-w-xl font-display text-5xl leading-[0.93] tracking-[-0.05em] text-[#113128] md:text-7xl">Stewardship gets stronger when the field can remember.</h2>
+              </div>
+              <div className="max-w-2xl lg:justify-self-end">
+                <p className="text-[1.05rem] leading-8 text-[#49685e]">Regenerative agriculture is built on attention: keeping soil covered, using water thoughtfully, supporting diversity, and learning season by season. Fieldwise helps turn those ground-level observations into a record people can revisit, discuss, and use.</p>
+                <p className="mt-5 border-l-2 border-[#c8ff2b] pl-4 text-sm leading-6 text-[#4f6d63]">It does not prescribe a single practice. It makes the context behind each farm’s choices more visible.</p>
+              </div>
+            </div>
+
+            <div className="mt-16 grid gap-7 lg:grid-cols-[1.05fr_0.95fr]">
+              <div className="relative overflow-hidden rounded-[1.7rem] bg-[#123329] p-7 text-white md:p-10">
+                <div className="contours contours--dark absolute inset-0 opacity-25" aria-hidden="true" />
+                <div className="relative">
+                  <div className="flex items-center justify-between border-b border-white/15 pb-4"><p className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">American field record</p><span className="rounded-full border border-white/20 px-3 py-1 text-[0.56rem] font-bold uppercase tracking-[0.13em] text-white/67">Growing season</span></div>
+                  <div className="mt-5 flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-lg border border-[#c8ff2b]/45 bg-black/15 p-1"><img src={brandMark} alt="" className="h-full w-full" /></span><span className="text-[0.57rem] font-extrabold uppercase tracking-[0.16em] text-white/55">Fieldwise record stamp / stewardship log</span></div>
+                  <h3 className="mt-8 max-w-lg font-display text-4xl leading-[0.98] tracking-[-0.04em] text-white">The practices are local. The learning should travel.</h3>
+                  <div className="mt-10 grid gap-px overflow-hidden rounded-xl border border-white/15 bg-white/15 sm:grid-cols-2">
+                    {[
+                      ["Soil cover", "Capture the season’s on-the-ground notes around soil condition and field cover."],
+                      ["Water awareness", "Connect irrigation activity and moisture observations to the decisions made."],
+                      ["Living diversity", "Keep a record of rotations, borders, and field changes worth carrying forward."],
+                      ["Season reflection", "Compare what was observed with what the team will try next."],
+                    ].map(([title, copy], index) => (
+                      <article key={title} className="bg-[#123329]/95 p-5"><span className="text-[0.58rem] font-extrabold tracking-[0.14em] text-[#c8ff2b]">0{index + 1}</span><h4 className="mt-7 font-display text-2xl tracking-[-0.03em] text-white">{title}</h4><p className="mt-3 text-sm leading-6 text-white/60">{copy}</p></article>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <aside className="rounded-[1.7rem] border border-[#123329]/12 bg-[#d6d8c9] p-7 md:p-10">
+                <div className="flex items-center justify-between border-b border-[#123329]/15 pb-4"><p className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#44675c]">What Fieldwise contributes</p><span className="h-2.5 w-2.5 rounded-full bg-[#c8ff2b] shadow-[0_0_0_5px_rgba(200,255,43,0.23)]" /></div>
+                <div className="mt-8 space-y-7">
+                  {[
+                    ["A useful seasonal record", "Keep practical observations from disappearing when teams, seasons, or locations change."],
+                    ["A shared field conversation", "Give growers, advisors, and operators a common basis for discussing what was seen and done."],
+                    ["A clearer market story", "Organize stewardship notes into a more coherent record for programs, partners, and future decisions."],
+                  ].map(([title, copy], index) => <div key={title} className="grid grid-cols-[1.75rem_1fr] gap-3"><span className="pt-0.5 text-[0.7rem] font-extrabold tracking-[0.14em] text-[#738f84]">0{index + 1}</span><div><h3 className="font-display text-2xl tracking-[-0.03em] text-[#113128]">{title}</h3><p className="mt-2 text-sm leading-6 text-[#4e6d63]">{copy}</p></div></div>)}
+                </div>
               </aside>
             </div>
           </div>
@@ -424,8 +472,8 @@ export default function Home() {
                 ["02", "Interpret", "Bring scattered signals together into a read people can discuss."],
                 ["03", "Coordinate", "Connect the next useful action across the people responsible for it."],
                 ["04", "Carry forward", "Keep the season record available for the next decision, not buried in it."],
-              ].map(([number, title, copy]) => (
-                <article key={number} className="min-h-[245px] bg-[#e9e8df] p-7 transition-colors hover:bg-white md:p-8"><span className="text-[0.68rem] font-extrabold tracking-[0.15em] text-[#5f7c72]">{number}</span><h3 className="mt-14 font-display text-3xl tracking-[-0.035em] text-[#113128]">{title}</h3><p className="mt-4 max-w-[15rem] text-sm leading-6 text-[#526f66]">{copy}</p></article>
+              ].map(([number, title, copy], index) => (
+                <article key={number} className={`min-h-[245px] bg-[#e9e8df] p-7 transition-colors hover:bg-white md:p-8 ${index % 2 === 1 ? "lg:translate-y-7 lg:border-t lg:border-[#123329]/15" : ""}`}><div className="flex items-center justify-between"><span className="text-[0.68rem] font-extrabold tracking-[0.15em] text-[#5f7c72]">{number}</span><span className="text-[0.53rem] font-bold uppercase tracking-[0.12em] text-[#739087]">Season note</span></div><h3 className="mt-14 font-display text-3xl tracking-[-0.035em] text-[#113128]">{title}</h3><p className="mt-4 max-w-[15rem] text-sm leading-6 text-[#526f66]">{copy}</p></article>
               ))}
             </div>
           </div>
@@ -514,7 +562,7 @@ export default function Home() {
 
       <footer className="bg-[#0c261f] px-5 py-6 text-white/56 md:px-8">
         <div className="mx-auto flex max-w-[1440px] flex-col gap-3 text-[0.67rem] font-bold uppercase tracking-[0.13em] sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-2"><span className="grid h-8 w-8 place-items-center rounded-md border border-[#c8ff2b]/40 bg-black/20 p-1"><img src={brandMark} alt="" className="h-full w-full" /></span> Fieldwise / Agritech intelligence</div>
+          <div className="flex items-center gap-2"><span className="grid h-8 w-8 place-items-center rounded-md border border-[#c8ff2b]/40 bg-black/20 p-1"><img src={brandMark} alt="" className="h-full w-full" /></span> Fieldwise / Intelligence for America’s working lands</div>
           <p>© 2026 Fieldwise. Built for the growing edge.</p>
         </div>
       </footer>

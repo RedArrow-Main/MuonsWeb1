@@ -99,3 +99,14 @@
 - [x] Create a programmatic SEO-ready content model and route/template strategy without publishing thin doorway pages.
 - [x] Prepare off-page assets, citation-ready company facts, outreach targets, and a compliant link-acquisition plan.
 - [x] Validate the comprehensive SEO implementation and save the optimized revision.
+
+## SEO Audit
+- [x] Collect live-site, codebase, crawl, metadata, performance, search, and backlink evidence.
+- [x] Analyze technical SEO, site architecture, content clusters, keyword data, backlinks, and data gaps without inventing metrics.
+- [x] Write the evidence-led SEO audit report with the required executive summary, findings, references, and ordered problem/fix priorities.
+- [x] Deliver the SEO audit report and supporting evidence files.
+
+## SEO Score Improvement
+- [x] Identify the exact SEO checker and record its failed checks or score breakdown.
+- [x] Fix high-impact crawlability, rendered metadata, performance, accessibility, and deployment issues.
+- [x] Rebuild, retest the same checker inputs, and save the improved SEO revision.

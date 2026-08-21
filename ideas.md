@@ -74,3 +74,4 @@ The Fieldwise mark is a modular **F** constructed from a field parcel, a sprouti
 - Signal Sprout is reserved for actions, priority indicators, active-status marks, and decisive outcomes. Large decorative chartreuse fills are avoided.
 - Every major image panel functions as an **annotated field record**, using concise parcel labels, seasonal records, map-corner marks, and operational status notes to connect imagery to decision-making.
 - Reference-informed additions use clear evidence chips, a dark operating-principles ribbon, field-signal lenses, and a four-step season cycle. These ideas strengthen the Field Ledger narrative without adopting the reference’s proprietary claims, metrics, or product language.
+- The About Muons section is treated as the company-level chapter behind Fieldwise: a dark editorial dossier with three mission cards, a focused technical-leadership record, and a direct Delaware location card.

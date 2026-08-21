@@ -22,6 +22,7 @@ const harvestImage = "/manus-storage/fieldwise-harvest_c1f9f93a.jpg";
 const brandMark = "/manus-storage/fieldwise-mark_a6ef5b98.png";
 
 const navItems = [
+  { label: "Muons", href: "#muons" },
   { label: "Approach", href: "#approach" },
   { label: "Signals", href: "#signals" },
   { label: "Cycle", href: "#cycle" },
@@ -297,6 +298,55 @@ export default function Home() {
                   <p className="text-sm leading-6 text-[#406057]">A season history you can revisit, compare, and act on across every growing site.</p>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="muons" className="relative overflow-hidden bg-[#102f26] px-5 py-24 text-white md:px-8 md:py-32">
+          <div className="contours contours--dark absolute inset-0 opacity-25" aria-hidden="true" />
+          <div className="relative mx-auto max-w-[1440px]">
+            <div className="grid gap-10 border-b border-white/15 pb-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+              <div>
+                <p className="section-kicker section-kicker--light">About Muons</p>
+                <h2 className="mt-6 font-display text-5xl leading-[0.92] tracking-[-0.05em] text-white md:text-7xl">The company behind <span className="text-[#c8ff2b]">Fieldwise.</span></h2>
+              </div>
+              <p className="max-w-2xl text-[1.05rem] leading-8 text-white/73 lg:justify-self-end">Muons Technology builds tools that turn agricultural and environmental data into decisions farmers and operators can actually act on — even in places with unreliable internet or infrastructure.</p>
+            </div>
+
+            <div className="grid gap-px bg-white/15 md:grid-cols-3">
+              <article className="bg-[#102f26] p-7 md:p-9">
+                <span className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">01 / Who we are</span>
+                <h3 className="mt-8 font-display text-3xl tracking-[-0.035em] text-white">Decisions that hold up in the real world.</h3>
+                <p className="mt-5 text-sm leading-7 text-white/66">We make useful agricultural intelligence accessible where tools, connectivity, and technical capacity cannot be assumed.</p>
+              </article>
+              <article className="bg-[#163a30] p-7 md:p-9">
+                <span className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">02 / Mission</span>
+                <h3 className="mt-8 font-display text-3xl tracking-[-0.035em] text-white">Advanced intelligence belongs on every farm.</h3>
+                <p className="mt-5 text-sm leading-7 text-white/66">The next generation of ag-tech should not require broadband, apps, or smartphones to be useful. It should meet farmers where they are.</p>
+              </article>
+              <article className="bg-[#102f26] p-7 md:p-9">
+                <span className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">03 / What we do</span>
+                <h3 className="mt-8 font-display text-3xl tracking-[-0.035em] text-white">Offline-first, low-bandwidth by design.</h3>
+                <ul className="mt-5 space-y-3 text-sm leading-6 text-white/66">
+                  <li className="flex gap-2.5"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c8ff2b]" />Build tools for data and record-keeping in disconnected rural environments.</li>
+                  <li className="flex gap-2.5"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c8ff2b]" />Combine climate, soil, and field data into simple advisories, including irrigation timing by SMS.</li>
+                  <li className="flex gap-2.5"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c8ff2b]" />Design for disconnected environments first, not as an afterthought.</li>
+                </ul>
+              </article>
+            </div>
+
+            <div className="mt-8 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+              <div className="border-l-2 border-[#c8ff2b] bg-white/[0.05] p-7 md:p-9">
+                <div className="flex items-center justify-between border-b border-white/15 pb-4"><p className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">Team</p><span className="text-[0.58rem] font-bold uppercase tracking-[0.13em] text-white/42">Technical leadership</span></div>
+                <div className="mt-7 grid gap-6 sm:grid-cols-[auto_1fr] sm:items-start">
+                  <span className="grid h-16 w-16 place-items-center rounded-full border border-[#c8ff2b]/55 bg-[#09231d] font-display text-3xl text-[#c8ff2b]">A</span>
+                  <div><p className="text-[0.65rem] font-extrabold uppercase tracking-[0.16em] text-[#c8ff2b]">Co-Founder &amp; CTO</p><h3 className="mt-2 font-display text-4xl tracking-[-0.04em] text-white">Arsalan</h3><p className="mt-3 max-w-2xl text-sm leading-7 text-white/66">With approximately 8–9 years across cybersecurity and software engineering, spanning web, mobile, blockchain, and AI, Arsalan leads product architecture and technical strategy.</p></div>
+                </div>
+              </div>
+              <aside className="flex flex-col justify-between rounded-[1.45rem] bg-[#c8ff2b] p-7 text-[#113128] md:p-9">
+                <div><p className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#355243]">Contact</p><h3 className="mt-5 font-display text-4xl leading-[0.96] tracking-[-0.04em]">Let’s make the field more knowable.</h3></div>
+                <div className="mt-10 space-y-3 border-t border-[#113128]/15 pt-5 text-sm font-bold"><p>Delaware, USA</p><p className="text-[#355243]">Email address to be confirmed</p></div>
+              </aside>
             </div>
           </div>
         </section>

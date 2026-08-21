@@ -110,3 +110,10 @@
 - [x] Identify the exact SEO checker and record its failed checks or score breakdown.
 - [x] Fix high-impact crawlability, rendered metadata, performance, accessibility, and deployment issues.
 - [x] Rebuild, retest the same checker inputs, and save the improved SEO revision.
+
+## Sitechecker 39/100 Fixes
+- [x] Fix the 404 deployment/canonical behavior and ensure the production URL serves the correct site.
+- [x] Normalize HTTPS and the preferred host, and remove duplicate host/canonical risk in deployment settings.
+- [x] Reduce initial HTML and JavaScript payload and improve mobile/desktop page-speed inputs.
+- [x] Repair or qualify LinkedIn links that Sitechecker reports as 4xx and improve text-to-code ratio where useful.
+- [x] Rebuild, validate the reported fixes, and save the Sitechecker revision.

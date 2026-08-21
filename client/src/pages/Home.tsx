@@ -16,15 +16,15 @@ import {
 import { FormEvent, useEffect, useState } from "react";
 import { Link } from "wouter";
 
-// Production media is intentionally served from a fixed public Vercel Blob origin,
-// never from Manus preview-only routes, so the Field Ledger experience travels intact.
-const mediaOrigin = "https://qirz61kx5dixbar2.public.blob.vercel-storage.com";
-const heroImage = `${mediaOrigin}/fieldwise-hero.jpg`;
-const sensorImage = `${mediaOrigin}/fieldwise-sensor.jpg`;
-const aerialImage = `${mediaOrigin}/fieldwise-aerial.jpg`;
-const harvestImage = `${mediaOrigin}/fieldwise-harvest.jpg`;
-const muonsLogo = `${mediaOrigin}/muons-technology-logo-dark.png`;
-const muonsSymbol = `${mediaOrigin}/muons-technology-symbol.png`;
+// Production media is intentionally served from a fixed public domain with
+// compressed files, so the Field Ledger experience remains fast and crawlable.
+const mediaOrigin = "https://fieldwise-byehk6rr.manus.space/manus-storage";
+const heroImage = `${mediaOrigin}/fieldwise-hero_ededde5e.jpg`;
+const sensorImage = `${mediaOrigin}/fieldwise-sensor_6f8a5eae.jpg`;
+const aerialImage = `${mediaOrigin}/fieldwise-aerial_dd894a98.jpg`;
+const harvestImage = `${mediaOrigin}/fieldwise-harvest_555feab7.jpg`;
+const muonsLogo = `${mediaOrigin}/muons-technology-logo-dark_4e36a467.png`;
+const muonsSymbol = `${mediaOrigin}/muons-technology-symbol_2d8c393c.png`;
 
 const navItems = [
   { label: "Approach", href: "#approach" },
@@ -118,7 +118,7 @@ const leaders = [
     role: "Founder & CEO",
     bio: "10+ years of experience in digital transformation across emerging markets. Specialized in designing mission-critical infrastructure and offline-first digital rails for national-scale coordination.",
     linkedin: "https://www.linkedin.com/in/andre-j-a451172a/",
-    image: `${mediaOrigin}/andre-james-portrait.png`,
+    image: `${mediaOrigin}/andre-james-portrait_de950a1a.jpg`,
   },
   {
     initials: "FK",
@@ -126,7 +126,7 @@ const leaders = [
     role: "Financial Advisor",
     bio: "Brings experience across digital strategy, AI-led systems, and enterprise transformation. Advises Muons on financial readiness, capital strategy, and resilient growth planning.",
     linkedin: "https://www.linkedin.com/in/fred-kamuzinzi/",
-    image: `${mediaOrigin}/fred-kamuzinzi-portrait.jpg`,
+    image: `${mediaOrigin}/fred-kamuzinzi-portrait_99c4dcbd.jpg`,
   },
   {
     initials: "GM",
@@ -134,7 +134,7 @@ const leaders = [
     role: "COO",
     bio: "Operations, market expansion, and business development. Leading operational strategy and market growth initiatives.",
     linkedin: "https://www.linkedin.com/in/gordon-mitchell-527953b/",
-    image: `${mediaOrigin}/gordon-mitchell-portrait.jpg`,
+    image: `${mediaOrigin}/gordon-mitchell-portrait_c53d813a.jpg`,
   },
 ];
 

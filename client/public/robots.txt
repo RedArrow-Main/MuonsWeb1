@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://muons-web1-63hi.vercel.app/sitemap.xml
+Sitemap: https://fieldwise-byehk6rr.manus.space/sitemap.xml

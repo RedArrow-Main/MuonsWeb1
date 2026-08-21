@@ -24,6 +24,7 @@ const brandMark = "/manus-storage/fieldwise-mark_a6ef5b98.png";
 const navItems = [
   { label: "Approach", href: "#approach" },
   { label: "Signals", href: "#signals" },
+  { label: "Cycle", href: "#cycle" },
   { label: "Outcomes", href: "#outcomes" },
 ];
 
@@ -48,6 +49,37 @@ const signalCards = [
   },
 ];
 
+const fieldLenses = [
+  {
+    label: "Soil & water",
+    record: "Ground condition",
+    title: "Start with what is happening below the surface.",
+    copy: "Bring moisture, irrigation context, soil observations, and changing field conditions into one usable frame.",
+    details: ["Moisture context", "Irrigation notes", "Soil observations"],
+  },
+  {
+    label: "Crop progress",
+    record: "Season condition",
+    title: "Read the crop as part of the wider season.",
+    copy: "Connect crop-stage observations with weather patterns, field activity, and the decisions already made.",
+    details: ["Crop-stage notes", "Field activity", "Weather context"],
+  },
+  {
+    label: "Field operations",
+    record: "Working record",
+    title: "Give every field action its practical context.",
+    copy: "Coordinate work in the field with the on-the-ground signals teams need to assess what comes next.",
+    details: ["Task history", "Team observations", "Decision handoffs"],
+  },
+  {
+    label: "Season memory",
+    record: "Carry-forward record",
+    title: "Keep the learning that makes the next season stronger.",
+    copy: "Turn individual observations into a durable record that can travel with the farm, the team, and the next plan.",
+    details: ["Field histories", "Pattern comparison", "Future planning"],
+  },
+];
+
 function scrollToSection(target: string) {
   document.querySelector(target)?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
@@ -55,6 +87,7 @@ function scrollToSection(target: string) {
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeLens, setActiveLens] = useState(0);
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 28);
@@ -190,6 +223,11 @@ export default function Home() {
                   </button>
                 </div>
               </div>
+              <div className="mt-7 flex flex-wrap gap-2.5">
+                {["Local context", "Shared view", "Timely action", "Season memory"].map((item, index) => (
+                  <span key={item} className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-[#09251e]/50 px-3 py-1.5 text-[0.59rem] font-extrabold uppercase tracking-[0.12em] text-white/78 backdrop-blur-sm"><span className={index === 2 ? "h-1.5 w-1.5 rounded-full bg-[#c8ff2b]" : "h-1.5 w-1.5 rounded-full bg-white/45"} />{item}</span>
+                ))}
+              </div>
             </div>
             <div className="animate-rise animate-delay-3 mt-14 grid max-w-3xl gap-5 border-t border-white/20 pt-5 sm:grid-cols-3">
               <p className="text-[0.7rem] font-bold uppercase tracking-[0.15em] text-white/55">A clearer read</p>
@@ -206,6 +244,12 @@ export default function Home() {
           <div className="mx-auto flex max-w-[1440px] flex-col justify-between gap-3 text-[#0f3027] sm:flex-row sm:items-center">
             <p className="flex items-center gap-3 text-[0.72rem] font-extrabold uppercase tracking-[0.16em]"><span className="h-2.5 w-2.5 rounded-full bg-[#c8ff2b] shadow-[0_0_0_5px_rgba(200,255,43,0.28)]" /> Crop intelligence for the next useful move</p>
             <p className="text-sm font-medium text-[#46645b]">Designed for growers, cooperatives, and institutions building resilient food systems.</p>
+          </div>
+        </section>
+
+        <section aria-label="Fieldwise operating principles" className="overflow-hidden bg-[#0d2d24] px-5 py-3.5 md:px-8">
+          <div className="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-x-8 gap-y-3 text-[0.63rem] font-extrabold uppercase tracking-[0.15em] text-white/67">
+            {["Local context", "Shared view", "Timely action", "Season memory"].map((item) => <span key={item} className="flex items-center gap-2.5"><span className="h-1.5 w-1.5 rounded-full bg-[#c8ff2b]" />{item}</span>)}
           </div>
         </section>
 
@@ -286,6 +330,53 @@ export default function Home() {
                   </article>
                 );
               })}
+            </div>
+            <div className="mt-8 grid overflow-hidden rounded-[1.65rem] border border-white/15 bg-[#0d2e25]/75 lg:grid-cols-[0.98fr_1.02fr]">
+              <div className="border-b border-white/15 p-7 lg:border-b-0 lg:border-r md:p-9">
+                <div className="flex items-center justify-between"><p className="text-[0.65rem] font-extrabold uppercase tracking-[0.16em] text-[#c8ff2b]">{fieldLenses[activeLens].record}</p><span className="text-[0.62rem] font-bold uppercase tracking-[0.13em] text-white/45">Lens 0{activeLens + 1}</span></div>
+                <h3 className="mt-6 max-w-lg font-display text-4xl leading-[0.98] tracking-[-0.04em] text-white">{fieldLenses[activeLens].title}</h3>
+                <p className="mt-5 max-w-xl text-sm leading-7 text-white/66">{fieldLenses[activeLens].copy}</p>
+                <div className="mt-8 grid gap-2 sm:grid-cols-3">
+                  {fieldLenses[activeLens].details.map((detail) => <span key={detail} className="border-t border-white/15 pt-3 text-[0.6rem] font-bold uppercase tracking-[0.13em] text-white/58">{detail}</span>)}
+                </div>
+              </div>
+              <div className="p-3 md:p-4" role="tablist" aria-label="Fieldwise data lenses">
+                {fieldLenses.map((lens, index) => (
+                  <button
+                    key={lens.label}
+                    type="button"
+                    role="tab"
+                    aria-selected={activeLens === index}
+                    onClick={() => setActiveLens(index)}
+                    className={`group flex w-full items-center justify-between border-b border-white/10 px-4 py-5 text-left transition-colors last:border-b-0 md:px-5 ${activeLens === index ? "bg-[#c8ff2b] text-[#113128]" : "text-white hover:bg-white/[0.06]"}`}
+                  >
+                    <span className="font-display text-2xl tracking-[-0.03em]">{lens.label}</span><span className={`grid h-8 w-8 place-items-center rounded-full border transition-transform group-hover:translate-x-1 ${activeLens === index ? "border-[#113128]/25" : "border-white/25 text-[#c8ff2b]"}`}><ArrowUpRight className="h-3.5 w-3.5" /></span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="cycle" className="relative overflow-hidden bg-[#e9e8df] px-5 py-24 md:px-8 md:py-32">
+          <div className="absolute inset-y-0 right-0 w-[39%] border-l border-[#123329]/8 bg-[linear-gradient(135deg,transparent_25%,rgba(18,51,41,0.035)_25%,rgba(18,51,41,0.035)_50%,transparent_50%,transparent_75%,rgba(18,51,41,0.035)_75%)] bg-[size:28px_28px]" aria-hidden="true" />
+          <div className="relative mx-auto max-w-[1440px]">
+            <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+              <div>
+                <p className="section-kicker">The season cycle</p>
+                <h2 className="mt-6 max-w-xl font-display text-5xl leading-[0.94] tracking-[-0.05em] text-[#113128] md:text-6xl">From field observation to a stronger next move.</h2>
+              </div>
+              <p className="max-w-lg text-base leading-7 text-[#4d6c62] lg:justify-self-end">A useful system should clarify the work in front of people, then carry the record forward when the season turns. Fieldwise keeps that cycle legible.</p>
+            </div>
+            <div className="mt-16 grid gap-px overflow-hidden border border-[#123329]/15 bg-[#123329]/15 md:grid-cols-2 lg:grid-cols-4">
+              {[
+                ["01", "Observe", "Capture the practical context of the field, while it is happening."],
+                ["02", "Interpret", "Bring scattered signals together into a read people can discuss."],
+                ["03", "Coordinate", "Connect the next useful action across the people responsible for it."],
+                ["04", "Carry forward", "Keep the season record available for the next decision, not buried in it."],
+              ].map(([number, title, copy]) => (
+                <article key={number} className="min-h-[245px] bg-[#e9e8df] p-7 transition-colors hover:bg-white md:p-8"><span className="text-[0.68rem] font-extrabold tracking-[0.15em] text-[#5f7c72]">{number}</span><h3 className="mt-14 font-display text-3xl tracking-[-0.035em] text-[#113128]">{title}</h3><p className="mt-4 max-w-[15rem] text-sm leading-6 text-[#526f66]">{copy}</p></article>
+              ))}
             </div>
           </div>
         </section>

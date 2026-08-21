@@ -18,11 +18,11 @@ import { Link } from "wouter";
 
 // Production media is intentionally served from a fixed public domain with
 // compressed files, so the Field Ledger experience remains fast and crawlable.
-const mediaOrigin = "https://fieldwise-byehk6rr.manus.space/manus-storage";
-const heroImage = `${mediaOrigin}/fieldwise-hero_ededde5e.jpg`;
-const sensorImage = `${mediaOrigin}/fieldwise-sensor_6f8a5eae.jpg`;
-const aerialImage = `${mediaOrigin}/fieldwise-aerial_dd894a98.jpg`;
-const harvestImage = `${mediaOrigin}/fieldwise-harvest_555feab7.jpg`;
+const mediaOrigin = "https://muonstechnology.com/manus-storage";
+const heroImage = `${mediaOrigin}/muons-technology-hero_1d0963d0.jpg`;
+const sensorImage = `${mediaOrigin}/muons-technology-sensor_df91a7f4.jpg`;
+const aerialImage = `${mediaOrigin}/muons-technology-aerial_3a6f4989.jpg`;
+const harvestImage = `${mediaOrigin}/muons-technology-harvest_ec57b1f8.jpg`;
 const muonsLogo = `${mediaOrigin}/muons-technology-logo-dark_4e36a467.png`;
 const muonsSymbol = `${mediaOrigin}/muons-technology-symbol_2d8c393c.png`;
 
@@ -118,7 +118,7 @@ const leaders = [
     role: "Founder & CEO",
     bio: "10+ years of experience in digital transformation across emerging markets. Specialized in designing mission-critical infrastructure and offline-first digital rails for national-scale coordination.",
     linkedin: "https://www.linkedin.com/in/andre-j-a451172a/",
-    image: `${mediaOrigin}/andre-james-portrait_de950a1a.jpg`,
+    image: `${mediaOrigin}/muons-technology-andre-james_3b317ff7.jpg`,
   },
   {
     initials: "FK",
@@ -126,7 +126,7 @@ const leaders = [
     role: "Financial Advisor",
     bio: "Brings experience across digital strategy, AI-led systems, and enterprise transformation. Advises Muons on financial readiness, capital strategy, and resilient growth planning.",
     linkedin: "https://www.linkedin.com/in/fred-kamuzinzi/",
-    image: `${mediaOrigin}/fred-kamuzinzi-portrait_99c4dcbd.jpg`,
+    image: `${mediaOrigin}/muons-technology-fred-kamuzinzi_f8ea67f3.jpg`,
   },
   {
     initials: "GM",
@@ -134,7 +134,7 @@ const leaders = [
     role: "COO",
     bio: "Operations, market expansion, and business development. Leading operational strategy and market growth initiatives.",
     linkedin: "https://www.linkedin.com/in/gordon-mitchell-527953b/",
-    image: `${mediaOrigin}/gordon-mitchell-portrait_c53d813a.jpg`,
+    image: `${mediaOrigin}/muons-technology-gordon-mitchell_4c60039e.jpg`,
   },
 ];
 

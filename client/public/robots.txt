@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://fieldwise-byehk6rr.manus.space/sitemap.xml
+Sitemap: https://muonstechnology.com/sitemap.xml

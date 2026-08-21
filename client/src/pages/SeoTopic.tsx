@@ -7,7 +7,7 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { useEffect } from "react";
 import { getSeoPage, seoPages } from "@/data/seoPages";
 
-const siteUrl = "https://fieldwise-byehk6rr.manus.space";
+const siteUrl = "https://muonstechnology.com";
 
 function setMeta(attribute: "name" | "property", key: string, content: string) {
   let element = document.head.querySelector(`meta[${attribute}="${key}"]`) as HTMLMetaElement | null;

@@ -1,7 +1,7 @@
 # Muons Technology SEO Audit
 
 **Audit date:** 21 August 2026  
-**Audited property:** `https://muons-web1-63hi.vercel.app/`  
+**Audited property:** `https://muonstechnology.com/`  
 **Evidence basis:** live HTTP checks, repository source, local production build, route and asset inspection, and official Google Search guidance. No Google Search Console, Google Analytics, Lighthouse/PageSpeed, Ahrefs/Semrush, crawl export, keyword export, or backlink export was available. Traffic, rankings, countries, branded/non-branded mix, backlink strength, and real Core Web Vitals are therefore not measurable from this audit.
 
 ## 1. Executive Summary

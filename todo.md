@@ -117,3 +117,8 @@
 - [x] Reduce initial HTML and JavaScript payload and improve mobile/desktop page-speed inputs.
 - [x] Repair or qualify LinkedIn links that Sitechecker reports as 4xx and improve text-to-code ratio where useful.
 - [x] Rebuild, validate the reported fixes, and save the Sitechecker revision.
+
+## Muons Technology Domain Cleanup
+- [x] Replace all canonical, sitemap, robots, social, structured-data, and route URLs with https://muonstechnology.com/.
+- [x] Rename production-facing image asset paths so no Fieldwise filename remains in image URLs or code.
+- [x] Scan the repository and build output for remaining Fieldwise references, validate, and save the Muons-only revision.

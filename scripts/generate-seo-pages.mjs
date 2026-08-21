@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
 const outputRoot = path.join(root, "dist", "public");
-const siteUrl = "https://fieldwise-byehk6rr.manus.space";
+const siteUrl = "https://muonstechnology.com";
 
 const pages = [
   {

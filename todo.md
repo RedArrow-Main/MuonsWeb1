@@ -32,3 +32,6 @@
 - [x] Review the supplied LinkedIn profiles for Andre James, Fred Kamuzinzi, and Gordon Mitchell.
 - [x] Update the leadership roster, profile links, and Andre James portrait where accessible.
 - [x] Verify the revised leadership cards and save a new project version.
+- [x] Check public sources for Fred Kamuzinzi and Gordon Mitchell portrait images.
+- [x] Update the team cards with sourced images where permitted and strengthen Fred’s advisory description.
+- [x] Verify the revised leadership cards and save a new project version.

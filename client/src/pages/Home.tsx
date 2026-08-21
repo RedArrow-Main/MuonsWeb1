@@ -122,8 +122,9 @@ const leaders = [
     initials: "FK",
     name: "Fred Kamuzinzi",
     role: "Financial Advisor",
-    bio: "Financial Advisor to Muons Technology.",
+    bio: "Brings experience across digital strategy, AI-led systems, and enterprise transformation. Advises Muons on financial readiness, capital strategy, and resilient growth planning.",
     linkedin: "https://www.linkedin.com/in/fred-kamuzinzi/",
+    image: "/manus-storage/fred-kamuzinzi-portrait_93dee155.jpg",
   },
   {
     initials: "GM",
@@ -410,7 +411,7 @@ export default function Home() {
                     {leader.image ? <><img src={leader.image} alt={`Andre James, ${leader.role}`} className="absolute inset-0 h-full w-full object-cover object-center" /><div className="absolute inset-0 bg-gradient-to-t from-[#0b211b]/82 via-[#0b211b]/5 to-transparent" /></> : <div className="absolute inset-0 opacity-35 [background-image:linear-gradient(135deg,transparent_30%,rgba(200,255,43,0.22)_30%,rgba(200,255,43,0.22)_31%,transparent_31%)] [background-size:34px_34px]" aria-hidden="true" />}
                     <div className="absolute inset-5 flex items-center justify-between border-b border-current/20 pb-3 text-[0.54rem] font-extrabold uppercase tracking-[0.13em] opacity-70"><span>Leadership record</span><span>0{index + 1}</span></div>
                     {!leader.image && <div className="absolute inset-0 grid place-items-center"><span className={`grid h-24 w-24 place-items-center rounded-full border text-4xl font-display ${index % 2 === 0 ? "border-[#c8ff2b]/60 bg-black/15 text-[#c8ff2b]" : "border-[#113128]/25 bg-white/20 text-[#113128]"}`}>{leader.initials}</span></div>}
-                    <p className="absolute inset-x-5 bottom-5 text-[0.55rem] font-bold uppercase tracking-[0.12em] opacity-70">{leader.image ? "Leadership portrait / approved" : "Approved portrait / record slot"}</p>
+                    <p className="absolute inset-x-5 bottom-5 text-[0.55rem] font-bold uppercase tracking-[0.12em] opacity-70">{leader.image ? "Leadership portrait / approved" : "Portrait pending / record slot"}</p>
                   </div>
                   <div className="p-6"><p className="text-[0.62rem] font-extrabold uppercase tracking-[0.15em] text-[#607e73]">{leader.role}</p><h3 className="mt-3 font-display text-3xl tracking-[-0.035em] text-[#113128]">{leader.name}</h3><p className="mt-4 text-sm leading-6 text-[#4e6d63]">{leader.bio}</p><a href={leader.linkedin} target="_blank" rel="noreferrer" className="group/link mt-6 inline-flex items-center gap-2 text-[0.62rem] font-extrabold uppercase tracking-[0.13em] text-[#113128]">LinkedIn profile <ArrowUpRight className="h-3.5 w-3.5 text-[#739087] transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" /></a></div>
                 </article>

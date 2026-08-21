@@ -83,6 +83,30 @@ const fieldLenses = [
   },
 ];
 
+const trustStages = [
+  {
+    number: "01",
+    title: "Field event",
+    copy: "A meaningful observation or action becomes part of the seasonal record.",
+    label: "Illustrative record context",
+    details: ["North block", "Moisture note", "Action logged"],
+  },
+  {
+    number: "02",
+    title: "Record chain",
+    copy: "Blockchain architecture is intended to help create a more traceable history of that record.",
+    label: "Traceability path",
+    details: ["Event", "History", "Record"],
+  },
+  {
+    number: "03",
+    title: "Shared proof",
+    copy: "The record can support clearer conversations with advisors, programs, partners, and future teams.",
+    label: "Review-ready context",
+    details: ["Grower", "Advisor", "Program"],
+  },
+];
+
 function scrollToSection(target: string) {
   document.querySelector(target)?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
@@ -425,12 +449,23 @@ export default function Home() {
 
             <div className="mt-16 grid gap-7 lg:grid-cols-[1.1fr_0.9fr]">
               <div className="grid gap-px overflow-hidden rounded-[1.7rem] border border-white/15 bg-white/15 md:grid-cols-3">
-                {[
-                  ["01", "Field event", "A meaningful observation or action becomes part of the seasonal record."],
-                  ["02", "Record chain", "Blockchain architecture is intended to help create a more traceable history of that record."],
-                  ["03", "Shared proof", "The record can support clearer conversations with advisors, programs, partners, and future teams."],
-                ].map(([number, title, copy], index) => (
-                  <article key={number} className={`min-h-[310px] p-7 md:p-8 ${index === 1 ? "bg-[#183d32]" : "bg-[#0b211b]"}`}><div className="flex items-center justify-between"><span className="text-[0.68rem] font-extrabold tracking-[0.15em] text-[#c8ff2b]">{number}</span><span className="h-2 w-2 rounded-full bg-[#c8ff2b]/70" /></div><h3 className="mt-16 font-display text-3xl tracking-[-0.035em] text-white">{title}</h3><p className="mt-4 text-sm leading-6 text-white/63">{copy}</p></article>
+                {trustStages.map((stage, index) => (
+                  <article key={stage.number} className={`group relative min-h-[375px] overflow-hidden p-7 md:p-8 ${index === 1 ? "bg-[#183d32]" : "bg-[#0b211b]"}`}>
+                    <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full border border-[#c8ff2b]/10 transition-transform duration-500 group-hover:scale-110" aria-hidden="true" />
+                    <div className="relative flex items-center justify-between"><span className="text-[0.68rem] font-extrabold tracking-[0.15em] text-[#c8ff2b]">{stage.number}</span><span className="flex items-center gap-2 text-[0.52rem] font-bold uppercase tracking-[0.12em] text-white/40"><i className="h-1.5 w-1.5 rounded-full bg-[#c8ff2b]" />record flow</span></div>
+                    <h3 className="relative mt-14 font-display text-3xl tracking-[-0.035em] text-white">{stage.title}</h3>
+                    <p className="relative mt-4 text-sm leading-6 text-white/63">{stage.copy}</p>
+                    <div className="relative mt-8 border-t border-white/15 pt-4">
+                      <p className="text-[0.52rem] font-extrabold uppercase tracking-[0.13em] text-white/42">{stage.label}</p>
+                      {index === 1 ? (
+                        <div className="mt-4 flex items-center justify-between">
+                          {stage.details.map((detail, detailIndex) => <div key={detail} className="flex min-w-0 items-center gap-1.5"><span className="grid h-5 w-5 place-items-center rounded-full border border-[#c8ff2b]/55 bg-[#0b211b] text-[0.5rem] font-extrabold text-[#c8ff2b]">{detailIndex + 1}</span><span className="text-[0.58rem] font-bold uppercase tracking-[0.1em] text-white/55">{detail}</span>{detailIndex < 2 && <span className="ml-1 h-px w-3 bg-[#c8ff2b]/45" />}</div>)}
+                        </div>
+                      ) : (
+                        <div className="mt-4 flex flex-wrap gap-1.5">{stage.details.map((detail) => <span key={detail} className="border border-white/15 bg-black/10 px-2 py-1 text-[0.55rem] font-bold uppercase tracking-[0.1em] text-white/63">{detail}</span>)}</div>
+                      )}
+                    </div>
+                  </article>
                 ))}
               </div>
               <aside className="relative overflow-hidden rounded-[1.7rem] border border-[#c8ff2b]/25 bg-[#11342a] p-7 md:p-9">

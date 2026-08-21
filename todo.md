@@ -15,3 +15,5 @@
 - [x] Validate the responsive security update and save a new project version.
 - [x] Add compact field-record details to complete the lower area of the regenerative contribution panel.
 - [x] Verify the panel update and save a new project version.
+- [x] Enrich the Field event, Record chain, and Shared proof panel with visual record-flow details and trust signals.
+- [x] Verify the enhanced flow panel and save a new project version.

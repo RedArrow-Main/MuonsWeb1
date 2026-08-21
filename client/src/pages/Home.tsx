@@ -263,7 +263,7 @@ export default function Home() {
                 American patent-pending edge infrastructure for global food security
               </div>
               <h1 className="animate-rise animate-delay-1 mt-6 max-w-[20rem] font-display text-[clamp(3.35rem,14vw,7.85rem)] font-normal leading-[0.88] tracking-[-0.055em] text-white sm:mt-7 sm:max-w-4xl sm:text-[clamp(3.6rem,8vw,7.85rem)] sm:leading-[0.86]">
-                Food security starts at the edge. <em className="font-display text-[#c8ff2b]">Make it knowable.</em>
+                Ground intelligence for a <em className="font-display text-[#c8ff2b]">food-secure future.</em>
               </h1>
               <div className="animate-rise animate-delay-2 mt-6 grid max-w-2xl gap-5 sm:mt-8 sm:gap-6 md:grid-cols-[1fr_auto] md:items-end">
                 <p className="max-w-xl text-[1rem] leading-7 text-white/78 md:text-[1.08rem]">

@@ -83,3 +83,5 @@
 - [x] Rewrite the hero positioning around American patent-pending edge hardware and global food security.
 - [x] Align Approach, Signals, Security, Intellectual Property, and About Muons copy with offline-first AI, blockchain, farmer-first physical infrastructure, and early food-insecurity prediction.
 - [x] Validate the revised positioning across mobile and desktop and save the copy update.
+
+- [x] Replace the hero headline with the approved Muons Technology tagline and validate its mobile and desktop presentation.

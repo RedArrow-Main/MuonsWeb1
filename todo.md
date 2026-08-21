@@ -39,3 +39,6 @@
 - [x] Verify whether a reliable public portrait source exists for Gordon Mitchell.
 - [x] Apply the verified portrait or clarify the ready-to-replace Gordon portrait slot.
 - [x] Verify the Gordon portrait update and save a new project version.
+- [x] Reorder the page into a clear product-first narrative and simplify the navigation hierarchy.
+- [x] Verify the corrected section sequence on desktop and mobile.
+- [x] Save a new project version with the corrected structure.

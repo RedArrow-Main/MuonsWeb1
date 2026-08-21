@@ -22,15 +22,12 @@ const harvestImage = "/manus-storage/fieldwise-harvest_c1f9f93a.jpg";
 const brandMark = "/manus-storage/fieldwise-mark_a6ef5b98.png";
 
 const navItems = [
-  { label: "Muons", href: "#muons" },
-  { label: "Team", href: "#team" },
   { label: "Approach", href: "#approach" },
+  { label: "Signals", href: "#signals" },
+  { label: "Impact", href: "#outcomes" },
   { label: "Regenerative", href: "#regenerative" },
   { label: "Security", href: "#security" },
-  { label: "IP", href: "#intellectual-property" },
-  { label: "Signals", href: "#signals" },
-  { label: "Cycle", href: "#cycle" },
-  { label: "Outcomes", href: "#outcomes" },
+  { label: "Company", href: "#muons" },
 ];
 
 const signalCards = [
@@ -357,66 +354,138 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="muons" className="relative overflow-hidden bg-[#102f26] px-5 py-24 text-white md:px-8 md:py-32">
-          <div className="contours contours--dark absolute inset-0 opacity-25" aria-hidden="true" />
+        <section id="signals" className="relative overflow-hidden bg-[#113128] px-5 py-24 text-white md:px-8 md:py-32">
+          <div className="contours contours--dark absolute inset-0 opacity-35" aria-hidden="true" />
           <div className="relative mx-auto max-w-[1440px]">
-            <div className="grid gap-10 border-b border-white/15 pb-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+            <div className="grid gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:items-end">
               <div>
-                <p className="section-kicker section-kicker--light">About Muons</p>
-                <h2 className="mt-6 font-display text-5xl leading-[0.92] tracking-[-0.05em] text-white md:text-7xl">The company behind <span className="text-[#c8ff2b]">Fieldwise.</span></h2>
+                <p className="section-kicker section-kicker--light">The signal system</p>
+                <h2 className="mt-6 max-w-4xl font-display text-5xl leading-[0.91] tracking-[-0.05em] text-white md:text-7xl">
+                  See what needs attention <span className="text-[#c8ff2b]">before it becomes urgent.</span>
+                </h2>
               </div>
-              <p className="max-w-2xl text-[1.05rem] leading-8 text-white/73 lg:justify-self-end">Muons Technology builds tools that turn agricultural and environmental data into decisions farmers and operators can actually act on — even in places with unreliable internet or infrastructure.</p>
+              <p className="max-w-md text-base leading-7 text-white/70 lg:justify-self-end">
+                No clutter. No abstract metrics. Just a more complete read of the seasonal conditions that shape every decision.
+              </p>
             </div>
 
-            <div className="grid gap-px bg-white/15 md:grid-cols-3">
-              <article className="bg-[#102f26] p-7 md:p-9">
-                <span className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">01 / Who we are</span>
-                <h3 className="mt-8 font-display text-3xl tracking-[-0.035em] text-white">Decisions that hold up in the real world.</h3>
-                <p className="mt-5 text-sm leading-7 text-white/66">We make useful agricultural intelligence accessible where tools, connectivity, and technical capacity cannot be assumed.</p>
-              </article>
-              <article className="bg-[#163a30] p-7 md:p-9">
-                <span className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">02 / Mission</span>
-                <h3 className="mt-8 font-display text-3xl tracking-[-0.035em] text-white">Advanced intelligence belongs on every farm.</h3>
-                <p className="mt-5 text-sm leading-7 text-white/66">The next generation of ag-tech should not require broadband, apps, or smartphones to be useful. It should meet farmers where they are.</p>
-              </article>
-              <article className="bg-[#102f26] p-7 md:p-9">
-                <span className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">03 / What we do</span>
-                <h3 className="mt-8 font-display text-3xl tracking-[-0.035em] text-white">Offline-first, low-bandwidth by design.</h3>
-                <ul className="mt-5 space-y-3 text-sm leading-6 text-white/66">
-                  <li className="flex gap-2.5"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c8ff2b]" />Build tools for data and record-keeping in disconnected rural environments.</li>
-                  <li className="flex gap-2.5"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c8ff2b]" />Combine climate, soil, and field data into simple advisories, including irrigation timing by SMS.</li>
-                  <li className="flex gap-2.5"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c8ff2b]" />Design for disconnected environments first, not as an afterthought.</li>
-                </ul>
-              </article>
+            <div className="mt-16 grid gap-px overflow-hidden rounded-[1.65rem] border border-white/15 bg-white/15 md:grid-cols-3">
+              {signalCards.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <article key={item.number} className="group min-h-[285px] bg-[#113128]/95 p-7 transition-colors duration-200 hover:bg-[#194337] md:p-8">
+                    <div className="flex items-start justify-between">
+                      <span className="text-[0.72rem] font-extrabold tracking-[0.17em] text-[#c8ff2b]">{item.number}</span>
+                      <span className="grid h-10 w-10 place-items-center rounded-full border border-white/25 text-white transition duration-200 group-hover:border-[#c8ff2b] group-hover:bg-[#c8ff2b] group-hover:text-[#113128]"><Icon className="h-4 w-4" /></span>
+                    </div>
+                    <h3 className="mt-16 font-display text-3xl tracking-[-0.035em] text-white">{item.title}</h3>
+                    <p className="mt-4 max-w-xs text-sm leading-6 text-white/67">{item.copy}</p>
+                  </article>
+                );
+              })}
             </div>
-
-            <div className="mt-8 flex flex-col justify-between gap-7 rounded-[1.45rem] border border-white/15 bg-white/[0.05] p-7 md:flex-row md:items-end md:p-9">
-              <div><p className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">Headquartered in Delaware</p><p className="mt-4 max-w-2xl font-display text-3xl leading-[0.98] tracking-[-0.03em] text-white">Building values-led agricultural infrastructure with a global operating perspective.</p></div>
-              <div className="border-l-2 border-[#c8ff2b] pl-4 text-sm font-bold text-white/72"><p>Delaware, USA</p><p className="mt-1 text-white/45">Email address to be confirmed</p></div>
+            <div className="mt-8 grid overflow-hidden rounded-[1.65rem] border border-white/15 bg-[#0d2e25]/75 lg:grid-cols-[0.98fr_1.02fr]">
+              <div className="border-b border-white/15 p-7 lg:border-b-0 lg:border-r md:p-9">
+                <div className="flex items-center justify-between"><p className="text-[0.65rem] font-extrabold uppercase tracking-[0.16em] text-[#c8ff2b]">{fieldLenses[activeLens].record}</p><span className="text-[0.62rem] font-bold uppercase tracking-[0.13em] text-white/45">Lens 0{activeLens + 1}</span></div>
+                <h3 className="mt-6 max-w-lg font-display text-4xl leading-[0.98] tracking-[-0.04em] text-white">{fieldLenses[activeLens].title}</h3>
+                <p className="mt-5 max-w-xl text-sm leading-7 text-white/66">{fieldLenses[activeLens].copy}</p>
+                <div className="mt-8 grid gap-2 sm:grid-cols-3">
+                  {fieldLenses[activeLens].details.map((detail) => <span key={detail} className="border-t border-white/15 pt-3 text-[0.6rem] font-bold uppercase tracking-[0.13em] text-white/58">{detail}</span>)}
+                </div>
+              </div>
+              <div className="p-3 md:p-4" role="tablist" aria-label="Fieldwise data lenses">
+                {fieldLenses.map((lens, index) => (
+                  <button
+                    key={lens.label}
+                    type="button"
+                    role="tab"
+                    aria-selected={activeLens === index}
+                    onClick={() => setActiveLens(index)}
+                    className={`group flex w-full items-center justify-between border-b border-white/10 px-4 py-5 text-left transition-colors last:border-b-0 md:px-5 ${activeLens === index ? "bg-[#c8ff2b] text-[#113128]" : "text-white hover:bg-white/[0.06]"}`}
+                  >
+                    <span className="font-display text-2xl tracking-[-0.03em]">{lens.label}</span><span className={`grid h-8 w-8 place-items-center rounded-full border transition-transform group-hover:translate-x-1 ${activeLens === index ? "border-[#113128]/25" : "border-white/25 text-[#c8ff2b]"}`}><ArrowUpRight className="h-3.5 w-3.5" /></span>
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
-        <section id="team" className="relative overflow-hidden bg-[#f7f6ef] px-5 py-24 md:px-8 md:py-32">
-          <div className="absolute left-[-10rem] top-24 h-80 w-80 rounded-full border border-[#123329]/10" aria-hidden="true" />
+        <section id="cycle" className="relative overflow-hidden bg-[#e9e8df] px-5 py-24 md:px-8 md:py-32">
+          <div className="absolute inset-y-0 right-0 w-[39%] border-l border-[#123329]/8 bg-[linear-gradient(135deg,transparent_25%,rgba(18,51,41,0.035)_25%,rgba(18,51,41,0.035)_50%,transparent_50%,transparent_75%,rgba(18,51,41,0.035)_75%)] bg-[size:28px_28px]" aria-hidden="true" />
           <div className="relative mx-auto max-w-[1440px]">
-            <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
-              <div><div className="flex items-center justify-between gap-4"><p className="section-kicker">Muons leadership</p><span className="flex items-center gap-2 text-[0.52rem] font-extrabold uppercase tracking-[0.13em] text-[#58776c]"><span className="grid h-7 w-7 place-items-center rounded-md border border-[#123329]/20 bg-white/50 p-0.5"><img src={brandMark} alt="" className="h-full w-full" /></span>Leadership dossier / 04</span></div><h2 className="mt-6 max-w-xl font-display text-5xl leading-[0.93] tracking-[-0.05em] text-[#113128] md:text-7xl">People building the rails behind Fieldwise.</h2></div>
-              <p className="max-w-2xl text-[1.02rem] leading-8 text-[#4e6c62] lg:justify-self-end">A multidisciplinary team spanning digital transformation, secure systems, global operations, and agricultural infrastructure. Each portrait panel is reserved for an approved leadership image.</p>
+            <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+              <div>
+                <p className="section-kicker">The season cycle</p>
+                <h2 className="mt-6 max-w-xl font-display text-5xl leading-[0.94] tracking-[-0.05em] text-[#113128] md:text-6xl">From field observation to a stronger next move.</h2>
+              </div>
+              <p className="max-w-lg text-base leading-7 text-[#4d6c62] lg:justify-self-end">A useful system should clarify the work in front of people, then carry the record forward when the season turns. Fieldwise keeps that cycle legible.</p>
+            </div>
+            <div className="mt-16 grid gap-px overflow-hidden border border-[#123329]/15 bg-[#123329]/15 md:grid-cols-2 lg:grid-cols-4">
+              {[
+                ["01", "Observe", "Capture the practical context of the field, while it is happening."],
+                ["02", "Interpret", "Bring scattered signals together into a read people can discuss."],
+                ["03", "Coordinate", "Connect the next useful action across the people responsible for it."],
+                ["04", "Carry forward", "Keep the season record available for the next decision, not buried in it."],
+              ].map(([number, title, copy], index) => (
+                <article key={number} className={`min-h-[245px] bg-[#e9e8df] p-7 transition-colors hover:bg-white md:p-8 ${index % 2 === 1 ? "lg:translate-y-7 lg:border-t lg:border-[#123329]/15" : ""}`}><div className="flex items-center justify-between"><span className="text-[0.68rem] font-extrabold tracking-[0.15em] text-[#5f7c72]">{number}</span><span className="text-[0.53rem] font-bold uppercase tracking-[0.12em] text-[#739087]">Season note</span></div><h3 className="mt-14 font-display text-3xl tracking-[-0.035em] text-[#113128]">{title}</h3><p className="mt-4 max-w-[15rem] text-sm leading-6 text-[#526f66]">{copy}</p></article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="outcomes" className="relative overflow-hidden bg-[#f7f6ef] px-5 py-24 md:px-8 md:py-32">
+          <div className="mx-auto max-w-[1440px]">
+            <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+              <div>
+                <p className="section-kicker">Outcomes that stay grounded</p>
+                <h2 className="mt-6 max-w-2xl font-display text-5xl leading-[0.94] tracking-[-0.05em] text-[#113128] md:text-6xl">
+                  More confidence. Better timing. Stronger connection.
+                </h2>
+              </div>
+              <p className="max-w-lg text-[1rem] leading-7 text-[#4e6b62] lg:justify-self-end">
+                Fieldwise is built around the decisions that have to happen season after season — from the individual growing block to the regional production plan.
+              </p>
             </div>
 
-            <div className="mt-16 grid gap-7 md:grid-cols-2 xl:grid-cols-3">
-              {leaders.map((leader, index) => (
-                <article key={leader.name} className="group overflow-hidden rounded-[1.5rem] border border-[#123329]/12 bg-[#e6e6dc] transition-transform duration-300 hover:-translate-y-1">
-                  <div className={`relative aspect-[4/5] overflow-hidden border-b border-[#123329]/12 ${index % 2 === 0 ? "bg-[#153b30] text-white" : "bg-[#d4d7c7] text-[#113128]"}`}>
-                    {leader.image ? <><img src={leader.image} alt={`Andre James, ${leader.role}`} className="absolute inset-0 h-full w-full object-cover object-center" /><div className="absolute inset-0 bg-gradient-to-t from-[#0b211b]/82 via-[#0b211b]/5 to-transparent" /></> : <div className="absolute inset-0 opacity-35 [background-image:linear-gradient(135deg,transparent_30%,rgba(200,255,43,0.22)_30%,rgba(200,255,43,0.22)_31%,transparent_31%)] [background-size:34px_34px]" aria-hidden="true" />}
-                    <div className="absolute inset-5 flex items-center justify-between border-b border-current/20 pb-3 text-[0.54rem] font-extrabold uppercase tracking-[0.13em] opacity-70"><span>Leadership record</span><span>0{index + 1}</span></div>
-                    {!leader.image && <div className="absolute inset-0 grid place-items-center"><span className={`grid h-24 w-24 place-items-center rounded-full border text-4xl font-display ${index % 2 === 0 ? "border-[#c8ff2b]/60 bg-black/15 text-[#c8ff2b]" : "border-[#113128]/25 bg-white/20 text-[#113128]"}`}>{leader.initials}</span></div>}
-                    <p className="absolute inset-x-5 bottom-5 text-[0.55rem] font-bold uppercase tracking-[0.12em] opacity-70">{leader.image ? "Leadership portrait / approved" : "Portrait pending / record slot"}</p>
+            <div className="mt-14 grid gap-7 lg:grid-cols-[1.1fr_0.9fr]">
+              <div className="relative min-h-[420px] overflow-hidden rounded-[1.8rem] bg-[#183e33] md:min-h-[515px]">
+                <img src={aerialImage} alt="Aerial view of irrigated agricultural fields" className="absolute inset-0 h-full w-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#092019]/85 via-[#092019]/0 to-transparent" />
+                <div className="absolute inset-x-5 top-5 flex items-center justify-between border border-white/25 bg-[#0e3127]/75 px-3 py-2 text-[0.56rem] font-extrabold uppercase tracking-[0.14em] text-white backdrop-blur-sm"><span>Seasonal record / north block</span><span className="text-[#c8ff2b]">parcel 12A</span></div>
+                <div className="absolute right-7 top-16 h-24 w-32 rounded-bl-[2rem] border-b border-l border-white/65" aria-hidden="true" />
+                <div className="absolute right-7 top-44 flex items-center gap-2 text-[0.58rem] font-bold uppercase tracking-[0.13em] text-white/85"><span className="h-1.5 w-1.5 rounded-full bg-[#c8ff2b]" /> irrigation line</div>
+                <div className="absolute inset-x-0 bottom-0 p-7 text-white md:p-10">
+                  <span className="rounded-full border border-white/35 px-3 py-1 text-[0.62rem] font-extrabold uppercase tracking-[0.14em] text-white">Season view</span>
+                  <h3 className="mt-5 max-w-md font-display text-[2.5rem] leading-[0.96] tracking-[-0.045em]">A fuller picture of every field, all season long.</h3>
+                </div>
+              </div>
+              <div className="flex flex-col justify-between rounded-[1.8rem] bg-[#d9d8cd] p-7 md:p-10">
+                <div>
+                  <div className="flex items-center justify-between border-b border-[#123329]/15 pb-4">
+                    <p className="text-[0.68rem] font-extrabold uppercase tracking-[0.17em] text-[#547067]">Built around practice</p>
+                    <span className="h-2.5 w-2.5 rounded-full bg-[#c8ff2b] shadow-[0_0_0_5px_rgba(200,255,43,0.23)]" />
                   </div>
-                  <div className="p-6"><p className="text-[0.62rem] font-extrabold uppercase tracking-[0.15em] text-[#607e73]">{leader.role}</p><h3 className="mt-3 font-display text-3xl tracking-[-0.035em] text-[#113128]">{leader.name}</h3><p className="mt-4 text-sm leading-6 text-[#4e6d63]">{leader.bio}</p><a href={leader.linkedin} target="_blank" rel="noreferrer" className="group/link mt-6 inline-flex items-center gap-2 text-[0.62rem] font-extrabold uppercase tracking-[0.13em] text-[#113128]">LinkedIn profile <ArrowUpRight className="h-3.5 w-3.5 text-[#739087] transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" /></a></div>
-                </article>
-              ))}
+                  <div className="mt-7 space-y-7">
+                    {[
+                      ["Grow with context", "Use the detail beneath the aggregate to make local decisions that hold up."],
+                      ["Coordinate with clarity", "Give field teams, advisors, and partners one useful operating picture."],
+                      ["Protect the next season", "Carry learning forward instead of restarting the conversation every year."],
+                    ].map(([title, copy], index) => (
+                      <div key={title} className="grid grid-cols-[1.85rem_1fr] gap-3">
+                        <span className="pt-0.5 text-[0.72rem] font-extrabold tracking-[0.14em] text-[#739087]">0{index + 1}</span>
+                        <div>
+                          <h3 className="font-display text-2xl tracking-[-0.03em] text-[#113128]">{title}</h3>
+                          <p className="mt-2 max-w-sm text-sm leading-6 text-[#4d6a60]">{copy}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="mt-10 border-t border-[#123329]/15 pt-6">
+                  <div className="relative"><img src={harvestImage} alt="Farmers examining fresh corn in the field" className="h-28 w-full rounded-xl object-cover object-center" /><span className="absolute bottom-2 left-2 rounded-sm bg-[#102d25]/85 px-2 py-1 text-[0.52rem] font-extrabold uppercase tracking-[0.12em] text-white">Harvest note / shared learning</span></div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -571,138 +640,66 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="signals" className="relative overflow-hidden bg-[#113128] px-5 py-24 text-white md:px-8 md:py-32">
-          <div className="contours contours--dark absolute inset-0 opacity-35" aria-hidden="true" />
+        <section id="muons" className="relative overflow-hidden bg-[#102f26] px-5 py-24 text-white md:px-8 md:py-32">
+          <div className="contours contours--dark absolute inset-0 opacity-25" aria-hidden="true" />
           <div className="relative mx-auto max-w-[1440px]">
-            <div className="grid gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:items-end">
+            <div className="grid gap-10 border-b border-white/15 pb-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
               <div>
-                <p className="section-kicker section-kicker--light">The signal system</p>
-                <h2 className="mt-6 max-w-4xl font-display text-5xl leading-[0.91] tracking-[-0.05em] text-white md:text-7xl">
-                  See what needs attention <span className="text-[#c8ff2b]">before it becomes urgent.</span>
-                </h2>
+                <p className="section-kicker section-kicker--light">About Muons</p>
+                <h2 className="mt-6 font-display text-5xl leading-[0.92] tracking-[-0.05em] text-white md:text-7xl">The company behind <span className="text-[#c8ff2b]">Fieldwise.</span></h2>
               </div>
-              <p className="max-w-md text-base leading-7 text-white/70 lg:justify-self-end">
-                No clutter. No abstract metrics. Just a more complete read of the seasonal conditions that shape every decision.
-              </p>
+              <p className="max-w-2xl text-[1.05rem] leading-8 text-white/73 lg:justify-self-end">Muons Technology builds tools that turn agricultural and environmental data into decisions farmers and operators can actually act on — even in places with unreliable internet or infrastructure.</p>
             </div>
 
-            <div className="mt-16 grid gap-px overflow-hidden rounded-[1.65rem] border border-white/15 bg-white/15 md:grid-cols-3">
-              {signalCards.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <article key={item.number} className="group min-h-[285px] bg-[#113128]/95 p-7 transition-colors duration-200 hover:bg-[#194337] md:p-8">
-                    <div className="flex items-start justify-between">
-                      <span className="text-[0.72rem] font-extrabold tracking-[0.17em] text-[#c8ff2b]">{item.number}</span>
-                      <span className="grid h-10 w-10 place-items-center rounded-full border border-white/25 text-white transition duration-200 group-hover:border-[#c8ff2b] group-hover:bg-[#c8ff2b] group-hover:text-[#113128]"><Icon className="h-4 w-4" /></span>
-                    </div>
-                    <h3 className="mt-16 font-display text-3xl tracking-[-0.035em] text-white">{item.title}</h3>
-                    <p className="mt-4 max-w-xs text-sm leading-6 text-white/67">{item.copy}</p>
-                  </article>
-                );
-              })}
+            <div className="grid gap-px bg-white/15 md:grid-cols-3">
+              <article className="bg-[#102f26] p-7 md:p-9">
+                <span className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">01 / Who we are</span>
+                <h3 className="mt-8 font-display text-3xl tracking-[-0.035em] text-white">Decisions that hold up in the real world.</h3>
+                <p className="mt-5 text-sm leading-7 text-white/66">We make useful agricultural intelligence accessible where tools, connectivity, and technical capacity cannot be assumed.</p>
+              </article>
+              <article className="bg-[#163a30] p-7 md:p-9">
+                <span className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">02 / Mission</span>
+                <h3 className="mt-8 font-display text-3xl tracking-[-0.035em] text-white">Advanced intelligence belongs on every farm.</h3>
+                <p className="mt-5 text-sm leading-7 text-white/66">The next generation of ag-tech should not require broadband, apps, or smartphones to be useful. It should meet farmers where they are.</p>
+              </article>
+              <article className="bg-[#102f26] p-7 md:p-9">
+                <span className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">03 / What we do</span>
+                <h3 className="mt-8 font-display text-3xl tracking-[-0.035em] text-white">Offline-first, low-bandwidth by design.</h3>
+                <ul className="mt-5 space-y-3 text-sm leading-6 text-white/66">
+                  <li className="flex gap-2.5"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c8ff2b]" />Build tools for data and record-keeping in disconnected rural environments.</li>
+                  <li className="flex gap-2.5"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c8ff2b]" />Combine climate, soil, and field data into simple advisories, including irrigation timing by SMS.</li>
+                  <li className="flex gap-2.5"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c8ff2b]" />Design for disconnected environments first, not as an afterthought.</li>
+                </ul>
+              </article>
             </div>
-            <div className="mt-8 grid overflow-hidden rounded-[1.65rem] border border-white/15 bg-[#0d2e25]/75 lg:grid-cols-[0.98fr_1.02fr]">
-              <div className="border-b border-white/15 p-7 lg:border-b-0 lg:border-r md:p-9">
-                <div className="flex items-center justify-between"><p className="text-[0.65rem] font-extrabold uppercase tracking-[0.16em] text-[#c8ff2b]">{fieldLenses[activeLens].record}</p><span className="text-[0.62rem] font-bold uppercase tracking-[0.13em] text-white/45">Lens 0{activeLens + 1}</span></div>
-                <h3 className="mt-6 max-w-lg font-display text-4xl leading-[0.98] tracking-[-0.04em] text-white">{fieldLenses[activeLens].title}</h3>
-                <p className="mt-5 max-w-xl text-sm leading-7 text-white/66">{fieldLenses[activeLens].copy}</p>
-                <div className="mt-8 grid gap-2 sm:grid-cols-3">
-                  {fieldLenses[activeLens].details.map((detail) => <span key={detail} className="border-t border-white/15 pt-3 text-[0.6rem] font-bold uppercase tracking-[0.13em] text-white/58">{detail}</span>)}
-                </div>
-              </div>
-              <div className="p-3 md:p-4" role="tablist" aria-label="Fieldwise data lenses">
-                {fieldLenses.map((lens, index) => (
-                  <button
-                    key={lens.label}
-                    type="button"
-                    role="tab"
-                    aria-selected={activeLens === index}
-                    onClick={() => setActiveLens(index)}
-                    className={`group flex w-full items-center justify-between border-b border-white/10 px-4 py-5 text-left transition-colors last:border-b-0 md:px-5 ${activeLens === index ? "bg-[#c8ff2b] text-[#113128]" : "text-white hover:bg-white/[0.06]"}`}
-                  >
-                    <span className="font-display text-2xl tracking-[-0.03em]">{lens.label}</span><span className={`grid h-8 w-8 place-items-center rounded-full border transition-transform group-hover:translate-x-1 ${activeLens === index ? "border-[#113128]/25" : "border-white/25 text-[#c8ff2b]"}`}><ArrowUpRight className="h-3.5 w-3.5" /></span>
-                  </button>
-                ))}
-              </div>
+
+            <div className="mt-8 flex flex-col justify-between gap-7 rounded-[1.45rem] border border-white/15 bg-white/[0.05] p-7 md:flex-row md:items-end md:p-9">
+              <div><p className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">Headquartered in Delaware</p><p className="mt-4 max-w-2xl font-display text-3xl leading-[0.98] tracking-[-0.03em] text-white">Building values-led agricultural infrastructure with a global operating perspective.</p></div>
+              <div className="border-l-2 border-[#c8ff2b] pl-4 text-sm font-bold text-white/72"><p>Delaware, USA</p><p className="mt-1 text-white/45">Email address to be confirmed</p></div>
             </div>
           </div>
         </section>
 
-        <section id="cycle" className="relative overflow-hidden bg-[#e9e8df] px-5 py-24 md:px-8 md:py-32">
-          <div className="absolute inset-y-0 right-0 w-[39%] border-l border-[#123329]/8 bg-[linear-gradient(135deg,transparent_25%,rgba(18,51,41,0.035)_25%,rgba(18,51,41,0.035)_50%,transparent_50%,transparent_75%,rgba(18,51,41,0.035)_75%)] bg-[size:28px_28px]" aria-hidden="true" />
+        <section id="team" className="relative overflow-hidden bg-[#f7f6ef] px-5 py-24 md:px-8 md:py-32">
+          <div className="absolute left-[-10rem] top-24 h-80 w-80 rounded-full border border-[#123329]/10" aria-hidden="true" />
           <div className="relative mx-auto max-w-[1440px]">
-            <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
-              <div>
-                <p className="section-kicker">The season cycle</p>
-                <h2 className="mt-6 max-w-xl font-display text-5xl leading-[0.94] tracking-[-0.05em] text-[#113128] md:text-6xl">From field observation to a stronger next move.</h2>
-              </div>
-              <p className="max-w-lg text-base leading-7 text-[#4d6c62] lg:justify-self-end">A useful system should clarify the work in front of people, then carry the record forward when the season turns. Fieldwise keeps that cycle legible.</p>
+            <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
+              <div><div className="flex items-center justify-between gap-4"><p className="section-kicker">Muons leadership</p><span className="flex items-center gap-2 text-[0.52rem] font-extrabold uppercase tracking-[0.13em] text-[#58776c]"><span className="grid h-7 w-7 place-items-center rounded-md border border-[#123329]/20 bg-white/50 p-0.5"><img src={brandMark} alt="" className="h-full w-full" /></span>Leadership dossier / 04</span></div><h2 className="mt-6 max-w-xl font-display text-5xl leading-[0.93] tracking-[-0.05em] text-[#113128] md:text-7xl">People building the rails behind Fieldwise.</h2></div>
+              <p className="max-w-2xl text-[1.02rem] leading-8 text-[#4e6c62] lg:justify-self-end">A multidisciplinary team spanning digital transformation, secure systems, global operations, and agricultural infrastructure. Each portrait panel is reserved for an approved leadership image.</p>
             </div>
-            <div className="mt-16 grid gap-px overflow-hidden border border-[#123329]/15 bg-[#123329]/15 md:grid-cols-2 lg:grid-cols-4">
-              {[
-                ["01", "Observe", "Capture the practical context of the field, while it is happening."],
-                ["02", "Interpret", "Bring scattered signals together into a read people can discuss."],
-                ["03", "Coordinate", "Connect the next useful action across the people responsible for it."],
-                ["04", "Carry forward", "Keep the season record available for the next decision, not buried in it."],
-              ].map(([number, title, copy], index) => (
-                <article key={number} className={`min-h-[245px] bg-[#e9e8df] p-7 transition-colors hover:bg-white md:p-8 ${index % 2 === 1 ? "lg:translate-y-7 lg:border-t lg:border-[#123329]/15" : ""}`}><div className="flex items-center justify-between"><span className="text-[0.68rem] font-extrabold tracking-[0.15em] text-[#5f7c72]">{number}</span><span className="text-[0.53rem] font-bold uppercase tracking-[0.12em] text-[#739087]">Season note</span></div><h3 className="mt-14 font-display text-3xl tracking-[-0.035em] text-[#113128]">{title}</h3><p className="mt-4 max-w-[15rem] text-sm leading-6 text-[#526f66]">{copy}</p></article>
+
+            <div className="mt-16 grid gap-7 md:grid-cols-2 xl:grid-cols-3">
+              {leaders.map((leader, index) => (
+                <article key={leader.name} className="group overflow-hidden rounded-[1.5rem] border border-[#123329]/12 bg-[#e6e6dc] transition-transform duration-300 hover:-translate-y-1">
+                  <div className={`relative aspect-[4/5] overflow-hidden border-b border-[#123329]/12 ${index % 2 === 0 ? "bg-[#153b30] text-white" : "bg-[#d4d7c7] text-[#113128]"}`}>
+                    {leader.image ? <><img src={leader.image} alt={`Andre James, ${leader.role}`} className="absolute inset-0 h-full w-full object-cover object-center" /><div className="absolute inset-0 bg-gradient-to-t from-[#0b211b]/82 via-[#0b211b]/5 to-transparent" /></> : <div className="absolute inset-0 opacity-35 [background-image:linear-gradient(135deg,transparent_30%,rgba(200,255,43,0.22)_30%,rgba(200,255,43,0.22)_31%,transparent_31%)] [background-size:34px_34px]" aria-hidden="true" />}
+                    <div className="absolute inset-5 flex items-center justify-between border-b border-current/20 pb-3 text-[0.54rem] font-extrabold uppercase tracking-[0.13em] opacity-70"><span>Leadership record</span><span>0{index + 1}</span></div>
+                    {!leader.image && <div className="absolute inset-0 grid place-items-center"><span className={`grid h-24 w-24 place-items-center rounded-full border text-4xl font-display ${index % 2 === 0 ? "border-[#c8ff2b]/60 bg-black/15 text-[#c8ff2b]" : "border-[#113128]/25 bg-white/20 text-[#113128]"}`}>{leader.initials}</span></div>}
+                    <p className="absolute inset-x-5 bottom-5 text-[0.55rem] font-bold uppercase tracking-[0.12em] opacity-70">{leader.image ? "Leadership portrait / approved" : "Portrait pending / record slot"}</p>
+                  </div>
+                  <div className="p-6"><p className="text-[0.62rem] font-extrabold uppercase tracking-[0.15em] text-[#607e73]">{leader.role}</p><h3 className="mt-3 font-display text-3xl tracking-[-0.035em] text-[#113128]">{leader.name}</h3><p className="mt-4 text-sm leading-6 text-[#4e6d63]">{leader.bio}</p><a href={leader.linkedin} target="_blank" rel="noreferrer" className="group/link mt-6 inline-flex items-center gap-2 text-[0.62rem] font-extrabold uppercase tracking-[0.13em] text-[#113128]">LinkedIn profile <ArrowUpRight className="h-3.5 w-3.5 text-[#739087] transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" /></a></div>
+                </article>
               ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="outcomes" className="relative overflow-hidden bg-[#f7f6ef] px-5 py-24 md:px-8 md:py-32">
-          <div className="mx-auto max-w-[1440px]">
-            <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-              <div>
-                <p className="section-kicker">Outcomes that stay grounded</p>
-                <h2 className="mt-6 max-w-2xl font-display text-5xl leading-[0.94] tracking-[-0.05em] text-[#113128] md:text-6xl">
-                  More confidence. Better timing. Stronger connection.
-                </h2>
-              </div>
-              <p className="max-w-lg text-[1rem] leading-7 text-[#4e6b62] lg:justify-self-end">
-                Fieldwise is built around the decisions that have to happen season after season — from the individual growing block to the regional production plan.
-              </p>
-            </div>
-
-            <div className="mt-14 grid gap-7 lg:grid-cols-[1.1fr_0.9fr]">
-              <div className="relative min-h-[420px] overflow-hidden rounded-[1.8rem] bg-[#183e33] md:min-h-[515px]">
-                <img src={aerialImage} alt="Aerial view of irrigated agricultural fields" className="absolute inset-0 h-full w-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#092019]/85 via-[#092019]/0 to-transparent" />
-                <div className="absolute inset-x-5 top-5 flex items-center justify-between border border-white/25 bg-[#0e3127]/75 px-3 py-2 text-[0.56rem] font-extrabold uppercase tracking-[0.14em] text-white backdrop-blur-sm"><span>Seasonal record / north block</span><span className="text-[#c8ff2b]">parcel 12A</span></div>
-                <div className="absolute right-7 top-16 h-24 w-32 rounded-bl-[2rem] border-b border-l border-white/65" aria-hidden="true" />
-                <div className="absolute right-7 top-44 flex items-center gap-2 text-[0.58rem] font-bold uppercase tracking-[0.13em] text-white/85"><span className="h-1.5 w-1.5 rounded-full bg-[#c8ff2b]" /> irrigation line</div>
-                <div className="absolute inset-x-0 bottom-0 p-7 text-white md:p-10">
-                  <span className="rounded-full border border-white/35 px-3 py-1 text-[0.62rem] font-extrabold uppercase tracking-[0.14em] text-white">Season view</span>
-                  <h3 className="mt-5 max-w-md font-display text-[2.5rem] leading-[0.96] tracking-[-0.045em]">A fuller picture of every field, all season long.</h3>
-                </div>
-              </div>
-              <div className="flex flex-col justify-between rounded-[1.8rem] bg-[#d9d8cd] p-7 md:p-10">
-                <div>
-                  <div className="flex items-center justify-between border-b border-[#123329]/15 pb-4">
-                    <p className="text-[0.68rem] font-extrabold uppercase tracking-[0.17em] text-[#547067]">Built around practice</p>
-                    <span className="h-2.5 w-2.5 rounded-full bg-[#c8ff2b] shadow-[0_0_0_5px_rgba(200,255,43,0.23)]" />
-                  </div>
-                  <div className="mt-7 space-y-7">
-                    {[
-                      ["Grow with context", "Use the detail beneath the aggregate to make local decisions that hold up."],
-                      ["Coordinate with clarity", "Give field teams, advisors, and partners one useful operating picture."],
-                      ["Protect the next season", "Carry learning forward instead of restarting the conversation every year."],
-                    ].map(([title, copy], index) => (
-                      <div key={title} className="grid grid-cols-[1.85rem_1fr] gap-3">
-                        <span className="pt-0.5 text-[0.72rem] font-extrabold tracking-[0.14em] text-[#739087]">0{index + 1}</span>
-                        <div>
-                          <h3 className="font-display text-2xl tracking-[-0.03em] text-[#113128]">{title}</h3>
-                          <p className="mt-2 max-w-sm text-sm leading-6 text-[#4d6a60]">{copy}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="mt-10 border-t border-[#123329]/15 pt-6">
-                  <div className="relative"><img src={harvestImage} alt="Farmers examining fresh corn in the field" className="h-28 w-full rounded-xl object-cover object-center" /><span className="absolute bottom-2 left-2 rounded-sm bg-[#102d25]/85 px-2 py-1 text-[0.52rem] font-extrabold uppercase tracking-[0.12em] text-white">Harvest note / shared learning</span></div>
-                </div>
-              </div>
             </div>
           </div>
         </section>

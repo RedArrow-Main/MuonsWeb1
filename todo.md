@@ -13,3 +13,5 @@
 - [x] Add a plain-language Blockchain and Quantum Security narrative without unsupported technical claims.
 - [x] Add navigation access and visual integration for the new trusted-records section.
 - [x] Validate the responsive security update and save a new project version.
+- [x] Add compact field-record details to complete the lower area of the regenerative contribution panel.
+- [x] Verify the panel update and save a new project version.

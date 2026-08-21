@@ -395,6 +395,14 @@ export default function Home() {
                     ["A clearer market story", "Organize stewardship notes into a more coherent record for programs, partners, and future decisions."],
                   ].map(([title, copy], index) => <div key={title} className="grid grid-cols-[1.75rem_1fr] gap-3"><span className="pt-0.5 text-[0.7rem] font-extrabold tracking-[0.14em] text-[#738f84]">0{index + 1}</span><div><h3 className="font-display text-2xl tracking-[-0.03em] text-[#113128]">{title}</h3><p className="mt-2 text-sm leading-6 text-[#4e6d63]">{copy}</p></div></div>)}
                 </div>
+                <div className="mt-10 border-t border-[#123329]/15 pt-5">
+                  <div className="flex items-center justify-between text-[0.58rem] font-extrabold uppercase tracking-[0.14em] text-[#58766b]"><span>Field record / stewardship log</span><span className="flex items-center gap-1.5"><i className="h-1.5 w-1.5 rounded-full bg-[#c8ff2b]" /> ready to review</span></div>
+                  <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                    <div className="border border-[#123329]/12 bg-white/25 p-3"><p className="text-[0.56rem] font-extrabold uppercase tracking-[0.13em] text-[#607e73]">Record inputs</p><p className="mt-2 text-sm font-semibold text-[#17382e]">Soil · water · crop notes</p></div>
+                    <div className="border border-[#123329]/12 bg-white/25 p-3"><p className="text-[0.56rem] font-extrabold uppercase tracking-[0.13em] text-[#607e73]">Shared with</p><p className="mt-2 text-sm font-semibold text-[#17382e]">Growers · advisors · teams</p></div>
+                  </div>
+                  <p className="mt-4 text-xs leading-5 text-[#58766b]">A stronger seasonal record leaves the next conversation with more context than the last.</p>
+                </div>
               </aside>
             </div>
           </div>

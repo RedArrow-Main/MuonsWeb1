@@ -45,3 +45,6 @@
 - [x] Remove Fieldwise naming and replace it with Muons Technology across branding, navigation, headings, and product narrative.
 - [x] Verify that no Fieldwise-visible references remain in the Muons-only website.
 - [x] Validate the Muons-only rebrand and save a new project version.
+- [x] Prepare the supplied official Muons Technology logo for responsive website use.
+- [x] Replace the current atom mark with the official logo in the header, dossier areas, footer, and browser icon treatment.
+- [x] Verify the official logo across desktop and mobile, then save a new project version.

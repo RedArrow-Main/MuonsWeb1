@@ -4,7 +4,6 @@
  */
 import { toast } from "sonner";
 import {
-  Atom,
   ArrowDownRight,
   ArrowUpRight,
   Check,
@@ -20,6 +19,8 @@ const heroImage = "/manus-storage/fieldwise-hero_ed35bf47.jpg";
 const sensorImage = "/manus-storage/fieldwise-sensor_51b4f852.jpg";
 const aerialImage = "/manus-storage/fieldwise-aerial_75761800.jpg";
 const harvestImage = "/manus-storage/fieldwise-harvest_c1f93a.jpg";
+const muonsLogo = "/manus-storage/muons-technology-logo-dark_4e36a467.png";
+const muonsSymbol = "/manus-storage/muons-technology-symbol_2d8c393c.png";
 
 const navItems = [
   { label: "Approach", href: "#approach" },
@@ -183,8 +184,7 @@ export default function Home() {
             className="group flex items-center gap-2.5 text-left"
             aria-label="Muons Technology home"
           >
-            <span className="grid h-14 w-14 place-items-center rounded-xl border border-[#c8ff2b]/60 bg-[#09231c]/75 p-1.5 text-[#c8ff2b] shadow-[0_0_0_5px_rgba(200,255,43,0.09)]"><Atom className="h-full w-full transition-transform duration-200 group-hover:rotate-[14deg]" strokeWidth={1.6} /></span>
-            <span><span className="block text-[0.82rem] font-extrabold uppercase tracking-[0.2em] text-white">Muons</span><span className="mt-0.5 block text-[0.52rem] font-bold uppercase tracking-[0.18em] text-[#c8ff2b]">Agricultural infrastructure</span></span>
+            <span className="block w-[205px] sm:w-[240px]"><img src={muonsLogo} alt="Muons Technology" className="h-auto w-full object-contain" /></span>
           </button>
 
           <nav className="hidden items-center gap-6 xl:flex" aria-label="Primary navigation">
@@ -509,7 +509,7 @@ export default function Home() {
                 <div className="contours contours--dark absolute inset-0 opacity-25" aria-hidden="true" />
                 <div className="relative">
                   <div className="flex items-center justify-between border-b border-white/15 pb-4"><p className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">American field record</p><span className="rounded-full border border-white/20 px-3 py-1 text-[0.56rem] font-bold uppercase tracking-[0.13em] text-white/67">Growing season</span></div>
-                  <div className="mt-5 flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-lg border border-[#c8ff2b]/45 bg-black/15 p-1 text-[#c8ff2b]"><Atom className="h-6 w-6" strokeWidth={1.6} /></span><span className="text-[0.57rem] font-extrabold uppercase tracking-[0.16em] text-white/55">Muons record stamp / stewardship log</span></div>
+                  <div className="mt-5 flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-lg border border-[#c8ff2b]/45 bg-black/15 p-1"><img src={muonsSymbol} alt="" className="h-full w-full object-contain" /></span><span className="text-[0.57rem] font-extrabold uppercase tracking-[0.16em] text-white/55">Muons record stamp / stewardship log</span></div>
                   <h3 className="mt-8 max-w-lg font-display text-4xl leading-[0.98] tracking-[-0.04em] text-white">The practices are local. The learning should travel.</h3>
                   <div className="mt-10 grid gap-px overflow-hidden rounded-xl border border-white/15 bg-white/15 sm:grid-cols-2">
                     {[
@@ -581,7 +581,7 @@ export default function Home() {
                 ))}
               </div>
               <aside className="relative h-full overflow-hidden rounded-[1.7rem] border border-[#c8ff2b]/25 bg-[#11342a] p-7 md:p-9">
-                <div className="absolute right-5 top-5 grid h-12 w-12 place-items-center rounded-lg border border-[#c8ff2b]/45 bg-black/15 p-1 text-[#c8ff2b]"><Atom className="h-7 w-7" strokeWidth={1.6} /></div>
+                <div className="absolute right-5 top-5 grid h-12 w-12 place-items-center rounded-lg border border-[#c8ff2b]/45 bg-black/15 p-1"><img src={muonsSymbol} alt="" className="h-full w-full object-contain" /></div>
                 <p className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">Security posture</p>
                 <h3 className="mt-7 max-w-md font-display text-4xl leading-[0.98] tracking-[-0.04em] text-white">Prepared to evolve as the threat landscape does.</h3>
                 <div className="mt-8 space-y-5 border-t border-white/15 pt-6">
@@ -600,7 +600,7 @@ export default function Home() {
           <div className="relative mx-auto max-w-[1440px]">
             <div className="grid gap-10 border-b border-[#123329]/15 pb-12 lg:grid-cols-[0.87fr_1.13fr] lg:items-end">
               <div>
-                <div className="flex items-center gap-3"><span className="grid h-9 w-9 place-items-center rounded-lg border border-[#123329]/20 bg-white/55 text-[#113128]"><Atom className="h-5 w-5" strokeWidth={1.6} /></span><p className="section-kicker">Intellectual property / Muons asset file</p></div>
+                <div className="flex items-center gap-3"><span className="grid h-9 w-9 place-items-center rounded-lg border border-[#123329]/20 bg-white/55 p-1"><img src={muonsSymbol} alt="" className="h-full w-full object-contain" /></span><p className="section-kicker">Intellectual property / Muons asset file</p></div>
                 <h2 className="mt-6 max-w-2xl font-display text-5xl leading-[0.93] tracking-[-0.05em] text-[#113128] md:text-7xl">American patent assets for American agricultural infrastructure.</h2>
               </div>
               <div className="max-w-2xl lg:justify-self-end">
@@ -684,7 +684,7 @@ export default function Home() {
           <div className="absolute left-[-10rem] top-24 h-80 w-80 rounded-full border border-[#123329]/10" aria-hidden="true" />
           <div className="relative mx-auto max-w-[1440px]">
             <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
-              <div><div className="flex items-center justify-between gap-4"><p className="section-kicker">Muons leadership</p><span className="flex items-center gap-2 text-[0.52rem] font-extrabold uppercase tracking-[0.13em] text-[#58776c]"><span className="grid h-7 w-7 place-items-center rounded-md border border-[#123329]/20 bg-white/50 p-0.5 text-[#113128]"><Atom className="h-full w-full" strokeWidth={1.6} /></span>Leadership dossier / 03</span></div><h2 className="mt-6 max-w-xl font-display text-5xl leading-[0.93] tracking-[-0.05em] text-[#113128] md:text-7xl">People building agricultural infrastructure with Muons.</h2></div>
+              <div><div className="flex items-center justify-between gap-4"><p className="section-kicker">Muons leadership</p><span className="flex items-center gap-2 text-[0.52rem] font-extrabold uppercase tracking-[0.13em] text-[#58776c]"><span className="grid h-7 w-7 place-items-center rounded-md border border-[#123329]/20 bg-white/50 p-0.5"><img src={muonsSymbol} alt="" className="h-full w-full object-contain" /></span>Leadership dossier / 03</span></div><h2 className="mt-6 max-w-xl font-display text-5xl leading-[0.93] tracking-[-0.05em] text-[#113128] md:text-7xl">People building agricultural infrastructure with Muons.</h2></div>
               <p className="max-w-2xl text-[1.02rem] leading-8 text-[#4e6c62] lg:justify-self-end">A multidisciplinary team spanning digital transformation, secure systems, global operations, and agricultural infrastructure. Each portrait panel is reserved for an approved leadership image.</p>
             </div>
 
@@ -729,7 +729,7 @@ export default function Home() {
 
       <footer className="bg-[#0c261f] px-5 py-6 text-white/56 md:px-8">
         <div className="mx-auto flex max-w-[1440px] flex-col gap-3 text-[0.67rem] font-bold uppercase tracking-[0.13em] sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-2"><span className="grid h-8 w-8 place-items-center rounded-md border border-[#c8ff2b]/40 bg-black/20 p-1 text-[#c8ff2b]"><Atom className="h-5 w-5" strokeWidth={1.6} /></span> Muons Technology / Agricultural infrastructure</div>
+          <div className="flex items-center gap-3"><img src={muonsLogo} alt="Muons Technology" className="h-auto w-44 object-contain" /><span className="hidden text-white/55 sm:inline">Agricultural infrastructure</span></div>
           <p>© 2026 Muons Technology. Built for the growing edge.</p>
         </div>
       </footer>

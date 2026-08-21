@@ -15,12 +15,15 @@ import {
 } from "lucide-react";
 import { FormEvent, useEffect, useState } from "react";
 
-const heroImage = "/manus-storage/fieldwise-hero_ed35bf47.jpg";
-const sensorImage = "/manus-storage/fieldwise-sensor_51b4f852.jpg";
-const aerialImage = "/manus-storage/fieldwise-aerial_75761800.jpg";
-const harvestImage = "/manus-storage/fieldwise-harvest_c1f93a.jpg";
-const muonsLogo = "/manus-storage/muons-technology-logo-dark_4e36a467.png";
-const muonsSymbol = "/manus-storage/muons-technology-symbol_2d8c393c.png";
+// Production media is intentionally served from a fixed public Vercel Blob origin,
+// never from Manus preview-only routes, so the Field Ledger experience travels intact.
+const mediaOrigin = "https://qirz61kx5dixbar2.public.blob.vercel-storage.com";
+const heroImage = `${mediaOrigin}/fieldwise-hero.jpg`;
+const sensorImage = `${mediaOrigin}/fieldwise-sensor.jpg`;
+const aerialImage = `${mediaOrigin}/fieldwise-aerial.jpg`;
+const harvestImage = `${mediaOrigin}/fieldwise-harvest.jpg`;
+const muonsLogo = `${mediaOrigin}/muons-technology-logo-dark.png`;
+const muonsSymbol = `${mediaOrigin}/muons-technology-symbol.png`;
 
 const navItems = [
   { label: "Approach", href: "#approach" },
@@ -114,7 +117,7 @@ const leaders = [
     role: "Founder & CEO",
     bio: "10+ years of experience in digital transformation across emerging markets. Specialized in designing mission-critical infrastructure and offline-first digital rails for national-scale coordination.",
     linkedin: "https://www.linkedin.com/in/andre-j-a451172a/",
-    image: "/manus-storage/andre-james-portrait_05e1043a.png",
+    image: `${mediaOrigin}/andre-james-portrait.png`,
   },
   {
     initials: "FK",
@@ -122,7 +125,7 @@ const leaders = [
     role: "Financial Advisor",
     bio: "Brings experience across digital strategy, AI-led systems, and enterprise transformation. Advises Muons on financial readiness, capital strategy, and resilient growth planning.",
     linkedin: "https://www.linkedin.com/in/fred-kamuzinzi/",
-    image: "/manus-storage/fred-kamuzinzi-portrait_93dee155.jpg",
+    image: `${mediaOrigin}/fred-kamuzinzi-portrait.jpg`,
   },
   {
     initials: "GM",
@@ -130,7 +133,7 @@ const leaders = [
     role: "COO",
     bio: "Operations, market expansion, and business development. Leading operational strategy and market growth initiatives.",
     linkedin: "https://www.linkedin.com/in/gordon-mitchell-527953b/",
-    image: "/manus-storage/gordon-mitchell-portrait_80e05938.jpg",
+    image: `${mediaOrigin}/gordon-mitchell-portrait.jpg`,
   },
 ];
 
@@ -158,8 +161,8 @@ export default function Home() {
       return;
     }
     form.reset();
-  toast.success("You’re on the Muons briefing list.", {
-      description: "Expect occasional notes from the growing edge.",
+    toast.success("Your field-notes request is recorded.", {
+      description: "Expect occasional Muons intelligence updates from the growing edge.",
     });
   };
 
@@ -685,7 +688,7 @@ export default function Home() {
           <div className="relative mx-auto max-w-[1440px]">
             <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
               <div><div className="flex items-center justify-between gap-4"><p className="section-kicker">Muons leadership</p><span className="flex items-center gap-2 text-[0.52rem] font-extrabold uppercase tracking-[0.13em] text-[#58776c]"><span className="grid h-7 w-7 place-items-center rounded-md border border-[#123329]/20 bg-white/50 p-0.5"><img src={muonsSymbol} alt="" className="h-full w-full object-contain" /></span>Leadership dossier / 03</span></div><h2 className="mt-6 max-w-xl font-display text-5xl leading-[0.93] tracking-[-0.05em] text-[#113128] md:text-7xl">People building agricultural infrastructure with Muons.</h2></div>
-              <p className="max-w-2xl text-[1.02rem] leading-8 text-[#4e6c62] lg:justify-self-end">A multidisciplinary team spanning digital transformation, secure systems, global operations, and agricultural infrastructure. Each portrait panel is reserved for an approved leadership image.</p>
+              <p className="max-w-2xl text-[1.02rem] leading-8 text-[#4e6c62] lg:justify-self-end">A multidisciplinary team spanning digital transformation, secure systems, global operations, and agricultural infrastructure. Each portrait is presented as an approved record in the Muons leadership dossier.</p>
             </div>
 
             <div className="mt-16 grid gap-7 md:grid-cols-2 xl:grid-cols-3">
@@ -695,7 +698,7 @@ export default function Home() {
                     {leader.image ? <><img src={leader.image} alt={`Andre James, ${leader.role}`} className="absolute inset-0 h-full w-full object-cover object-center" /><div className="absolute inset-0 bg-gradient-to-t from-[#0b211b]/82 via-[#0b211b]/5 to-transparent" /></> : <div className="absolute inset-0 opacity-35 [background-image:linear-gradient(135deg,transparent_30%,rgba(200,255,43,0.22)_30%,rgba(200,255,43,0.22)_31%,transparent_31%)] [background-size:34px_34px]" aria-hidden="true" />}
                     <div className="absolute inset-5 flex items-center justify-between border-b border-current/20 pb-3 text-[0.54rem] font-extrabold uppercase tracking-[0.13em] opacity-70"><span>Muons dossier</span><span>Record 0{index + 1}</span></div>
                     {!leader.image && <div className="absolute inset-0 grid place-items-center"><span className={`grid h-24 w-24 place-items-center rounded-full border text-4xl font-display ${index % 2 === 0 ? "border-[#c8ff2b]/60 bg-black/15 text-[#c8ff2b]" : "border-[#113128]/25 bg-white/20 text-[#113128]"}`}>{leader.initials}</span></div>}
-                    <p className="absolute inset-x-5 bottom-5 text-[0.55rem] font-bold uppercase tracking-[0.12em] opacity-70">{leader.image ? "Leadership portrait / approved" : "Portrait pending / record slot"}</p>
+                    <p className="absolute inset-x-5 bottom-5 text-[0.55rem] font-bold uppercase tracking-[0.12em] opacity-70">{leader.image ? "Approved portrait / leadership file" : "Portrait pending / record slot"}</p>
                   </div>
                   <div className="p-6"><p className="text-[0.62rem] font-extrabold uppercase tracking-[0.15em] text-[#607e73]">{leader.role}</p><h3 className="mt-3 font-display text-3xl tracking-[-0.035em] text-[#113128]">{leader.name}</h3><p className="mt-4 text-sm leading-6 text-[#4e6d63]">{leader.bio}</p><a href={leader.linkedin} target="_blank" rel="noreferrer" className="group/link mt-6 inline-flex items-center gap-2 text-[0.62rem] font-extrabold uppercase tracking-[0.13em] text-[#113128]">LinkedIn profile <ArrowUpRight className="h-3.5 w-3.5 text-[#739087] transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" /></a></div>
                 </article>
@@ -712,15 +715,15 @@ export default function Home() {
               <h2 className="mt-6 max-w-3xl font-display text-5xl leading-[0.92] tracking-[-0.05em] text-white md:text-7xl">
                 Ready for a more useful view of the season?
               </h2>
-              <p className="mt-9 text-xl font-semibold text-[#c8ff2b] md:text-2xl">Contact details to be confirmed</p>
+              <p className="mt-9 max-w-xl text-xl font-semibold leading-8 text-[#c8ff2b] md:text-2xl">Start a grounded infrastructure conversation for the season ahead.</p>
             </div>
             <div className="rounded-[1.5rem] border border-white/15 bg-white/[0.06] p-6 backdrop-blur-sm md:p-8">
-              <p className="text-[0.72rem] font-extrabold uppercase tracking-[0.16em] text-[#c8ff2b]">Field notes, occasionally</p>
-              <p className="mt-4 max-w-sm text-sm leading-6 text-white/70">Seasonal ideas on agricultural intelligence, climate resilience, and the work happening where it matters.</p>
+              <p className="text-[0.72rem] font-extrabold uppercase tracking-[0.16em] text-[#c8ff2b]">Muons field intelligence update</p>
+              <p className="mt-4 max-w-sm text-sm leading-6 text-white/70">Receive an occasional field record on agricultural intelligence, climate resilience, and the operational work that carries a season forward.</p>
               <form onSubmit={handleSubscribe} className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <label className="sr-only" htmlFor="email">Email address</label>
                 <input id="email" name="email" type="email" required placeholder="Your email address" className="min-w-0 flex-1 rounded-full border border-white/20 bg-[#0c261f] px-5 py-3.5 text-sm text-white outline-none placeholder:text-white/43 focus:border-[#c8ff2b]" />
-                <button type="submit" className="rounded-full bg-[#c8ff2b] px-5 py-3.5 text-[0.7rem] font-extrabold uppercase tracking-[0.12em] text-[#113128] transition hover:bg-white active:scale-[0.97]">Subscribe</button>
+                <button type="submit" className="rounded-full bg-[#c8ff2b] px-5 py-3.5 text-[0.7rem] font-extrabold uppercase tracking-[0.12em] text-[#113128] transition hover:bg-white active:scale-[0.97]">Receive field notes</button>
               </form>
             </div>
           </div>

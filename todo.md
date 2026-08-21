@@ -62,3 +62,12 @@
 - [ ] Capture the Vercel deployment error and inspect the repository deployment settings.
 - [x] Apply the minimum safe Vercel-compatible build and routing configuration.
 - [ ] Validate the corrected deployment instructions and publish the resolution summary.
+- [x] Verify that the live Vercel deployment renders while Manus-only image routes do not resolve as production images.
+- [x] Choose and connect a public asset host for the production images.
+- [x] Replace the Manus-only asset references and verify the complete live Vercel presentation.
+- [x] Compare the public MuonsWeb1 branch head with the local main branch and connected Vercel repository.
+- [ ] Publish any reconciled project state to the verified production branch.
+- [ ] Confirm the visible repository commit and its Vercel deployment source.
+- [x] Inventory each Manus-only image reference and map it to a fixed production URL.
+- [x] Publish the mapped media to the chosen fixed URL destination.
+- [ ] Replace the production image references, verify the Vercel site, and publish the GitHub revision.

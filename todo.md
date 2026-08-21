@@ -35,3 +35,7 @@
 - [x] Check public sources for Fred Kamuzinzi and Gordon Mitchell portrait images.
 - [x] Update the team cards with sourced images where permitted and strengthen Fred’s advisory description.
 - [x] Verify the revised leadership cards and save a new project version.
+- [ ] Verify whether a reliable public portrait source exists for Gordon Mitchell.
+- [x] Verify whether a reliable public portrait source exists for Gordon Mitchell.
+- [x] Apply the verified portrait or clarify the ready-to-replace Gordon portrait slot.
+- [x] Verify the Gordon portrait update and save a new project version.

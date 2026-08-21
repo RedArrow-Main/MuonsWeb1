@@ -132,6 +132,7 @@ const leaders = [
     role: "COO",
     bio: "Operations, market expansion, and business development. Leading operational strategy and market growth initiatives.",
     linkedin: "https://www.linkedin.com/in/gordon-mitchell-527953b/",
+    image: "/manus-storage/gordon-mitchell-portrait_80e05938.jpg",
   },
 ];
 

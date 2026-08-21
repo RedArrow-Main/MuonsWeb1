@@ -51,5 +51,11 @@
 - [x] Inspect the local repository status and connected GitHub remote.
 - [x] Commit the latest Muons Technology website revision.
 - [x] Push the committed revision to the connected GitHub repository and verify the remote branch.
-- [ ] Inspect the RedArrow-Main/MuonsWeb1 repository and identify a safe branch for the latest Muons website revision.
-- [ ] Push the current Muons Technology website history to the target repository and verify the remote branch.
+- [x] Inspect the RedArrow-Main/MuonsWeb1 repository and identify a safe branch for the latest Muons website revision.
+- [x] Push the current Muons Technology website history to the target repository and verify the remote branch.
+- [x] Inspect the server entry point, production build output, and static-site deployment configuration.
+- [x] Validate SPA fallback and production static serving behavior.
+- [x] Document the production storage-route limitation; no frontend-only configuration can safely resolve the server-side asset proxy gap.
+- [ ] Inspect the latest local project changes and the MuonsWeb1 GitHub branch status.
+- [ ] Commit any latest audited project metadata.
+- [ ] Push and verify the latest Muons Technology project state on GitHub.

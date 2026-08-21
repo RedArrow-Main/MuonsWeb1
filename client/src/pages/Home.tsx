@@ -447,23 +447,18 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="mt-16 grid gap-7 lg:grid-cols-[1.1fr_0.9fr]">
-              <div className="grid gap-px overflow-hidden rounded-[1.7rem] border border-white/15 bg-white/15 md:grid-cols-3">
+            <div className="mt-16 grid gap-7 lg:grid-cols-[1.1fr_0.9fr] lg:items-stretch">
+              <div className="grid h-full gap-px overflow-hidden rounded-[1.7rem] border border-white/15 bg-white/15 md:grid-cols-3">
                 {trustStages.map((stage, index) => index === 1 ? (
-                  <article key={stage.number} className="group relative min-h-[375px] overflow-hidden bg-[#173f33] p-7 md:p-8">
+                  <article key={stage.number} className="group relative h-full min-h-[370px] overflow-hidden bg-[#173f33] p-7 md:p-8">
                     <div className="absolute -right-14 -top-14 h-36 w-36 rounded-full border border-[#c8ff2b]/15 transition-transform duration-500 group-hover:scale-110" aria-hidden="true" />
                     <div className="relative flex items-center justify-between"><span className="text-[0.68rem] font-extrabold tracking-[0.15em] text-[#c8ff2b]">{stage.number}</span><span className="flex items-center gap-2 text-[0.52rem] font-bold uppercase tracking-[0.12em] text-white/40"><i className="h-1.5 w-1.5 rounded-full bg-[#c8ff2b]" />record flow</span></div>
                     <h3 className="relative mt-14 font-display text-3xl tracking-[-0.035em] text-white">{stage.title}</h3>
                     <p className="relative mt-4 text-sm leading-6 text-white/63">{stage.copy}</p>
-                    <div className="relative mt-8 border-t border-white/15 pt-5">
-                      <p className="text-[0.52rem] font-extrabold uppercase tracking-[0.13em] text-white/42">Continuity note</p>
-                      <p className="mt-4 border-l-2 border-[#c8ff2b] pl-3 font-display text-[1.45rem] leading-[1.02] tracking-[-0.03em] text-white">One field event becomes part of a story rather than a loose note.</p>
-                      <p className="mt-5 text-xs leading-5 text-white/56">Keeping the event connected to its place, time, and earlier activity gives the next conversation the context it needs.</p>
-                    </div>
-                    <p className="relative mt-6 text-[0.54rem] font-bold uppercase tracking-[0.12em] text-[#c8ff2b]">From this season into the next</p>
+                    <div className="relative mt-8 border-t border-white/15 pt-4"><p className="text-[0.52rem] font-extrabold uppercase tracking-[0.13em] text-white/42">Continuity note</p><p className="mt-3 text-xs leading-5 text-white/55">Preserve the link between what happened, when it happened, and the decisions that follow.</p></div>
                   </article>
                 ) : (
-                  <article key={stage.number} className="group relative min-h-[375px] overflow-hidden bg-[#0b211b] p-7 md:p-8">
+                  <article key={stage.number} className="group relative h-full min-h-[370px] overflow-hidden bg-[#0b211b] p-7 md:p-8">
                     <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full border border-[#c8ff2b]/10 transition-transform duration-500 group-hover:scale-110" aria-hidden="true" />
                     <div className="relative flex items-center justify-between"><span className="text-[0.68rem] font-extrabold tracking-[0.15em] text-[#c8ff2b]">{stage.number}</span><span className="flex items-center gap-2 text-[0.52rem] font-bold uppercase tracking-[0.12em] text-white/40"><i className="h-1.5 w-1.5 rounded-full bg-[#c8ff2b]" />record flow</span></div>
                     <h3 className="relative mt-14 font-display text-3xl tracking-[-0.035em] text-white">{stage.title}</h3>
@@ -472,7 +467,7 @@ export default function Home() {
                   </article>
                 ))}
               </div>
-              <aside className="relative overflow-hidden rounded-[1.7rem] border border-[#c8ff2b]/25 bg-[#11342a] p-7 md:p-9">
+              <aside className="relative h-full overflow-hidden rounded-[1.7rem] border border-[#c8ff2b]/25 bg-[#11342a] p-7 md:p-9">
                 <div className="absolute right-5 top-5 grid h-10 w-10 place-items-center rounded-lg border border-[#c8ff2b]/45 bg-black/15 p-1"><img src={brandMark} alt="" className="h-full w-full" /></div>
                 <p className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">Security posture</p>
                 <h3 className="mt-7 max-w-md font-display text-4xl leading-[0.98] tracking-[-0.04em] text-white">Prepared to evolve as the threat landscape does.</h3>

@@ -21,3 +21,5 @@
 - [x] Verify the redesigned card and save a new project version.
 - [x] Replace the interface-like Record chain design with a simpler editorial traceability explanation.
 - [x] Verify the simplified card and save a new project version.
+- [x] Restore the security section to equal-height trusted-record cards and a balanced adjacent security panel.
+- [x] Verify the corrected section and save a new project version.

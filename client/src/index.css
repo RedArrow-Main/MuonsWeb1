@@ -1,9 +1,16 @@
+/**
+ * Field Ledger style reminder: deep Ink Soil, Field Linen, and Signal Sprout underpin
+ * a contemporary agrarian editorial experience with tactile contrast and restrained motion.
+ */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --font-display: "DM Serif Display", Georgia, serif;
+  --font-sans: "Manrope", Arial, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -32,146 +39,71 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
 }
 
 :root {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-600);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
-  --radius: 0.65rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.235 0.015 65);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.235 0.015 65);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.235 0.015 65);
-  --secondary: oklch(0.98 0.001 286.375);
-  --secondary-foreground: oklch(0.4 0.015 65);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.141 0.005 285.823);
+  --radius: 0.75rem;
+  --background: oklch(0.93 0.008 100);
+  --foreground: oklch(0.25 0.037 158);
+  --card: oklch(0.98 0.004 100);
+  --card-foreground: oklch(0.25 0.037 158);
+  --popover: oklch(0.98 0.004 100);
+  --popover-foreground: oklch(0.25 0.037 158);
+  --primary: oklch(0.25 0.037 158);
+  --primary-foreground: oklch(0.94 0.008 100);
+  --secondary: oklch(0.86 0.008 100);
+  --secondary-foreground: oklch(0.25 0.037 158);
+  --muted: oklch(0.89 0.01 100);
+  --muted-foreground: oklch(0.48 0.025 158);
+  --accent: oklch(0.94 0.21 122);
+  --accent-foreground: oklch(0.25 0.037 158);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.623 0.214 259.815);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.235 0.015 65);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.623 0.214 259.815);
-}
-
-.dark {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-500);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.85 0.005 65);
-  --card: oklch(0.21 0.006 285.885);
-  --card-foreground: oklch(0.85 0.005 65);
-  --popover: oklch(0.21 0.006 285.885);
-  --popover-foreground: oklch(0.85 0.005 65);
-  --secondary: oklch(0.24 0.006 286.033);
-  --secondary-foreground: oklch(0.7 0.005 65);
-  --muted: oklch(0.274 0.006 286.033);
-  --muted-foreground: oklch(0.705 0.015 286.067);
-  --accent: oklch(0.274 0.006 286.033);
-  --accent-foreground:  oklch(0.92 0.005 65);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.488 0.243 264.376);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
-  --sidebar: oklch(0.21 0.006 285.885);
-  --sidebar-foreground: oklch(0.85 0.005 65);
-  --sidebar-accent: oklch(0.274 0.006 286.033);
-  --sidebar-accent-foreground:  oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.488 0.243 264.376);
+  --border: oklch(0.78 0.015 135);
+  --input: oklch(0.78 0.015 135);
+  --ring: oklch(0.87 0.22 122);
+  --chart-1: oklch(0.94 0.21 122);
+  --chart-2: oklch(0.54 0.07 155);
+  --chart-3: oklch(0.35 0.055 158);
+  --chart-4: oklch(0.76 0.09 102);
+  --chart-5: oklch(0.65 0.13 85);
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-  button:not(:disabled),
-  [role="button"]:not([aria-disabled="true"]),
-  [type="button"]:not(:disabled),
-  [type="submit"]:not(:disabled),
-  [type="reset"]:not(:disabled),
-  a[href],
-  select:not(:disabled),
-  input[type="checkbox"]:not(:disabled),
-  input[type="radio"]:not(:disabled) {
-    @apply cursor-pointer;
-  }
+  * { @apply border-border outline-ring/50; }
+  html { scroll-behavior: smooth; }
+  body { @apply bg-background font-sans text-foreground antialiased; }
+  button:not(:disabled), [role="button"]:not([aria-disabled="true"]), [type="button"]:not(:disabled), [type="submit"]:not(:disabled), [type="reset"]:not(:disabled), a[href] { @apply cursor-pointer; }
+  ::selection { background: #c8ff2b; color: #113128; }
 }
 
 @layer components {
-  /**
-   * Custom container utility that centers content and adds responsive padding.
-   *
-   * This overrides Tailwind's default container behavior to:
-   * - Auto-center content (mx-auto)
-   * - Add responsive horizontal padding
-   * - Set max-width for large screens
-   *
-   * Usage: <div className="container">...</div>
-   *
-   * For custom widths, use max-w-* utilities directly:
-   * <div className="max-w-6xl mx-auto px-4">...</div>
-   */
-  .container {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem; /* 16px - mobile padding */
-    padding-right: 1rem;
+  .section-kicker {
+    @apply flex items-center gap-3 text-[0.69rem] font-extrabold uppercase tracking-[0.19em] text-[#527269];
   }
+  .section-kicker::before {
+    content: "";
+    @apply inline-block h-2 w-2 rounded-full bg-[#c8ff2b] shadow-[0_0_0_4px_rgba(200,255,43,0.22)];
+  }
+  .section-kicker--light { @apply text-[#c8ff2b]; }
+  .contours {
+    background-image: url("data:image/svg+xml,%3Csvg width='420' height='260' viewBox='0 0 420 260' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-30 182C25 115 77 141 118 91C152 49 206 56 235 117C259 167 301 153 347 99C370 72 396 74 446 26' stroke='%23C8FF2B' stroke-opacity='.38' stroke-width='1'/%3E%3Cpath d='M-24 207C31 140 91 167 132 117C166 75 220 82 249 143C273 193 315 179 361 125C384 98 410 100 460 52' stroke='%23C8FF2B' stroke-opacity='.25' stroke-width='1'/%3E%3Cpath d='M-45 156C10 89 62 115 103 65C137 23 191 30 220 91C244 141 286 127 332 73C355 46 381 48 431 0' stroke='%23C8FF2B' stroke-opacity='.22' stroke-width='1'/%3E%3C/svg%3E");
+    background-position: 10% 25%;
+    background-repeat: repeat;
+    mix-blend-mode: screen;
+  }
+  .contours--dark { mix-blend-mode: normal; background-position: 75% 15%; }
+  .animate-rise { animation: rise 640ms cubic-bezier(0.23, 1, 0.32, 1) both; }
+  .animate-delay-1 { animation-delay: 90ms; }
+  .animate-delay-2 { animation-delay: 180ms; }
+  .animate-delay-3 { animation-delay: 270ms; }
+}
 
-  .flex {
-    min-height: 0;
-    min-width: 0;
-  }
+@keyframes rise {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-  @media (min-width: 640px) {
-    .container {
-      padding-left: 1.5rem; /* 24px - tablet padding */
-      padding-right: 1.5rem;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .container {
-      padding-left: 2rem; /* 32px - desktop padding */
-      padding-right: 2rem;
-      max-width: 1280px; /* Standard content width */
-    }
-  }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
 }

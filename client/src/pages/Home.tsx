@@ -1,25 +1,382 @@
-import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
-import { Streamdown } from 'streamdown';
-
 /**
- * All content in this page are only for example, replace with your own feature implementation
- * When building pages, remember your instructions in Frontend Best Practices, Design Guide and Common Pitfalls
+ * Field Ledger style reminder: contemporary agrarian editorialism with deep ink-green foundations,
+ * oversized DM Serif headings, Signal Sprout accents, contour-line motifs, and asymmetric story flow.
  */
+import { toast } from "sonner";
+import {
+  ArrowDownRight,
+  ArrowUpRight,
+  Check,
+  ChevronRight,
+  Menu,
+  Satellite,
+  Sprout,
+  X,
+} from "lucide-react";
+import { FormEvent, useEffect, useState } from "react";
+
+const heroImage = "/manus-storage/fieldwise-hero_ed35bf47.jpg";
+const sensorImage = "/manus-storage/fieldwise-sensor_51b4f852.jpg";
+const aerialImage = "/manus-storage/fieldwise-aerial_75761800.jpg";
+const harvestImage = "/manus-storage/fieldwise-harvest_c1f9f93a.jpg";
+const brandMark = "/manus-storage/fieldwise-mark_a6ef5b98.png";
+
+const navItems = [
+  { label: "Approach", href: "#approach" },
+  { label: "Signals", href: "#signals" },
+  { label: "Outcomes", href: "#outcomes" },
+];
+
+const signalCards = [
+  {
+    number: "01",
+    title: "Field sensing",
+    copy: "Turn local weather, soil, and crop observations into a durable season-long record.",
+    icon: Sprout,
+  },
+  {
+    number: "02",
+    title: "Operational view",
+    copy: "Give teams one shared read on what is happening across every farm and collection point.",
+    icon: Satellite,
+  },
+  {
+    number: "03",
+    title: "Practical action",
+    copy: "Translate early field signals into the next useful move — when it still matters.",
+    icon: ArrowUpRight,
+  },
+];
+
+function scrollToSection(target: string) {
+  document.querySelector(target)?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
 export default function Home() {
-  // If theme is switchable in App.tsx, we can implement theme toggling like this:
-  // const { theme, toggleTheme } = useTheme();
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 28);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const handleSubscribe = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    form.reset();
+    toast.success("You’re on the Fieldwise briefing list.", {
+      description: "Expect occasional notes from the growing edge.",
+    });
+  };
+
+  const navigate = (href: string) => {
+    setIsOpen(false);
+    window.setTimeout(() => scrollToSection(href), 0);
+  };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen overflow-x-hidden bg-[#eceae2] text-[#113128] selection:bg-[#c8ff2b] selection:text-[#113128]">
+      <header
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+          isScrolled
+            ? "border-b border-white/10 bg-[#102d25]/95 py-3 shadow-[0_8px_32px_rgba(8,30,24,0.18)] backdrop-blur-xl"
+            : "bg-transparent py-5"
+        }`}
+      >
+        <div className="mx-auto flex max-w-[1440px] items-center justify-between px-5 md:px-8">
+          <button
+            type="button"
+            onClick={() => scrollToSection("#top")}
+            className="group flex items-center gap-2.5 text-left"
+            aria-label="Fieldwise home"
+          >
+            <span className="grid h-11 w-11 place-items-center rounded-xl border border-[#c8ff2b]/60 bg-[#09231c]/75 p-1.5 shadow-[0_0_0_4px_rgba(200,255,43,0.08)]"><img src={brandMark} alt="" className="h-full w-full object-contain transition-transform duration-200 group-hover:rotate-[-6deg]" /></span>
+            <span><span className="block text-[0.82rem] font-extrabold uppercase tracking-[0.2em] text-white">Fieldwise</span><span className="mt-0.5 block text-[0.52rem] font-bold uppercase tracking-[0.18em] text-[#c8ff2b]">Field intelligence</span></span>
+          </button>
+
+          <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary navigation">
+            {navItems.map((item) => (
+              <button
+                type="button"
+                key={item.href}
+                onClick={() => scrollToSection(item.href)}
+                className="text-[0.72rem] font-bold uppercase tracking-[0.16em] text-white/70 transition-colors hover:text-[#c8ff2b]"
+              >
+                {item.label}
+              </button>
+            ))}
+          </nav>
+
+          <div className="hidden items-center gap-3 lg:flex">
+            <a href="mailto:hello@fieldwise.ag" className="text-[0.72rem] font-bold uppercase tracking-[0.15em] text-white/75 transition-colors hover:text-[#c8ff2b]">
+              Talk to us
+            </a>
+            <button
+              type="button"
+              onClick={() => scrollToSection("#contact")}
+              className="group inline-flex items-center gap-2 rounded-full bg-[#c8ff2b] px-4 py-2.5 text-[0.7rem] font-extrabold uppercase tracking-[0.12em] text-[#102d25] transition duration-200 hover:bg-white active:scale-[0.97]"
+            >
+              See the signals <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </button>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setIsOpen((open) => !open)}
+            className="grid h-10 w-10 place-items-center rounded-full border border-white/25 text-white lg:hidden"
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isOpen}
+          >
+            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
+
+        {isOpen && (
+          <div className="absolute inset-x-4 top-[4.7rem] rounded-[1.5rem] border border-white/10 bg-[#102d25] p-3 shadow-2xl lg:hidden">
+            {navItems.map((item) => (
+              <button
+                type="button"
+                key={item.href}
+                onClick={() => navigate(item.href)}
+                className="flex w-full items-center justify-between rounded-xl px-4 py-3 text-left text-sm font-bold text-white transition-colors hover:bg-white/10"
+              >
+                {item.label}
+                <ChevronRight className="h-4 w-4 text-[#c8ff2b]" />
+              </button>
+            ))}
+            <button
+              type="button"
+              onClick={() => navigate("#contact")}
+              className="mt-2 w-full rounded-xl bg-[#c8ff2b] px-4 py-3 text-sm font-extrabold text-[#102d25]"
+            >
+              See the signals
+            </button>
+          </div>
+        )}
+      </header>
+
       <main>
-        {/* Example: lucide-react for icons */}
-        <Loader2 className="animate-spin" />
-        Example Page
-        {/* Example: Streamdown for markdown rendering */}
-        <Streamdown>Any **markdown** content</Streamdown>
-        <Button variant="default">Example Button</Button>
+        <section id="top" className="relative min-h-[760px] overflow-hidden bg-[#0b211b] text-white sm:min-h-[800px]">
+          <img src={heroImage} alt="Agronomist standing in a maize field" className="absolute inset-0 h-full w-full object-cover object-[69%_center]" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,26,21,0.97)_0%,rgba(7,26,21,0.78)_37%,rgba(7,26,21,0.22)_72%,rgba(7,26,21,0.38)_100%)]" />
+          <div className="contours absolute inset-0 opacity-45" aria-hidden="true" />
+          <div className="relative z-10 mx-auto flex min-h-[760px] max-w-[1440px] flex-col justify-end px-5 pb-16 pt-36 md:min-h-[800px] md:px-8 md:pb-20 lg:pb-24">
+            <div className="max-w-4xl">
+              <div className="animate-rise flex items-center gap-3 text-[0.68rem] font-extrabold uppercase tracking-[0.23em] text-[#c8ff2b]">
+                <span className="grid h-6 w-6 place-items-center rounded-full border border-[#c8ff2b]/45 bg-[#c8ff2b]/10"><span className="h-1.5 w-1.5 rounded-full bg-[#c8ff2b]" /></span>
+                Agritech intelligence, rooted in the field
+              </div>
+              <h1 className="animate-rise animate-delay-1 mt-7 font-display text-[clamp(3.6rem,8vw,7.85rem)] font-normal leading-[0.86] tracking-[-0.055em] text-white">
+                Make every growing season <em className="font-display text-[#c8ff2b]">more knowable.</em>
+              </h1>
+              <div className="animate-rise animate-delay-2 mt-8 grid max-w-2xl gap-6 md:grid-cols-[1fr_auto] md:items-end">
+                <p className="max-w-xl text-[1rem] leading-7 text-white/78 md:text-[1.08rem]">
+                  Fieldwise brings crop, climate, and operational signals into one clear view — so the people closest to the land can move with more confidence.
+                </p>
+                <div className="flex items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => scrollToSection("#signals")}
+                    className="group inline-flex items-center gap-3 rounded-full bg-[#c8ff2b] px-5 py-3.5 text-[0.74rem] font-extrabold uppercase tracking-[0.12em] text-[#0d2e24] transition duration-200 hover:bg-white active:scale-[0.97]"
+                  >
+                    Explore signals <ArrowDownRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="animate-rise animate-delay-3 mt-14 grid max-w-3xl gap-5 border-t border-white/20 pt-5 sm:grid-cols-3">
+              <p className="text-[0.7rem] font-bold uppercase tracking-[0.15em] text-white/55">A clearer read</p>
+              <p className="text-[0.7rem] font-bold uppercase tracking-[0.15em] text-white/55">A stronger season</p>
+              <p className="text-[0.7rem] font-bold uppercase tracking-[0.15em] text-white/55">A shared direction</p>
+            </div>
+            <div className="mt-5 flex max-w-3xl items-center justify-between border-t border-white/10 pt-4 text-[0.6rem] font-bold uppercase tracking-[0.15em] text-white/45">
+              <span>Field record / 2026.07</span><span className="hidden sm:inline">Parcel: 08 / maize belt</span><span>Signal: active</span>
+            </div>
+          </div>
+        </section>
+
+        <section className="border-y border-[#123329]/10 bg-[#e3e1d7] px-5 py-5 md:px-8">
+          <div className="mx-auto flex max-w-[1440px] flex-col justify-between gap-3 text-[#0f3027] sm:flex-row sm:items-center">
+            <p className="flex items-center gap-3 text-[0.72rem] font-extrabold uppercase tracking-[0.16em]"><span className="h-2.5 w-2.5 rounded-full bg-[#c8ff2b] shadow-[0_0_0_5px_rgba(200,255,43,0.28)]" /> Crop intelligence for the next useful move</p>
+            <p className="text-sm font-medium text-[#46645b]">Designed for growers, cooperatives, and institutions building resilient food systems.</p>
+          </div>
+        </section>
+
+        <section id="approach" className="relative overflow-hidden bg-[#eceae2] px-5 py-24 md:px-8 md:py-32">
+          <div className="absolute right-[-9rem] top-10 h-[31rem] w-[31rem] rounded-full border border-[#123329]/10" aria-hidden="true" />
+          <div className="mx-auto grid max-w-[1440px] items-start gap-12 lg:grid-cols-[0.86fr_1.14fr] lg:gap-20">
+            <div className="sticky top-28 max-w-sm">
+              <p className="section-kicker">The Fieldwise approach</p>
+              <h2 className="mt-6 font-display text-5xl leading-[0.95] tracking-[-0.045em] text-[#113128] md:text-6xl">
+                The field is already speaking.
+              </h2>
+              <p className="mt-6 text-base leading-7 text-[#406057]">
+                The hard part is not gathering more data. It is turning scattered observations into a signal people can trust and use.
+              </p>
+              <button type="button" onClick={() => scrollToSection("#outcomes")} className="group mt-9 inline-flex items-center gap-2 text-[0.72rem] font-extrabold uppercase tracking-[0.14em] text-[#113128]">
+                What changes <span className="grid h-7 w-7 place-items-center rounded-full bg-[#113128] text-[#c8ff2b] transition-transform group-hover:translate-x-1"><ArrowDownRight className="h-4 w-4" /></span>
+              </button>
+            </div>
+
+            <div className="grid gap-7 md:grid-cols-[0.95fr_1.05fr] md:items-end">
+              <figure className="relative mt-10 md:mt-0">
+                <div className="overflow-hidden rounded-[1.75rem] bg-[#153c31]">
+                  <img src={sensorImage} alt="Field sensor among crop rows" className="aspect-[3/4] h-full w-full object-cover transition duration-700 hover:scale-[1.035]" />
+                </div>
+                <div className="absolute inset-x-4 top-4 flex items-center justify-between border border-white/25 bg-[#10342a]/85 px-3 py-2 text-[0.55rem] font-extrabold uppercase tracking-[0.13em] text-white backdrop-blur-md"><span>Plot 07 / sensor node</span><span className="flex items-center gap-1.5 text-[#c8ff2b]"><i className="h-1.5 w-1.5 rounded-full bg-[#c8ff2b]" /> live</span></div>
+                <div className="absolute bottom-11 left-4 h-14 w-20 border-b border-l border-white/70" aria-hidden="true" />
+                <div className="absolute bottom-11 right-4 border border-white/25 bg-[#10342a]/85 px-2.5 py-1.5 text-[0.52rem] font-bold uppercase tracking-[0.12em] text-white/85">soil / stable</div>
+                <figcaption className="mt-3 flex items-center justify-between text-[0.65rem] font-extrabold uppercase tracking-[0.16em] text-[#557269]">
+                  <span>Field record / 01</span>
+                  <span>Live context</span>
+                </figcaption>
+              </figure>
+              <div className="pb-3">
+                <div className="border-l-2 border-[#c8ff2b] bg-white/55 p-7 shadow-[0_20px_65px_rgba(27,52,43,0.07)] md:p-9">
+                  <div className="flex items-center justify-between text-[0.7rem] font-extrabold uppercase tracking-[0.17em] text-[#496b61]"><span>From signal to stewardship</span><span className="text-[#113128]">Memo / 01</span></div>
+                  <p className="mt-5 font-display text-[2.25rem] leading-[1.02] tracking-[-0.04em] text-[#113128]">
+                    Reliable decisions begin with a shared picture of the ground.
+                  </p>
+                  <p className="mt-6 text-[0.95rem] leading-7 text-[#496b61]">
+                    Fieldwise unifies environmental and operational context without losing the local detail that makes it useful.
+                  </p>
+                </div>
+                <div className="mt-7 flex gap-3 border-t border-[#153c31]/15 pt-5">
+                  <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[#113128] text-[#c8ff2b]"><Check className="h-3.5 w-3.5" /></span>
+                  <p className="text-sm leading-6 text-[#406057]">A season history you can revisit, compare, and act on across every growing site.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="signals" className="relative overflow-hidden bg-[#113128] px-5 py-24 text-white md:px-8 md:py-32">
+          <div className="contours contours--dark absolute inset-0 opacity-35" aria-hidden="true" />
+          <div className="relative mx-auto max-w-[1440px]">
+            <div className="grid gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:items-end">
+              <div>
+                <p className="section-kicker section-kicker--light">The signal system</p>
+                <h2 className="mt-6 max-w-4xl font-display text-5xl leading-[0.91] tracking-[-0.05em] text-white md:text-7xl">
+                  See what needs attention <span className="text-[#c8ff2b]">before it becomes urgent.</span>
+                </h2>
+              </div>
+              <p className="max-w-md text-base leading-7 text-white/70 lg:justify-self-end">
+                No clutter. No abstract metrics. Just a more complete read of the seasonal conditions that shape every decision.
+              </p>
+            </div>
+
+            <div className="mt-16 grid gap-px overflow-hidden rounded-[1.65rem] border border-white/15 bg-white/15 md:grid-cols-3">
+              {signalCards.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <article key={item.number} className="group min-h-[285px] bg-[#113128]/95 p-7 transition-colors duration-200 hover:bg-[#194337] md:p-8">
+                    <div className="flex items-start justify-between">
+                      <span className="text-[0.72rem] font-extrabold tracking-[0.17em] text-[#c8ff2b]">{item.number}</span>
+                      <span className="grid h-10 w-10 place-items-center rounded-full border border-white/25 text-white transition duration-200 group-hover:border-[#c8ff2b] group-hover:bg-[#c8ff2b] group-hover:text-[#113128]"><Icon className="h-4 w-4" /></span>
+                    </div>
+                    <h3 className="mt-16 font-display text-3xl tracking-[-0.035em] text-white">{item.title}</h3>
+                    <p className="mt-4 max-w-xs text-sm leading-6 text-white/67">{item.copy}</p>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section id="outcomes" className="relative overflow-hidden bg-[#f7f6ef] px-5 py-24 md:px-8 md:py-32">
+          <div className="mx-auto max-w-[1440px]">
+            <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+              <div>
+                <p className="section-kicker">Outcomes that stay grounded</p>
+                <h2 className="mt-6 max-w-2xl font-display text-5xl leading-[0.94] tracking-[-0.05em] text-[#113128] md:text-6xl">
+                  More confidence. Better timing. Stronger connection.
+                </h2>
+              </div>
+              <p className="max-w-lg text-[1rem] leading-7 text-[#4e6b62] lg:justify-self-end">
+                Fieldwise is built around the decisions that have to happen season after season — from the individual growing block to the regional production plan.
+              </p>
+            </div>
+
+            <div className="mt-14 grid gap-7 lg:grid-cols-[1.1fr_0.9fr]">
+              <div className="relative min-h-[420px] overflow-hidden rounded-[1.8rem] bg-[#183e33] md:min-h-[515px]">
+                <img src={aerialImage} alt="Aerial view of irrigated agricultural fields" className="absolute inset-0 h-full w-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#092019]/85 via-[#092019]/0 to-transparent" />
+                <div className="absolute inset-x-5 top-5 flex items-center justify-between border border-white/25 bg-[#0e3127]/75 px-3 py-2 text-[0.56rem] font-extrabold uppercase tracking-[0.14em] text-white backdrop-blur-sm"><span>Seasonal record / north block</span><span className="text-[#c8ff2b]">parcel 12A</span></div>
+                <div className="absolute right-7 top-16 h-24 w-32 rounded-bl-[2rem] border-b border-l border-white/65" aria-hidden="true" />
+                <div className="absolute right-7 top-44 flex items-center gap-2 text-[0.58rem] font-bold uppercase tracking-[0.13em] text-white/85"><span className="h-1.5 w-1.5 rounded-full bg-[#c8ff2b]" /> irrigation line</div>
+                <div className="absolute inset-x-0 bottom-0 p-7 text-white md:p-10">
+                  <span className="rounded-full border border-white/35 px-3 py-1 text-[0.62rem] font-extrabold uppercase tracking-[0.14em] text-white">Season view</span>
+                  <h3 className="mt-5 max-w-md font-display text-[2.5rem] leading-[0.96] tracking-[-0.045em]">A fuller picture of every field, all season long.</h3>
+                </div>
+              </div>
+              <div className="flex flex-col justify-between rounded-[1.8rem] bg-[#d9d8cd] p-7 md:p-10">
+                <div>
+                  <div className="flex items-center justify-between border-b border-[#123329]/15 pb-4">
+                    <p className="text-[0.68rem] font-extrabold uppercase tracking-[0.17em] text-[#547067]">Built around practice</p>
+                    <span className="h-2.5 w-2.5 rounded-full bg-[#c8ff2b] shadow-[0_0_0_5px_rgba(200,255,43,0.23)]" />
+                  </div>
+                  <div className="mt-7 space-y-7">
+                    {[
+                      ["Grow with context", "Use the detail beneath the aggregate to make local decisions that hold up."],
+                      ["Coordinate with clarity", "Give field teams, advisors, and partners one useful operating picture."],
+                      ["Protect the next season", "Carry learning forward instead of restarting the conversation every year."],
+                    ].map(([title, copy], index) => (
+                      <div key={title} className="grid grid-cols-[1.85rem_1fr] gap-3">
+                        <span className="pt-0.5 text-[0.72rem] font-extrabold tracking-[0.14em] text-[#739087]">0{index + 1}</span>
+                        <div>
+                          <h3 className="font-display text-2xl tracking-[-0.03em] text-[#113128]">{title}</h3>
+                          <p className="mt-2 max-w-sm text-sm leading-6 text-[#4d6a60]">{copy}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="mt-10 border-t border-[#123329]/15 pt-6">
+                  <div className="relative"><img src={harvestImage} alt="Farmers examining fresh corn in the field" className="h-28 w-full rounded-xl object-cover object-center" /><span className="absolute bottom-2 left-2 rounded-sm bg-[#102d25]/85 px-2 py-1 text-[0.52rem] font-extrabold uppercase tracking-[0.12em] text-white">Harvest note / shared learning</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" className="relative overflow-hidden bg-[#123329] px-5 py-20 text-white md:px-8 md:py-28">
+          <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full border border-[#c8ff2b]/20" aria-hidden="true" />
+          <div className="relative mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+            <div>
+              <p className="section-kicker section-kicker--light">Grow the conversation</p>
+              <h2 className="mt-6 max-w-3xl font-display text-5xl leading-[0.92] tracking-[-0.05em] text-white md:text-7xl">
+                Ready for a more useful view of the season?
+              </h2>
+              <a href="mailto:hello@fieldwise.ag" className="group mt-9 inline-flex items-center gap-4 text-xl font-semibold text-[#c8ff2b] transition-colors hover:text-white md:text-2xl">
+                hello@fieldwise.ag <span className="grid h-9 w-9 place-items-center rounded-full border border-current"><ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></span>
+              </a>
+            </div>
+            <div className="rounded-[1.5rem] border border-white/15 bg-white/[0.06] p-6 backdrop-blur-sm md:p-8">
+              <p className="text-[0.72rem] font-extrabold uppercase tracking-[0.16em] text-[#c8ff2b]">Field notes, occasionally</p>
+              <p className="mt-4 max-w-sm text-sm leading-6 text-white/70">Seasonal ideas on agricultural intelligence, climate resilience, and the work happening where it matters.</p>
+              <form onSubmit={handleSubscribe} className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <label className="sr-only" htmlFor="email">Email address</label>
+                <input id="email" name="email" type="email" required placeholder="Your email address" className="min-w-0 flex-1 rounded-full border border-white/20 bg-[#0c261f] px-5 py-3.5 text-sm text-white outline-none placeholder:text-white/43 focus:border-[#c8ff2b]" />
+                <button type="submit" className="rounded-full bg-[#c8ff2b] px-5 py-3.5 text-[0.7rem] font-extrabold uppercase tracking-[0.12em] text-[#113128] transition hover:bg-white active:scale-[0.97]">Subscribe</button>
+              </form>
+            </div>
+          </div>
+        </section>
       </main>
+
+      <footer className="bg-[#0c261f] px-5 py-6 text-white/56 md:px-8">
+        <div className="mx-auto flex max-w-[1440px] flex-col gap-3 text-[0.67rem] font-bold uppercase tracking-[0.13em] sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-2"><span className="grid h-8 w-8 place-items-center rounded-md border border-[#c8ff2b]/40 bg-black/20 p-1"><img src={brandMark} alt="" className="h-full w-full" /></span> Fieldwise / Agritech intelligence</div>
+          <p>© 2026 Fieldwise. Built for the growing edge.</p>
+        </div>
+      </footer>
     </div>
   );
 }

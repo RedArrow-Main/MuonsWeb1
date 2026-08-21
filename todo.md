@@ -51,3 +51,5 @@
 - [x] Inspect the local repository status and connected GitHub remote.
 - [x] Commit the latest Muons Technology website revision.
 - [x] Push the committed revision to the connected GitHub repository and verify the remote branch.
+- [ ] Inspect the RedArrow-Main/MuonsWeb1 repository and identify a safe branch for the latest Muons website revision.
+- [ ] Push the current Muons Technology website history to the target repository and verify the remote branch.

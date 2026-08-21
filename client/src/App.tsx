@@ -5,12 +5,15 @@ import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import Home from "./pages/Home";
+import Home from "@/pages/Home";
+import SeoTopic from "@/pages/SeoTopic";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/solutions/:slug" component={SeoTopic} />
+      <Route path="/insights/:slug" component={SeoTopic} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>

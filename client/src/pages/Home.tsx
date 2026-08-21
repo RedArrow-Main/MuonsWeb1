@@ -14,6 +14,7 @@ import {
   X,
 } from "lucide-react";
 import { FormEvent, useEffect, useState } from "react";
+import { Link } from "wouter";
 
 // Production media is intentionally served from a fixed public Vercel Blob origin,
 // never from Manus preview-only routes, so the Field Ledger experience travels intact.
@@ -253,7 +254,7 @@ export default function Home() {
 
       <main>
         <section id="top" className="relative min-h-[700px] overflow-hidden bg-[#0b211b] text-white sm:min-h-[800px]">
-          <img src={heroImage} alt="Agronomist standing in a maize field" className="absolute inset-0 h-full w-full object-cover object-[69%_center]" />
+          <img src={heroImage} alt="Farmer standing in a maize field at sunset" fetchPriority="high" decoding="async" className="absolute inset-0 h-full w-full object-cover object-[69%_center]" />
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,26,21,0.97)_0%,rgba(7,26,21,0.78)_37%,rgba(7,26,21,0.22)_72%,rgba(7,26,21,0.38)_100%)]" />
           <div className="contours absolute inset-0 opacity-45" aria-hidden="true" />
           <div className="relative z-10 mx-auto flex min-h-[700px] max-w-[1440px] flex-col justify-end px-5 pb-12 pt-32 sm:pb-16 sm:pt-36 md:min-h-[800px] md:px-8 md:pb-20 lg:pb-24">
@@ -328,7 +329,7 @@ export default function Home() {
             <div className="grid gap-7 md:grid-cols-[0.95fr_1.05fr] md:items-end">
               <figure className="relative mt-10 md:mt-0">
                 <div className="overflow-hidden rounded-[1.75rem] bg-[#153c31]">
-                  <img src={sensorImage} alt="Field sensor among crop rows" className="aspect-[3/4] h-full w-full object-cover transition duration-700 hover:scale-[1.035]" />
+                  <img src={sensorImage} alt="Agricultural field sensor among crop rows" loading="lazy" decoding="async" className="aspect-[3/4] h-full w-full object-cover transition duration-700 hover:scale-[1.035]" />
                 </div>
                 <div className="absolute inset-x-4 top-4 flex items-center justify-between border border-white/25 bg-[#10342a]/85 px-3 py-2 text-[0.55rem] font-extrabold uppercase tracking-[0.13em] text-white backdrop-blur-md"><span>Plot 07 / sensor node</span><span className="flex items-center gap-1.5 text-[#c8ff2b]"><i className="h-1.5 w-1.5 rounded-full bg-[#c8ff2b]" /> live</span></div>
                 <div className="absolute bottom-11 left-4 h-14 w-20 border-b border-l border-white/70" aria-hidden="true" />
@@ -453,7 +454,7 @@ export default function Home() {
 
             <div className="mt-14 grid gap-7 lg:grid-cols-[1.1fr_0.9fr]">
               <div className="relative min-h-[420px] overflow-hidden rounded-[1.8rem] bg-[#183e33] md:min-h-[515px]">
-                <img src={aerialImage} alt="Aerial view of irrigated agricultural fields" className="absolute inset-0 h-full w-full object-cover" />
+                <img src={aerialImage} alt="Aerial view of irrigated agricultural fields and crop patterns" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#092019]/85 via-[#092019]/0 to-transparent" />
                 <div className="absolute inset-x-5 top-5 flex items-center justify-between border border-white/25 bg-[#0e3127]/75 px-3 py-2 text-[0.56rem] font-extrabold uppercase tracking-[0.14em] text-white backdrop-blur-sm"><span>Seasonal record / north block</span><span className="text-[#c8ff2b]">parcel 12A</span></div>
                 <div className="absolute right-7 top-16 h-24 w-32 rounded-bl-[2rem] border-b border-l border-white/65" aria-hidden="true" />
@@ -486,7 +487,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="mt-10 border-t border-[#123329]/15 pt-6">
-                  <div className="relative"><img src={harvestImage} alt="Farmers examining fresh corn in the field" className="h-28 w-full rounded-xl object-cover object-center" /><span className="absolute bottom-2 left-2 rounded-sm bg-[#102d25]/85 px-2 py-1 text-[0.52rem] font-extrabold uppercase tracking-[0.12em] text-white">Harvest note / shared learning</span></div>
+                  <div className="relative"><img src={harvestImage} alt="Farmers examining a fresh corn harvest in the field" loading="lazy" decoding="async" className="h-28 w-full rounded-xl object-cover object-center" /><span className="absolute bottom-2 left-2 rounded-sm bg-[#102d25]/85 px-2 py-1 text-[0.52rem] font-extrabold uppercase tracking-[0.12em] text-white">Harvest note / shared learning</span></div>
                 </div>
               </div>
             </div>
@@ -695,7 +696,7 @@ export default function Home() {
               {leaders.map((leader, index) => (
                 <article key={leader.name} className={`group overflow-hidden rounded-[1.5rem] border border-[#123329]/12 bg-[#e6e6dc] transition-transform duration-300 hover:-translate-y-1 ${index === 1 ? "xl:mt-10" : index === 2 ? "xl:mt-5" : ""}`}>
                   <div className={`relative aspect-[4/5] overflow-hidden border-b border-[#123329]/12 ${index % 2 === 0 ? "bg-[#153b30] text-white" : "bg-[#d4d7c7] text-[#113128]"}`}>
-                    {leader.image ? <><img src={leader.image} alt={`Andre James, ${leader.role}`} className="absolute inset-0 h-full w-full object-cover object-center" /><div className="absolute inset-0 bg-gradient-to-t from-[#0b211b]/82 via-[#0b211b]/5 to-transparent" /></> : <div className="absolute inset-0 opacity-35 [background-image:linear-gradient(135deg,transparent_30%,rgba(200,255,43,0.22)_30%,rgba(200,255,43,0.22)_31%,transparent_31%)] [background-size:34px_34px]" aria-hidden="true" />}
+                    {leader.image ? <><img src={leader.image} alt={`${leader.name}, ${leader.role}`} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover object-center" /><div className="absolute inset-0 bg-gradient-to-t from-[#0b211b]/82 via-[#0b211b]/5 to-transparent" /></> : <div className="absolute inset-0 opacity-35 [background-image:linear-gradient(135deg,transparent_30%,rgba(200,255,43,0.22)_30%,rgba(200,255,43,0.22)_31%,transparent_31%)] [background-size:34px_34px]" aria-hidden="true" />}
                     <div className="absolute inset-5 flex items-center justify-between border-b border-current/20 pb-3 text-[0.54rem] font-extrabold uppercase tracking-[0.13em] opacity-70"><span>Muons dossier</span><span>Record 0{index + 1}</span></div>
                     {!leader.image && <div className="absolute inset-0 grid place-items-center"><span className={`grid h-24 w-24 place-items-center rounded-full border text-4xl font-display ${index % 2 === 0 ? "border-[#c8ff2b]/60 bg-black/15 text-[#c8ff2b]" : "border-[#113128]/25 bg-white/20 text-[#113128]"}`}>{leader.initials}</span></div>}
                     <p className="absolute inset-x-5 bottom-5 text-[0.55rem] font-bold uppercase tracking-[0.12em] opacity-70">{leader.image ? "Approved portrait / leadership file" : "Portrait pending / record slot"}</p>
@@ -733,6 +734,12 @@ export default function Home() {
       <footer className="bg-[#0c261f] px-5 py-6 text-white/56 md:px-8">
         <div className="mx-auto flex max-w-[1440px] flex-col gap-3 text-[0.67rem] font-bold uppercase tracking-[0.13em] sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3"><img src={muonsLogo} alt="Muons Technology" className="h-auto w-44 object-contain" /><span className="hidden text-white/55 sm:inline">Agricultural infrastructure</span></div>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <Link href="/solutions/edge-agriculture-infrastructure" className="transition-colors hover:text-[#c8ff2b]">Edge infrastructure</Link>
+            <Link href="/solutions/offline-first-ai-for-farmers" className="transition-colors hover:text-[#c8ff2b]">Offline-first AI</Link>
+            <Link href="/solutions/blockchain-agricultural-records" className="transition-colors hover:text-[#c8ff2b]">Trusted records</Link>
+            <Link href="/insights/early-food-insecurity-signals" className="transition-colors hover:text-[#c8ff2b]">Food security field note</Link>
+          </div>
           <p>© 2026 Muons Technology. Built for the growing edge.</p>
         </div>
       </footer>

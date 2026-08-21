@@ -115,24 +115,22 @@ const leaders = [
     name: "Andre James",
     role: "Founder & CEO",
     bio: "10+ years of experience in digital transformation across emerging markets. Specialized in designing mission-critical infrastructure and offline-first digital rails for national-scale coordination.",
+    linkedin: "https://www.linkedin.com/in/andre-j-a451172a/",
+    image: "/manus-storage/andre-james-portrait_05e1043a.png",
   },
   {
-    initials: "AK",
-    name: "Arslaan Khan",
-    role: "Co-Founder & CTO",
-    bio: "7+ years building secure, scalable data and blockchain systems, specializing in audit-grade infrastructure, traceability, and national-scale digital platforms.",
-  },
-  {
-    initials: "NM",
-    name: "Nadia Momple",
-    role: "Co-Founder, Global COO",
-    bio: "Focused on building innovative, values-based businesses. Oversees global operations, strategic partnerships, and mission alignment across international borders.",
+    initials: "FK",
+    name: "Fred Kamuzinzi",
+    role: "Financial Advisor",
+    bio: "Financial Advisor to Muons Technology.",
+    linkedin: "https://www.linkedin.com/in/fred-kamuzinzi/",
   },
   {
     initials: "GM",
     name: "Gordon Mitchell",
-    role: "Chief Operating Officer",
+    role: "COO",
     bio: "Operations, market expansion, and business development. Leading operational strategy and market growth initiatives.",
+    linkedin: "https://www.linkedin.com/in/gordon-mitchell-527953b/",
   },
 ];
 
@@ -405,16 +403,16 @@ export default function Home() {
               <p className="max-w-2xl text-[1.02rem] leading-8 text-[#4e6c62] lg:justify-self-end">A multidisciplinary team spanning digital transformation, secure systems, global operations, and agricultural infrastructure. Each portrait panel is reserved for an approved leadership image.</p>
             </div>
 
-            <div className="mt-16 grid gap-7 md:grid-cols-2 xl:grid-cols-4">
+            <div className="mt-16 grid gap-7 md:grid-cols-2 xl:grid-cols-3">
               {leaders.map((leader, index) => (
                 <article key={leader.name} className="group overflow-hidden rounded-[1.5rem] border border-[#123329]/12 bg-[#e6e6dc] transition-transform duration-300 hover:-translate-y-1">
                   <div className={`relative aspect-[4/5] overflow-hidden border-b border-[#123329]/12 ${index % 2 === 0 ? "bg-[#153b30] text-white" : "bg-[#d4d7c7] text-[#113128]"}`}>
-                    <div className="absolute inset-0 opacity-35 [background-image:linear-gradient(135deg,transparent_30%,rgba(200,255,43,0.22)_30%,rgba(200,255,43,0.22)_31%,transparent_31%)] [background-size:34px_34px]" aria-hidden="true" />
+                    {leader.image ? <><img src={leader.image} alt={`Andre James, ${leader.role}`} className="absolute inset-0 h-full w-full object-cover object-center" /><div className="absolute inset-0 bg-gradient-to-t from-[#0b211b]/82 via-[#0b211b]/5 to-transparent" /></> : <div className="absolute inset-0 opacity-35 [background-image:linear-gradient(135deg,transparent_30%,rgba(200,255,43,0.22)_30%,rgba(200,255,43,0.22)_31%,transparent_31%)] [background-size:34px_34px]" aria-hidden="true" />}
                     <div className="absolute inset-5 flex items-center justify-between border-b border-current/20 pb-3 text-[0.54rem] font-extrabold uppercase tracking-[0.13em] opacity-70"><span>Leadership record</span><span>0{index + 1}</span></div>
-                    <div className="absolute inset-0 grid place-items-center"><span className={`grid h-24 w-24 place-items-center rounded-full border text-4xl font-display ${index % 2 === 0 ? "border-[#c8ff2b]/60 bg-black/15 text-[#c8ff2b]" : "border-[#113128]/25 bg-white/20 text-[#113128]"}`}>{leader.initials}</span></div>
-                    <p className="absolute inset-x-5 bottom-5 text-[0.55rem] font-bold uppercase tracking-[0.12em] opacity-70">Approved portrait / record slot</p>
+                    {!leader.image && <div className="absolute inset-0 grid place-items-center"><span className={`grid h-24 w-24 place-items-center rounded-full border text-4xl font-display ${index % 2 === 0 ? "border-[#c8ff2b]/60 bg-black/15 text-[#c8ff2b]" : "border-[#113128]/25 bg-white/20 text-[#113128]"}`}>{leader.initials}</span></div>}
+                    <p className="absolute inset-x-5 bottom-5 text-[0.55rem] font-bold uppercase tracking-[0.12em] opacity-70">{leader.image ? "Leadership portrait / approved" : "Approved portrait / record slot"}</p>
                   </div>
-                  <div className="p-6"><p className="text-[0.62rem] font-extrabold uppercase tracking-[0.15em] text-[#607e73]">{leader.role}</p><h3 className="mt-3 font-display text-3xl tracking-[-0.035em] text-[#113128]">{leader.name}</h3><p className="mt-4 text-sm leading-6 text-[#4e6d63]">{leader.bio}</p></div>
+                  <div className="p-6"><p className="text-[0.62rem] font-extrabold uppercase tracking-[0.15em] text-[#607e73]">{leader.role}</p><h3 className="mt-3 font-display text-3xl tracking-[-0.035em] text-[#113128]">{leader.name}</h3><p className="mt-4 text-sm leading-6 text-[#4e6d63]">{leader.bio}</p><a href={leader.linkedin} target="_blank" rel="noreferrer" className="group/link mt-6 inline-flex items-center gap-2 text-[0.62rem] font-extrabold uppercase tracking-[0.13em] text-[#113128]">LinkedIn profile <ArrowUpRight className="h-3.5 w-3.5 text-[#739087] transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" /></a></div>
                 </article>
               ))}
             </div>

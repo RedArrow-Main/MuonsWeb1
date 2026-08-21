@@ -29,3 +29,6 @@
 - [x] Add the supplied four-person Muons leadership profile section with image-ready portrait placeholders.
 - [x] Add navigation access and responsive styling for the leadership section.
 - [x] Verify the leadership update and save a new project version.
+- [x] Review the supplied LinkedIn profiles for Andre James, Fred Kamuzinzi, and Gordon Mitchell.
+- [x] Update the leadership roster, profile links, and Andre James portrait where accessible.
+- [x] Verify the revised leadership cards and save a new project version.

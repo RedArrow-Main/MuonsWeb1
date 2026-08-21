@@ -19,3 +19,5 @@
 - [x] Verify the enhanced flow panel and save a new project version.
 - [x] Redesign the Record chain card with a stronger traceability visual and clearer record metadata.
 - [x] Verify the redesigned card and save a new project version.
+- [x] Replace the interface-like Record chain design with a simpler editorial traceability explanation.
+- [x] Verify the simplified card and save a new project version.

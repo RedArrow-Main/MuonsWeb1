@@ -451,18 +451,16 @@ export default function Home() {
               <div className="grid gap-px overflow-hidden rounded-[1.7rem] border border-white/15 bg-white/15 md:grid-cols-3">
                 {trustStages.map((stage, index) => index === 1 ? (
                   <article key={stage.number} className="group relative min-h-[375px] overflow-hidden bg-[#173f33] p-7 md:p-8">
-                    <div className="absolute -right-14 -top-14 h-36 w-36 rounded-full border border-[#c8ff2b]/20 transition-transform duration-500 group-hover:scale-110" aria-hidden="true" />
-                    <div className="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-[#c8ff2b] via-[#c8ff2b]/45 to-transparent" aria-hidden="true" />
-                    <div className="relative flex items-center justify-between"><span className="text-[0.68rem] font-extrabold tracking-[0.15em] text-[#c8ff2b]">{stage.number}</span><span className="flex items-center gap-2 text-[0.52rem] font-bold uppercase tracking-[0.12em] text-[#c8ff2b]"><i className="h-1.5 w-1.5 rounded-full bg-[#c8ff2b] shadow-[0_0_0_4px_rgba(200,255,43,0.12)]" />integrity trail</span></div>
-                    <h3 className="relative mt-10 font-display text-4xl leading-[0.95] tracking-[-0.045em] text-white">{stage.title}</h3>
-                    <p className="relative mt-4 text-sm leading-6 text-white/68">{stage.copy}</p>
-                    <div className="relative mt-7 rounded-xl border border-white/15 bg-[#0a271f]/70 p-4">
-                      <div className="flex items-center justify-between border-b border-white/10 pb-3"><p className="text-[0.53rem] font-extrabold uppercase tracking-[0.14em] text-white/45">{stage.label}</p><span className="text-[0.52rem] font-bold uppercase tracking-[0.12em] text-[#c8ff2b]">Illustrative</span></div>
-                      <div className="mt-4 grid grid-cols-[1fr_auto_1fr_auto_1fr] items-center gap-1.5">
-                        {stage.details.map((detail, detailIndex) => <div key={detail} className="contents"><div className="min-w-0"><span className="grid h-6 w-6 place-items-center rounded-full border border-[#c8ff2b]/60 bg-[#113b2e] text-[0.54rem] font-extrabold text-[#c8ff2b]">{detailIndex + 1}</span><p className="mt-1.5 text-[0.52rem] font-bold uppercase tracking-[0.09em] text-white/67">{detail}</p></div>{detailIndex < 2 && <span className="mt-[-1rem] h-px w-3 bg-[#c8ff2b]/55" />}</div>)}
-                      </div>
+                    <div className="absolute -right-14 -top-14 h-36 w-36 rounded-full border border-[#c8ff2b]/15 transition-transform duration-500 group-hover:scale-110" aria-hidden="true" />
+                    <div className="relative flex items-center justify-between"><span className="text-[0.68rem] font-extrabold tracking-[0.15em] text-[#c8ff2b]">{stage.number}</span><span className="flex items-center gap-2 text-[0.52rem] font-bold uppercase tracking-[0.12em] text-white/40"><i className="h-1.5 w-1.5 rounded-full bg-[#c8ff2b]" />record flow</span></div>
+                    <h3 className="relative mt-14 font-display text-3xl tracking-[-0.035em] text-white">{stage.title}</h3>
+                    <p className="relative mt-4 text-sm leading-6 text-white/63">{stage.copy}</p>
+                    <div className="relative mt-8 border-t border-white/15 pt-5">
+                      <p className="text-[0.52rem] font-extrabold uppercase tracking-[0.13em] text-white/42">Continuity note</p>
+                      <p className="mt-4 border-l-2 border-[#c8ff2b] pl-3 font-display text-[1.45rem] leading-[1.02] tracking-[-0.03em] text-white">One field event becomes part of a story rather than a loose note.</p>
+                      <p className="mt-5 text-xs leading-5 text-white/56">Keeping the event connected to its place, time, and earlier activity gives the next conversation the context it needs.</p>
                     </div>
-                    <div className="relative mt-4 grid grid-cols-2 gap-2 text-[0.53rem] font-bold uppercase tracking-[0.1em] text-white/48"><span className="border-t border-white/15 pt-2">Context retained</span><span className="border-t border-white/15 pt-2 text-right">History linked</span></div>
+                    <p className="relative mt-6 text-[0.54rem] font-bold uppercase tracking-[0.12em] text-[#c8ff2b]">From this season into the next</p>
                   </article>
                 ) : (
                   <article key={stage.number} className="group relative min-h-[375px] overflow-hidden bg-[#0b211b] p-7 md:p-8">

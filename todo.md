@@ -23,3 +23,6 @@
 - [x] Verify the simplified card and save a new project version.
 - [x] Restore the security section to equal-height trusted-record cards and a balanced adjacent security panel.
 - [x] Verify the corrected section and save a new project version.
+- [x] Add the supplied Intellectual Property and filed U.S. patent application details with clear status language.
+- [x] Add navigation access and visual integration for the patent asset section.
+- [x] Verify the intellectual property update and save a new project version.

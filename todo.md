@@ -79,3 +79,7 @@
 
 ## Style Decisions
 - Mobile layouts preserve the Field Ledger rhythm while prioritizing readable editorial type, thumb-friendly controls, and intentional image crops.
+
+- [x] Rewrite the hero positioning around American patent-pending edge hardware and global food security.
+- [x] Align Approach, Signals, Security, Intellectual Property, and About Muons copy with offline-first AI, blockchain, farmer-first physical infrastructure, and early food-insecurity prediction.
+- [x] Validate the revised positioning across mobile and desktop and save the copy update.

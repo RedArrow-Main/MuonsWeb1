@@ -260,14 +260,14 @@ export default function Home() {
             <div className="max-w-4xl">
               <div className="animate-rise flex max-w-[19rem] items-start gap-3 text-[0.62rem] font-extrabold uppercase leading-5 tracking-[0.2em] text-[#c8ff2b] sm:max-w-none sm:items-center sm:text-[0.68rem] sm:leading-normal sm:tracking-[0.23em]">
                 <span className="grid h-6 w-6 place-items-center rounded-full border border-[#c8ff2b]/45 bg-[#c8ff2b]/10"><span className="h-1.5 w-1.5 rounded-full bg-[#c8ff2b]" /></span>
-                Agricultural intelligence for America’s working lands
+                American patent-pending edge infrastructure for global food security
               </div>
               <h1 className="animate-rise animate-delay-1 mt-6 max-w-[20rem] font-display text-[clamp(3.35rem,14vw,7.85rem)] font-normal leading-[0.88] tracking-[-0.055em] text-white sm:mt-7 sm:max-w-4xl sm:text-[clamp(3.6rem,8vw,7.85rem)] sm:leading-[0.86]">
-                Make every growing season <em className="font-display text-[#c8ff2b]">more knowable.</em>
+                Food security starts at the edge. <em className="font-display text-[#c8ff2b]">Make it knowable.</em>
               </h1>
               <div className="animate-rise animate-delay-2 mt-6 grid max-w-2xl gap-5 sm:mt-8 sm:gap-6 md:grid-cols-[1fr_auto] md:items-end">
                 <p className="max-w-xl text-[1rem] leading-7 text-white/78 md:text-[1.08rem]">
-                  Muons Technology brings crop, climate, and operational signals into one clear view — so the people closest to the land can move with more confidence.
+                  Muons Technology builds offline-first AI, blockchain, and farmer-first physical infrastructure that turns ground agriculture data into earlier signals of food-insecurity risk.
                 </p>
                 <div className="flex items-center gap-3">
                   <button
@@ -280,7 +280,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="mt-6 flex max-w-[22rem] flex-wrap gap-2 sm:mt-7 sm:max-w-none sm:gap-2.5">
-                {["Local context", "Shared view", "Timely action", "Season memory"].map((item, index) => (
+                {["Ground data", "Edge hardware", "Offline intelligence", "Early warning"].map((item, index) => (
                   <span key={item} className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-[#09251e]/50 px-3 py-1.5 text-[0.59rem] font-extrabold uppercase tracking-[0.12em] text-white/78 backdrop-blur-sm"><span className={index === 2 ? "h-1.5 w-1.5 rounded-full bg-[#c8ff2b]" : "h-1.5 w-1.5 rounded-full bg-white/45"} />{item}</span>
                 ))}
               </div>
@@ -305,7 +305,7 @@ export default function Home() {
 
         <section aria-label="Muons operating principles" className="overflow-hidden bg-[#0d2d24] px-5 py-3.5 md:px-8">
           <div className="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-x-8 gap-y-3 text-[0.63rem] font-extrabold uppercase tracking-[0.15em] text-white/67">
-            {["Local context", "Shared view", "Timely action", "Season memory"].map((item) => <span key={item} className="flex items-center gap-2.5"><span className="h-1.5 w-1.5 rounded-full bg-[#c8ff2b]" />{item}</span>)}
+            {["Ground data", "Edge hardware", "Offline intelligence", "Early warning"].map((item) => <span key={item} className="flex items-center gap-2.5"><span className="h-1.5 w-1.5 rounded-full bg-[#c8ff2b]" />{item}</span>)}
           </div>
         </section>
 
@@ -315,10 +315,10 @@ export default function Home() {
             <div className="sticky top-28 max-w-sm">
               <p className="section-kicker">The Muons approach</p>
               <h2 className="mt-6 font-display text-5xl leading-[0.95] tracking-[-0.045em] text-[#113128] md:text-6xl">
-                The field is already speaking.
+                Infrastructure that starts where the data lives.
               </h2>
               <p className="mt-6 text-base leading-7 text-[#406057]">
-                The hard part is not gathering more data. It is turning scattered observations into a signal people can trust and use.
+                The hard part is not gathering more data. It is getting reliable intelligence from the ground to the people who need it, even when connectivity is limited.
               </p>
               <button type="button" onClick={() => scrollToSection("#outcomes")} className="group mt-9 inline-flex items-center gap-2 text-[0.72rem] font-extrabold uppercase tracking-[0.14em] text-[#113128]">
                 What changes <span className="grid h-7 w-7 place-items-center rounded-full bg-[#113128] text-[#c8ff2b] transition-transform group-hover:translate-x-1"><ArrowDownRight className="h-4 w-4" /></span>
@@ -345,7 +345,7 @@ export default function Home() {
                     Reliable decisions begin with a shared picture of the ground.
                   </p>
                   <p className="mt-6 text-[0.95rem] leading-7 text-[#496b61]">
-                    Muons unifies environmental and operational context without losing the local detail that makes it useful.
+                    Muons combines ground agriculture data, offline-first AI, and tamper-evident blockchain records without losing the local detail that makes the signal useful.
                   </p>
                 </div>
                 <div className="mt-7 flex gap-3 border-t border-[#153c31]/15 pt-5">
@@ -364,11 +364,11 @@ export default function Home() {
               <div>
                 <p className="section-kicker section-kicker--light">The signal system</p>
                 <h2 className="mt-6 max-w-4xl font-display text-5xl leading-[0.91] tracking-[-0.05em] text-white md:text-7xl">
-                  See what needs attention <span className="text-[#c8ff2b]">before it becomes urgent.</span>
+                  See food-insecurity risk <span className="text-[#c8ff2b]">before it becomes urgent.</span>
                 </h2>
               </div>
               <p className="max-w-md text-base leading-7 text-white/70 lg:justify-self-end">
-                No clutter. No abstract metrics. Just a more complete read of the seasonal conditions that shape every decision.
+                No clutter. No abstract metrics. Just a grounded read of crop, soil, climate, and operating conditions that can help surface risk earlier.
               </p>
             </div>
 
@@ -558,7 +558,7 @@ export default function Home() {
                 <h2 className="mt-6 max-w-2xl font-display text-5xl leading-[0.92] tracking-[-0.05em] text-white md:text-7xl">Trust matters when the record needs to travel.</h2>
               </div>
               <div className="max-w-2xl lg:justify-self-end">
-                <p className="text-[1.05rem] leading-8 text-white/72">Muons is shaping agricultural infrastructure around record integrity: a clear chain of field events that can be reviewed in context, connected to the people and decisions behind it, and carried forward with the farm.</p>
+                <p className="text-[1.05rem] leading-8 text-white/72">Muons is shaping farmer-first edge infrastructure around record integrity: offline AI at the point of work, blockchain-backed continuity, and a clear chain of ground events that can be reviewed and carried forward.</p>
                 <p className="mt-5 border-l-2 border-[#c8ff2b] pl-4 text-sm leading-6 text-white/56">The goal is practical trust — not complexity for its own sake. Farmers and operators should be able to understand what was recorded, when it changed, and why it matters.</p>
               </div>
             </div>
@@ -649,29 +649,29 @@ export default function Home() {
             <div className="grid gap-10 border-b border-white/15 pb-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
               <div>
                 <p className="section-kicker section-kicker--light">About Muons</p>
-                <h2 className="mt-6 font-display text-5xl leading-[0.92] tracking-[-0.05em] text-white md:text-7xl">Agricultural intelligence built by <span className="text-[#c8ff2b]">Muons.</span></h2>
+                <h2 className="mt-6 font-display text-5xl leading-[0.92] tracking-[-0.05em] text-white md:text-7xl">American edge infrastructure for a <span className="text-[#c8ff2b]">food-secure future.</span></h2>
               </div>
-              <p className="max-w-2xl text-[1.05rem] leading-8 text-white/73 lg:justify-self-end">Muons Technology builds tools that turn agricultural and environmental data into decisions farmers and operators can actually act on — even in places with unreliable internet or infrastructure.</p>
+              <p className="max-w-2xl text-[1.05rem] leading-8 text-white/73 lg:justify-self-end">Muons Technology is an American patent-pending edge hardware infrastructure company building global food security through offline-first AI, blockchain, and farmer-first physical infrastructure. We use ground agriculture data to help identify food-insecurity risk early.</p>
             </div>
 
             <div className="grid gap-px bg-white/15 md:grid-cols-3">
               <article className="bg-[#102f26] p-7 md:p-9">
                 <span className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">01 / Who we are</span>
-                <h3 className="mt-8 font-display text-3xl tracking-[-0.035em] text-white">Decisions that hold up in the real world.</h3>
-                <p className="mt-5 text-sm leading-7 text-white/66">We make useful agricultural intelligence accessible where tools, connectivity, and technical capacity cannot be assumed.</p>
+                <h3 className="mt-8 font-display text-3xl tracking-[-0.035em] text-white">Infrastructure that works at the edge.</h3>
+                <p className="mt-5 text-sm leading-7 text-white/66">We bring durable sensing, offline intelligence, and trusted records to the places where connectivity and technical capacity cannot be assumed.</p>
               </article>
               <article className="bg-[#163a30] p-7 md:p-9">
                 <span className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">02 / Mission</span>
-                <h3 className="mt-8 font-display text-3xl tracking-[-0.035em] text-white">Advanced intelligence belongs on every farm.</h3>
-                <p className="mt-5 text-sm leading-7 text-white/66">The next generation of ag-tech should not require broadband, apps, or smartphones to be useful. It should meet farmers where they are.</p>
+                <h3 className="mt-8 font-display text-3xl tracking-[-0.035em] text-white">Global food security begins with ground truth.</h3>
+                <p className="mt-5 text-sm leading-7 text-white/66">The next generation of ag-tech should meet farmers where they are: in the field, at the edge, and often offline.</p>
               </article>
               <article className="bg-[#102f26] p-7 md:p-9">
                 <span className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">03 / What we do</span>
-                <h3 className="mt-8 font-display text-3xl tracking-[-0.035em] text-white">Offline-first, low-bandwidth by design.</h3>
+                <h3 className="mt-8 font-display text-3xl tracking-[-0.035em] text-white">Farmer-first physical infrastructure.</h3>
                 <ul className="mt-5 space-y-3 text-sm leading-6 text-white/66">
-                  <li className="flex gap-2.5"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c8ff2b]" />Build tools for data and record-keeping in disconnected rural environments.</li>
-                  <li className="flex gap-2.5"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c8ff2b]" />Combine climate, soil, and field data into simple advisories, including irrigation timing by SMS.</li>
-                  <li className="flex gap-2.5"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c8ff2b]" />Design for disconnected environments first, not as an afterthought.</li>
+                  <li className="flex gap-2.5"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c8ff2b]" />Build edge hardware and records for disconnected rural environments.</li>
+                  <li className="flex gap-2.5"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c8ff2b]" />Combine ground agriculture data with offline-first AI to surface practical early-warning signals.</li>
+                  <li className="flex gap-2.5"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c8ff2b]" />Connect physical infrastructure, AI, and blockchain without putting the burden on the farmer.</li>
                 </ul>
               </article>
             </div>

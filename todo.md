@@ -153,3 +153,8 @@
 - [ ] Inspect the desktop Contact section alignment and identify why content sits too low.
 - [ ] Tighten the desktop composition while preserving mobile responsiveness.
 - [ ] Visually validate the Contact section and save the updated checkpoint.
+
+## Contact Supporting Copy
+- [ ] Draft a concise paragraph for the Contact section.
+- [ ] Add the paragraph with matching editorial styling.
+- [ ] Validate the contact layout and save the copy update.

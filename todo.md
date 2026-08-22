@@ -215,3 +215,8 @@
 ## Farmer First Tagline
 - [ ] Update the main tagline to include farmer first language.
 - [ ] Validate headline wrapping and production build, then save the update.
+
+## Regenerative Human-Centered Messaging
+- [ ] Reframe the hero around regenerative agriculture and soil health.
+- [ ] Simplify nearby copy and reduce technical emphasis.
+- [ ] Validate responsive presentation and production build, then save the update.

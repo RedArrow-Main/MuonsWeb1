@@ -236,3 +236,13 @@
 - [ ] Add the Farmer Product and Root Zone Physical AI content.
 - [ ] Add the field to finance layer and farmer economics content using user supplied figures.
 - [ ] Validate calculations, responsive layout, and production build.
+
+## GitHub Edge Product Update
+- [ ] Inspect local and MuonsWeb1 main state.
+- [ ] Push the latest edge product and farmer economics update.
+- [ ] Verify the remote commit and report the result.
+
+## Fix Missing Images
+- [ ] Inspect all homepage image references and live asset responses.
+- [ ] Replace broken temporary storage paths with verified public URLs.
+- [ ] Validate the deployed images and push the fix to GitHub.

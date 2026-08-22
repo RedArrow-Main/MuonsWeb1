@@ -23,7 +23,7 @@ const heroImage = `${mediaOrigin}/muons-technology-hero.jpg`;
 const sensorImage = `${mediaOrigin}/muons-technology-sensor.jpg`;
 const aerialImage = `${mediaOrigin}/muons-technology-aerial.jpg`;
 const harvestImage = `${mediaOrigin}/muons-technology-harvest.jpg`;
-const edgeInfrastructureImage = "/manus-storage/muons-edge-physical-infrastructure_2743dc12.jpg";
+const edgeInfrastructureImage = `${mediaOrigin}/muons-technology-sensor.jpg`;
 const muonsLogo = `${mediaOrigin}/muons-technology-logo-dark.png`;
 const muonsSymbol = `${mediaOrigin}/muons-technology-symbol.png`;
 

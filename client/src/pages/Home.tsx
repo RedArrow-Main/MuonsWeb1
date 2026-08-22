@@ -146,6 +146,7 @@ export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeLens, setActiveLens] = useState(0);
+  const [contactSubmitted, setContactSubmitted] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 28);
@@ -164,6 +165,20 @@ export default function Home() {
     form.reset();
     toast.success("Your field-notes request is recorded.", {
       description: "Expect occasional Muons intelligence updates from the growing edge.",
+    });
+  };
+
+  const handleContact = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    setContactSubmitted(true);
+    form.reset();
+    toast.success("Message received in this browser.", {
+      description: "The form is ready to connect to Muons Technology's recipient inbox.",
     });
   };
 
@@ -719,13 +734,48 @@ export default function Home() {
               <p className="mt-9 max-w-xl text-xl font-semibold leading-8 text-[#c8ff2b] md:text-2xl">Start a grounded infrastructure conversation for the season ahead.</p>
             </div>
             <div className="rounded-[1.5rem] border border-white/15 bg-white/[0.06] p-6 backdrop-blur-sm md:p-8">
-              <p className="text-[0.72rem] font-extrabold uppercase tracking-[0.16em] text-[#c8ff2b]">Muons field intelligence update</p>
-              <p className="mt-4 max-w-sm text-sm leading-6 text-white/70">Receive an occasional field record on agricultural intelligence, climate resilience, and the operational work that carries a season forward.</p>
-              <form onSubmit={handleSubscribe} className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <label className="sr-only" htmlFor="email">Email address</label>
-                <input id="email" name="email" type="email" required placeholder="Your email address" className="min-w-0 flex-1 rounded-full border border-white/20 bg-[#0c261f] px-5 py-3.5 text-sm text-white outline-none placeholder:text-white/43 focus:border-[#c8ff2b]" />
-                <button type="submit" className="rounded-full bg-[#c8ff2b] px-5 py-3.5 text-[0.7rem] font-extrabold uppercase tracking-[0.12em] text-[#113128] transition hover:bg-white active:scale-[0.97]">Receive field notes</button>
-              </form>
+              <p className="text-[0.72rem] font-extrabold uppercase tracking-[0.16em] text-[#c8ff2b]">Contact Muons Technology</p>
+              <p className="mt-4 max-w-sm text-sm leading-6 text-white/70">Tell us what you are building, measuring, or trying to make more resilient. We will use the context to route the conversation well.</p>
+              {contactSubmitted ? (
+                <div className="mt-6 border-l-2 border-[#c8ff2b] bg-[#0c261f]/70 px-5 py-4" role="status">
+                  <p className="text-sm font-bold text-white">Your message is prepared.</p>
+                  <p className="mt-2 text-sm leading-6 text-white/65">The recipient inbox is not connected yet. Confirm the Muons contact email and this form can be wired to deliver submissions.</p>
+                  <button type="button" onClick={() => setContactSubmitted(false)} className="mt-4 text-[0.65rem] font-extrabold uppercase tracking-[0.13em] text-[#c8ff2b] hover:text-white">Send another message</button>
+                </div>
+              ) : (
+                <form onSubmit={handleContact} className="mt-6 grid gap-3 sm:grid-cols-2">
+                  <div>
+                    <label htmlFor="contact-name" className="mb-2 block text-[0.63rem] font-extrabold uppercase tracking-[0.12em] text-white/65">Name</label>
+                    <input id="contact-name" name="name" type="text" required autoComplete="name" placeholder="Your name" className="w-full rounded-xl border border-white/20 bg-[#0c261f] px-4 py-3.5 text-sm text-white outline-none placeholder:text-white/40 focus:border-[#c8ff2b] focus:ring-2 focus:ring-[#c8ff2b]/20" />
+                  </div>
+                  <div>
+                    <label htmlFor="contact-email" className="mb-2 block text-[0.63rem] font-extrabold uppercase tracking-[0.12em] text-white/65">Work email</label>
+                    <input id="contact-email" name="email" type="email" required autoComplete="email" placeholder="you@company.com" className="w-full rounded-xl border border-white/20 bg-[#0c261f] px-4 py-3.5 text-sm text-white outline-none placeholder:text-white/40 focus:border-[#c8ff2b] focus:ring-2 focus:ring-[#c8ff2b]/20" />
+                  </div>
+                  <div>
+                    <label htmlFor="contact-organization" className="mb-2 block text-[0.63rem] font-extrabold uppercase tracking-[0.12em] text-white/65">Organization</label>
+                    <input id="contact-organization" name="organization" type="text" autoComplete="organization" placeholder="Farm, cooperative, institution" className="w-full rounded-xl border border-white/20 bg-[#0c261f] px-4 py-3.5 text-sm text-white outline-none placeholder:text-white/40 focus:border-[#c8ff2b] focus:ring-2 focus:ring-[#c8ff2b]/20" />
+                  </div>
+                  <div>
+                    <label htmlFor="contact-interest" className="mb-2 block text-[0.63rem] font-extrabold uppercase tracking-[0.12em] text-white/65">Conversation area</label>
+                    <select id="contact-interest" name="interest" defaultValue="" className="w-full rounded-xl border border-white/20 bg-[#0c261f] px-4 py-3.5 text-sm text-white outline-none focus:border-[#c8ff2b] focus:ring-2 focus:ring-[#c8ff2b]/20">
+                      <option value="" disabled>Select one</option>
+                      <option value="edge-infrastructure">Edge infrastructure</option>
+                      <option value="offline-ai">Offline-first AI</option>
+                      <option value="trusted-records">Blockchain and trusted records</option>
+                      <option value="partnership">Partnership or investment</option>
+                    </select>
+                  </div>
+                  <div className="sm:col-span-2">
+                    <label htmlFor="contact-message" className="mb-2 block text-[0.63rem] font-extrabold uppercase tracking-[0.12em] text-white/65">Message</label>
+                    <textarea id="contact-message" name="message" required rows={4} placeholder="What would you like to make more useful at the edge?" className="w-full resize-y rounded-xl border border-white/20 bg-[#0c261f] px-4 py-3.5 text-sm leading-6 text-white outline-none placeholder:text-white/40 focus:border-[#c8ff2b] focus:ring-2 focus:ring-[#c8ff2b]/20" />
+                  </div>
+                  <div className="flex flex-col gap-3 pt-1 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
+                    <p className="text-xs leading-5 text-white/48">No marketing list. Just the context needed for a useful reply.</p>
+                    <button type="submit" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#c8ff2b] px-5 py-3.5 text-[0.7rem] font-extrabold uppercase tracking-[0.12em] text-[#113128] transition hover:bg-white active:scale-[0.97]">Send inquiry <ArrowUpRight className="h-3.5 w-3.5" /></button>
+                  </div>
+                </form>
+              )}
             </div>
           </div>
         </section>

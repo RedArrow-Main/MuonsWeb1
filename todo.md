@@ -142,3 +142,9 @@
 - [x] Resolve direct public URLs for all Muons-named compressed images.
 - [x] Hardcode the verified image URLs in the homepage and metadata.
 - [x] Validate direct image responses, build output, and remaining old-name references.
+
+## Contact Us Form
+- [ ] Audit the current contact section and confirm the available submission path.
+- [ ] Add an accessible responsive form with validation and clear success/error states.
+- [ ] Validate the form UI and save the contact-form revision.
+- [ ] Connect a real recipient email or form backend once the contact address is confirmed.

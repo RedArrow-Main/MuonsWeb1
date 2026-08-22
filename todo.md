@@ -178,3 +178,9 @@
 - [ ] Inspect local status, current branch, and configured remote.
 - [ ] Commit and push the restored-logo website state to RedArrow-Main/MuonsWeb1.
 - [ ] Verify the remote branch and commit.
+
+## AI Predictive Model
+- [ ] Audit existing AI, signals, and solution narrative placement.
+- [ ] Add an offline first AI Predictive Model section with agricultural inputs, outputs, and honest limitations.
+- [ ] Add navigation and internal SEO access to the new section.
+- [ ] Validate responsive rendering and production build, then save the update.

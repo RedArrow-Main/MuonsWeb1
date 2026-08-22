@@ -29,6 +29,7 @@ const muonsSymbol = `${mediaOrigin}/muons-technology-symbol.png`;
 const navItems = [
   { label: "Approach", href: "#approach" },
   { label: "Signals", href: "#signals" },
+  { label: "AI Model", href: "#predictive-model" },
   { label: "Impact", href: "#outcomes" },
   { label: "Regenerative", href: "#regenerative" },
   { label: "Security", href: "#security" },
@@ -426,6 +427,45 @@ export default function Home() {
                   </button>
                 ))}
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="predictive-model" className="relative overflow-hidden bg-[#dfe4d7] px-5 py-24 md:px-8 md:py-32">
+          <div className="absolute right-0 top-0 h-full w-[34%] border-l border-[#123329]/10 bg-[linear-gradient(135deg,transparent_25%,rgba(18,51,41,0.04)_25%,rgba(18,51,41,0.04)_50%,transparent_50%,transparent_75%,rgba(18,51,41,0.04)_75%)] bg-[size:30px_30px]" aria-hidden="true" />
+          <div className="relative mx-auto max-w-[1440px]">
+            <div className="grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-end">
+              <div>
+                <p className="section-kicker">Offline first intelligence</p>
+                <h2 className="mt-6 max-w-2xl font-display text-5xl leading-[0.93] tracking-[-0.05em] text-[#113128] md:text-7xl">An AI predictive model built for the ground.</h2>
+              </div>
+              <div className="max-w-2xl lg:justify-self-end">
+                <p className="text-[1.05rem] leading-8 text-[#49685e]">Muons reads local agriculture signals to help teams recognize changing field conditions and food insecurity risk earlier. The model is designed to work with imperfect connectivity and return a practical next move, not a black box score.</p>
+                <p className="mt-5 border-l-2 border-[#c8ff2b] pl-4 text-sm leading-6 text-[#58776c]">Predictive outputs are decision support. They are reviewed alongside local knowledge, field observations, and the conditions people can see for themselves.</p>
+              </div>
+            </div>
+
+            <div className="mt-16 grid gap-px overflow-hidden rounded-[1.65rem] border border-[#123329]/15 bg-[#123329]/15 md:grid-cols-3">
+              <article className="bg-[#f7f6ef] p-7 md:p-9">
+                <div className="flex items-center justify-between"><span className="text-[0.68rem] font-extrabold uppercase tracking-[0.16em] text-[#6b887d]">01 / Inputs</span><Sprout className="h-5 w-5 text-[#113128]" /></div>
+                <h3 className="mt-14 font-display text-3xl tracking-[-0.035em] text-[#113128]">Start with ground truth.</h3>
+                <p className="mt-4 text-sm leading-7 text-[#4d6c62]">Field observations, soil and water context, crop progress, weather patterns, and operational history create the local record the model can learn from.</p>
+              </article>
+              <article className="bg-[#123329] p-7 text-white md:p-9">
+                <div className="flex items-center justify-between"><span className="text-[0.68rem] font-extrabold uppercase tracking-[0.16em] text-[#c8ff2b]">02 / Interpretation</span><Satellite className="h-5 w-5 text-[#c8ff2b]" /></div>
+                <h3 className="mt-14 font-display text-3xl tracking-[-0.035em] text-white">Find the change early.</h3>
+                <p className="mt-4 text-sm leading-7 text-white/68">Offline first AI compares current conditions with the season record to surface patterns that may deserve a closer look from a farmer or field team.</p>
+              </article>
+              <article className="bg-[#c8ff2b] p-7 text-[#113128] md:p-9">
+                <div className="flex items-center justify-between"><span className="text-[0.68rem] font-extrabold uppercase tracking-[0.16em] text-[#3d5d50]">03 / Output</span><ArrowUpRight className="h-5 w-5 text-[#113128]" /></div>
+                <h3 className="mt-14 font-display text-3xl tracking-[-0.035em]">Make the next move useful.</h3>
+                <p className="mt-4 text-sm leading-7 text-[#38594d]">The result is a clear signal for review, such as a changing moisture pattern, crop stress concern, or food security risk that needs local attention.</p>
+              </article>
+            </div>
+
+            <div className="mt-8 flex flex-col gap-5 border-t border-[#123329]/15 pt-6 md:flex-row md:items-center md:justify-between">
+              <p className="max-w-2xl text-sm leading-6 text-[#4d6c62]">Muons does not replace agronomists, growers, or public decision makers. It helps them see the evidence sooner and carry a trusted record forward.</p>
+              <Link href="/solutions/offline-first-ai-for-farmers" className="inline-flex items-center gap-2 text-[0.66rem] font-extrabold uppercase tracking-[0.14em] text-[#113128]">Read the offline AI brief <ArrowUpRight className="h-4 w-4" /></Link>
             </div>
           </div>
         </section>

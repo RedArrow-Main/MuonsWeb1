@@ -279,14 +279,14 @@ export default function Home() {
             <div className="max-w-4xl">
               <div className="animate-rise flex max-w-[19rem] items-start gap-3 text-[0.62rem] font-extrabold uppercase leading-5 tracking-[0.2em] text-[#c8ff2b] sm:max-w-none sm:items-center sm:text-[0.68rem] sm:leading-normal sm:tracking-[0.23em]">
                 <span className="grid h-6 w-6 place-items-center rounded-full border border-[#c8ff2b]/45 bg-[#c8ff2b]/10"><span className="h-1.5 w-1.5 rounded-full bg-[#c8ff2b]" /></span>
-                American patent-pending edge infrastructure for global food security
+                Farmer first intelligence for every field and every season
               </div>
               <h1 className="animate-rise animate-delay-1 mt-6 max-w-[20rem] font-display text-[clamp(3.35rem,14vw,7.85rem)] font-normal leading-[0.88] tracking-[-0.055em] text-white sm:mt-7 sm:max-w-4xl sm:text-[clamp(3.6rem,8vw,7.85rem)] sm:leading-[0.86]">
                 Ground truth for <em className="font-display text-[#c8ff2b]">global food security.</em>
               </h1>
               <div className="animate-rise animate-delay-2 mt-6 grid max-w-2xl gap-5 sm:mt-8 sm:gap-6 md:grid-cols-[1fr_auto] md:items-end">
                 <p className="max-w-xl text-[1rem] leading-7 text-white/78 md:text-[1.08rem]">
-                  Muons Technology builds offline-first AI, blockchain, and farmer-first physical infrastructure that turns ground agriculture data into earlier signals of food-insecurity risk.
+                  You know your land best. Muons helps you see what is changing in the soil, crop, and weather so you can make the next decision with more confidence, even when the internet does not cooperate.
                 </p>
                 <div className="flex items-center gap-3">
                   <button
@@ -294,7 +294,7 @@ export default function Home() {
                     onClick={() => scrollToSection("#signals")}
                     className="group inline-flex items-center gap-3 rounded-full bg-[#c8ff2b] px-5 py-3.5 text-[0.74rem] font-extrabold uppercase tracking-[0.12em] text-[#0d2e24] transition duration-200 hover:bg-white active:scale-[0.97]"
                   >
-                    Explore signals <ArrowDownRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
+                    See your field clearly <ArrowDownRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
                   </button>
                 </div>
               </div>
@@ -317,8 +317,8 @@ export default function Home() {
 
         <section className="border-y border-[#123329]/10 bg-[#e3e1d7] px-5 py-5 md:px-8">
           <div className="mx-auto flex max-w-[1440px] flex-col justify-between gap-3 text-[#0f3027] sm:flex-row sm:items-center">
-            <p className="flex items-center gap-3 text-[0.72rem] font-extrabold uppercase tracking-[0.16em]"><span className="h-2.5 w-2.5 rounded-full bg-[#c8ff2b] shadow-[0_0_0_5px_rgba(200,255,43,0.28)]" /> Crop intelligence for the next useful move</p>
-            <p className="text-sm font-medium text-[#46645b]">Designed for growers, cooperatives, and institutions building resilient food systems.</p>
+            <p className="flex items-center gap-3 text-[0.72rem] font-extrabold uppercase tracking-[0.16em]"><span className="h-2.5 w-2.5 rounded-full bg-[#c8ff2b] shadow-[0_0_0_5px_rgba(200,255,43,0.28)]" /> Make the next field decision with confidence</p>
+            <p className="text-sm font-medium text-[#46645b]">Built for farmers who need useful answers where the work happens.</p>
           </div>
         </section>
 

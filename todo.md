@@ -205,3 +205,9 @@
 - [ ] Locate patent content, navigation, and related links.
 - [ ] Remove the patent section and clean any related references.
 - [ ] Validate layout and production build, then save the update.
+
+## Farmer First Messaging
+- [ ] Audit current hero copy and farmer facing calls to action.
+- [ ] Rewrite hero messaging around practical field value and farmer attention.
+- [ ] Add farmer first language to nearby navigation and section touchpoints.
+- [ ] Validate responsive presentation and production build, then save the update.

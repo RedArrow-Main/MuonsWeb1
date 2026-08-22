@@ -246,3 +246,8 @@
 - [ ] Inspect all homepage image references and live asset responses.
 - [ ] Replace broken temporary storage paths with verified public URLs.
 - [ ] Validate the deployed images and push the fix to GitHub.
+
+## Restore Original Edge Image
+- [ ] Locate the original edge image and its stable source.
+- [ ] Hardcode the restored public image URL in the homepage.
+- [ ] Validate the image and push the restoration to GitHub.

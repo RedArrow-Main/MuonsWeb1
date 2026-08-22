@@ -220,3 +220,8 @@
 - [ ] Reframe the hero around regenerative agriculture and soil health.
 - [ ] Simplify nearby copy and reduce technical emphasis.
 - [ ] Validate responsive presentation and production build, then save the update.
+
+## Restore Reference Headline
+- [ ] Restore “Farmer first ground truth for global food security.” from the supplied reference.
+- [ ] Preserve the simpler regenerative agriculture supporting copy.
+- [ ] Validate responsive layout and production build, then save the update.

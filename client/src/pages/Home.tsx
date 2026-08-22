@@ -23,6 +23,7 @@ const heroImage = `${mediaOrigin}/muons-technology-hero.jpg`;
 const sensorImage = `${mediaOrigin}/muons-technology-sensor.jpg`;
 const aerialImage = `${mediaOrigin}/muons-technology-aerial.jpg`;
 const harvestImage = `${mediaOrigin}/muons-technology-harvest.jpg`;
+const edgeInfrastructureImage = "/manus-storage/muons-edge-physical-infrastructure_2743dc12.jpg";
 const muonsLogo = `${mediaOrigin}/muons-technology-logo-dark.png`;
 const muonsSymbol = `${mediaOrigin}/muons-technology-symbol.png`;
 
@@ -487,7 +488,7 @@ export default function Home() {
 
             <div className="mt-16 grid gap-7 lg:grid-cols-[0.92fr_1.08fr]">
               <div className="relative min-h-[380px] overflow-hidden rounded-[1.7rem] bg-[#153b30] md:min-h-[475px]">
-                <img src={sensorImage} alt="Field sensor hardware positioned among agricultural crop rows" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
+                <img src={edgeInfrastructureImage} alt="Rugged edge computing field node and soil sensor installed beside crop rows" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#071a15]/90 via-[#071a15]/15 to-transparent" />
                 <div className="absolute inset-x-5 top-5 flex items-center justify-between border border-white/25 bg-[#0d2d24]/75 px-3 py-2 text-[0.56rem] font-extrabold uppercase tracking-[0.14em] text-white backdrop-blur-sm"><span>Edge node / plot 07</span><span className="text-[#c8ff2b]">connected locally</span></div>
                 <div className="absolute inset-x-6 bottom-6"><span className="text-[0.62rem] font-extrabold uppercase tracking-[0.14em] text-[#c8ff2b]">Physical layer / 01</span><h3 className="mt-3 max-w-md font-display text-4xl leading-[0.98] tracking-[-0.04em] text-white">The infrastructure begins where the observation happens.</h3></div>

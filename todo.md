@@ -190,3 +190,8 @@
 - [ ] Add an Edge Physical Infrastructure section with hardware, offline, and trusted capture concepts.
 - [ ] Add navigation and internal access to the new section.
 - [ ] Validate responsive rendering and production build, then save the update.
+
+## Replace Edge Infrastructure Image
+- [ ] Generate a dedicated close up field hardware image.
+- [ ] Replace the current Edge Physical Infrastructure image and update alt text.
+- [ ] Validate the section and save the updated checkpoint.

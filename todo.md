@@ -195,3 +195,13 @@
 - [ ] Generate a dedicated close up field hardware image.
 - [ ] Replace the current Edge Physical Infrastructure image and update alt text.
 - [ ] Validate the section and save the updated checkpoint.
+
+## Latest GitHub Synchronization
+- [ ] Inspect local state and compare with MuonsWeb1 main.
+- [ ] Commit and push the latest AI, edge infrastructure, and image changes.
+- [ ] Verify the remote update or document the write-access blocker.
+
+## Remove Patent Section
+- [ ] Locate patent content, navigation, and related links.
+- [ ] Remove the patent section and clean any related references.
+- [ ] Validate layout and production build, then save the update.

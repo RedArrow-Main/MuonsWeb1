@@ -686,50 +686,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="intellectual-property" className="relative overflow-hidden bg-[#e9e8df] px-5 py-24 md:px-8 md:py-32">
-          <div className="absolute right-[-8rem] top-[-7rem] h-[27rem] w-[27rem] rounded-full border border-[#123329]/10" aria-hidden="true" />
-          <div className="relative mx-auto max-w-[1440px]">
-            <div className="grid gap-10 border-b border-[#123329]/15 pb-12 lg:grid-cols-[0.87fr_1.13fr] lg:items-end">
-              <div>
-                <div className="flex items-center gap-3"><span className="grid h-9 w-9 place-items-center rounded-lg border border-[#123329]/20 bg-white/55 p-1"><img src={muonsSymbol} alt="" className="h-full w-full object-contain" /></span><p className="section-kicker">Intellectual property / Muons asset file</p></div>
-                <h2 className="mt-6 max-w-2xl font-display text-5xl leading-[0.93] tracking-[-0.05em] text-[#113128] md:text-7xl">American patent assets for American agricultural infrastructure.</h2>
-              </div>
-              <div className="max-w-2xl lg:justify-self-end">
-                <p className="text-[1.02rem] leading-8 text-[#4a695f]">Muons is building an intellectual property portfolio around trustworthy agricultural records, offline infrastructure, and future digital settlement concepts. The filings below are presented as filed U.S. patent applications.</p>
-                <p className="mt-5 border-l-2 border-[#c8ff2b] pl-4 text-sm leading-6 text-[#58776c]">Patent applications are pending and remain subject to examination. The summaries below describe the supplied filing themes; they do not state granted patent rights.</p>
-              </div>
-            </div>
-
-            <div className="mt-14 grid gap-7 lg:grid-cols-2">
-              <article className="relative overflow-hidden rounded-[1.7rem] bg-[#113128] p-7 text-white md:p-9">
-                <div className="contours contours--dark absolute inset-0 opacity-25" aria-hidden="true" />
-                <div className="relative">
-                  <div className="flex items-center justify-between border-b border-white/15 pb-4"><p className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">Patent 01</p><span className="rounded-full border border-white/20 px-3 py-1 text-[0.54rem] font-bold uppercase tracking-[0.12em] text-white/65">Filed application</span></div>
-                  <h3 className="mt-8 max-w-xl font-display text-4xl leading-[0.97] tracking-[-0.045em] text-white">MUONS Blockchain Masterfile</h3>
-                  <p className="mt-4 text-[0.68rem] font-extrabold uppercase tracking-[0.13em] text-[#c8ff2b]">U.S. App. No. 119/086,028 · Filed February 2025</p>
-                  <p className="mt-6 max-w-xl text-sm leading-7 text-white/68">Offline farm records with tamper-evident audit trails, trusted AI inputs, and QR-verifiable compliance — designed to work when connectivity cannot be assumed.</p>
-                  <div className="mt-8 grid gap-px overflow-hidden rounded-xl border border-white/15 bg-white/15 sm:grid-cols-2">
-                    {["Offline farm records", "Tamper-evident audit trails", "Trusted AI inputs", "QR-verifiable compliance", "Offline smart contracts", "Multi-sector deployment"].map((item, index) => <div key={item} className="flex items-center gap-3 bg-[#113128] px-4 py-3 text-[0.64rem] font-bold uppercase tracking-[0.1em] text-white/68"><span className="text-[#c8ff2b]">0{index + 1}</span>{item}</div>)}
-                  </div>
-                </div>
-              </article>
-
-              <article className="relative overflow-hidden rounded-[1.7rem] border border-[#123329]/12 bg-[#d5d8c9] p-7 text-[#113128] md:p-9">
-                <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full border border-[#123329]/12" aria-hidden="true" />
-                <div className="relative">
-                  <div className="flex items-center justify-between border-b border-[#123329]/15 pb-4"><p className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#49685e]">Patent 02</p><span className="rounded-full border border-[#123329]/20 px-3 py-1 text-[0.54rem] font-bold uppercase tracking-[0.12em] text-[#46665b]">Filed application</span></div>
-                  <h3 className="mt-8 max-w-xl font-display text-4xl leading-[0.97] tracking-[-0.045em] text-[#113128]">Mineral-Backed Digital Currency Blockchain System</h3>
-                  <p className="mt-4 text-[0.68rem] font-extrabold uppercase tracking-[0.13em] text-[#47695e]">U.S. App. No. 19/066,149 · Filed February 2025</p>
-                  <p className="mt-6 max-w-xl text-sm leading-7 text-[#49695f]">A filing theme focused on asset-backed tokenization, automated payments, and real-world asset verification for future digital settlement concepts, including the potential $MUO ecosystem.</p>
-                  <div className="mt-8 grid gap-px overflow-hidden rounded-xl border border-[#123329]/15 bg-[#123329]/15 sm:grid-cols-2">
-                    {["Asset-backed tokenization", "Automated payments", "Real-world asset verification", "Digital settlement workflows", "Future $MUO ecosystem development"].map((item, index) => <div key={item} className={`flex items-center gap-3 px-4 py-3 text-[0.64rem] font-bold uppercase tracking-[0.1em] text-[#436359] ${index === 4 ? "bg-[#d5d8c9] sm:col-span-2" : "bg-[#e2e3d8]"}`}><span className="text-[#6c8b7f]">0{index + 1}</span>{item}</div>)}
-                  </div>
-                </div>
-              </article>
-            </div>
-            <p className="mt-7 text-[0.64rem] font-bold uppercase tracking-[0.12em] text-[#6a877d]">Information provided for general company presentation. Not an offer, technical specification, or legal opinion.</p>
-          </div>
-        </section>
 
         <section id="muons" className="relative overflow-hidden bg-[#102f26] px-5 py-24 text-white md:px-8 md:py-32">
           <div className="contours contours--dark absolute inset-0 opacity-25" aria-hidden="true" />

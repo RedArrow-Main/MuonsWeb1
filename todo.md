@@ -124,14 +124,14 @@
 - [x] Scan the repository and build output for remaining Fieldwise references, validate, and save the Muons-only revision.
 
 ## Final Muons Media Verification
-- [ ] Verify the seven Muons-named public Blob media URLs.
-- [ ] Replace broken domain-based media paths with verified Muons Blob URLs.
-- [ ] Validate the build, scan for old names, and save the final revision.
+- [x] Verify the seven Muons-named public Blob media URLs.
+- [x] Replace broken domain-based media paths with verified Muons Blob URLs.
+- [x] Validate the build, scan for old names, and save the final revision.
 
 ## Vercel-First Deployment Preparation
-- [ ] Confirm that the code deployment and image hosting are configured separately for Vercel.
-- [ ] Prepare the exact Muons-only Blob upload names and official-domain settings without publishing broken image URLs.
-- [ ] Validate the Vercel build and provide the user the final upload/redeploy sequence.
+- [x] Confirm that the code deployment and image hosting are configured separately for Vercel.
+- [x] Prepare the exact Muons-only Blob upload names and official-domain settings without publishing broken image URLs.
+- [x] Validate the Vercel build and provide the user the final upload/redeploy sequence.
 
 ## Official Domain Connection
 - [x] Verify the current hosting target for muonstechnology.com and compare it with the new Muons deployment.

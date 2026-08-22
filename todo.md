@@ -211,3 +211,7 @@
 - [ ] Rewrite hero messaging around practical field value and farmer attention.
 - [ ] Add farmer first language to nearby navigation and section touchpoints.
 - [ ] Validate responsive presentation and production build, then save the update.
+
+## Farmer First Tagline
+- [ ] Update the main tagline to include farmer first language.
+- [ ] Validate headline wrapping and production build, then save the update.

@@ -225,3 +225,14 @@
 - [ ] Restore “Farmer first ground truth for global food security.” from the supplied reference.
 - [ ] Preserve the simpler regenerative agriculture supporting copy.
 - [ ] Validate responsive layout and production build, then save the update.
+
+## Protected Force GitHub Sync
+- [ ] Inspect local and MuonsWeb1 main commit state.
+- [ ] Attempt force-with-lease synchronization to MuonsWeb1 main.
+- [ ] Verify the remote branch or report the write-access blocker.
+
+## Edge Product and Farmer Economics
+- [ ] Confirm the Edge Physical Infrastructure image placement.
+- [ ] Add the Farmer Product and Root Zone Physical AI content.
+- [ ] Add the field to finance layer and farmer economics content using user supplied figures.
+- [ ] Validate calculations, responsive layout, and production build.

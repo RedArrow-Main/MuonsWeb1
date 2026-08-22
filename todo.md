@@ -162,3 +162,9 @@
 ## Contact Copy Punctuation
 - [ ] Remove the dash from the newly added Contact supporting paragraph.
 - [ ] Validate the copy change and save the updated checkpoint.
+
+## Theme Aligned Logo Redesign
+- [ ] Define the logo direction around ink green, Signal Sprout, cyan detail, and edge infrastructure.
+- [ ] Generate transparent logo and symbol assets for header, footer, favicon, and metadata.
+- [ ] Upload and integrate the redesigned logo across the website.
+- [ ] Validate logo legibility, responsive rendering, and production build.

@@ -148,3 +148,8 @@
 - [ ] Add an accessible responsive form with validation and clear success/error states.
 - [ ] Validate the form UI and save the contact-form revision.
 - [ ] Connect a real recipient email or form backend once the contact address is confirmed.
+
+## Contact Section Spacing Fix
+- [ ] Inspect the desktop Contact section alignment and identify why content sits too low.
+- [ ] Tighten the desktop composition while preserving mobile responsiveness.
+- [ ] Visually validate the Contact section and save the updated checkpoint.

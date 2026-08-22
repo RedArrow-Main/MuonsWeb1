@@ -725,7 +725,7 @@ export default function Home() {
 
         <section id="contact" className="relative overflow-hidden bg-[#123329] px-5 py-20 text-white md:px-8 md:py-28">
           <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full border border-[#c8ff2b]/20" aria-hidden="true" />
-          <div className="relative mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+          <div className="relative mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
             <div>
               <p className="section-kicker section-kicker--light">Grow the conversation</p>
               <h2 className="mt-6 max-w-3xl font-display text-5xl leading-[0.92] tracking-[-0.05em] text-white md:text-7xl">

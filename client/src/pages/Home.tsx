@@ -30,6 +30,7 @@ const navItems = [
   { label: "Approach", href: "#approach" },
   { label: "Signals", href: "#signals" },
   { label: "AI Model", href: "#predictive-model" },
+  { label: "Edge Hardware", href: "#edge-infrastructure" },
   { label: "Impact", href: "#outcomes" },
   { label: "Regenerative", href: "#regenerative" },
   { label: "Security", href: "#security" },
@@ -466,6 +467,36 @@ export default function Home() {
             <div className="mt-8 flex flex-col gap-5 border-t border-[#123329]/15 pt-6 md:flex-row md:items-center md:justify-between">
               <p className="max-w-2xl text-sm leading-6 text-[#4d6c62]">Muons does not replace agronomists, growers, or public decision makers. It helps them see the evidence sooner and carry a trusted record forward.</p>
               <Link href="/solutions/offline-first-ai-for-farmers" className="inline-flex items-center gap-2 text-[0.66rem] font-extrabold uppercase tracking-[0.14em] text-[#113128]">Read the offline AI brief <ArrowUpRight className="h-4 w-4" /></Link>
+            </div>
+          </div>
+        </section>
+
+        <section id="edge-infrastructure" className="relative overflow-hidden bg-[#0b211b] px-5 py-24 text-white md:px-8 md:py-32">
+          <div className="contours contours--dark absolute inset-0 opacity-30" aria-hidden="true" />
+          <div className="relative mx-auto max-w-[1440px]">
+            <div className="grid gap-12 lg:grid-cols-[0.88fr_1.12fr] lg:items-end">
+              <div>
+                <p className="section-kicker section-kicker--light">Edge physical infrastructure</p>
+                <h2 className="mt-6 max-w-2xl font-display text-5xl leading-[0.93] tracking-[-0.05em] text-white md:text-7xl">Hardware that keeps the signal close to the field.</h2>
+              </div>
+              <div className="max-w-2xl lg:justify-self-end">
+                <p className="text-[1.05rem] leading-8 text-white/72">Muons puts farmer first infrastructure where the data begins: at the field edge, in the collection point, and inside the daily operating rhythm of the people doing the work.</p>
+                <p className="mt-5 border-l-2 border-[#c8ff2b] pl-4 text-sm leading-6 text-white/58">The physical layer is designed to extend useful intelligence into places where broadband, cloud access, or a smartphone cannot be assumed.</p>
+              </div>
+            </div>
+
+            <div className="mt-16 grid gap-7 lg:grid-cols-[0.92fr_1.08fr]">
+              <div className="relative min-h-[380px] overflow-hidden rounded-[1.7rem] bg-[#153b30] md:min-h-[475px]">
+                <img src={sensorImage} alt="Field sensor hardware positioned among agricultural crop rows" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#071a15]/90 via-[#071a15]/15 to-transparent" />
+                <div className="absolute inset-x-5 top-5 flex items-center justify-between border border-white/25 bg-[#0d2d24]/75 px-3 py-2 text-[0.56rem] font-extrabold uppercase tracking-[0.14em] text-white backdrop-blur-sm"><span>Edge node / plot 07</span><span className="text-[#c8ff2b]">connected locally</span></div>
+                <div className="absolute inset-x-6 bottom-6"><span className="text-[0.62rem] font-extrabold uppercase tracking-[0.14em] text-[#c8ff2b]">Physical layer / 01</span><h3 className="mt-3 max-w-md font-display text-4xl leading-[0.98] tracking-[-0.04em] text-white">The infrastructure begins where the observation happens.</h3></div>
+              </div>
+              <div className="grid gap-px overflow-hidden rounded-[1.7rem] border border-white/15 bg-white/15 md:grid-cols-3">
+                <article className="bg-[#123329] p-7 md:p-8"><div className="flex items-center justify-between"><span className="text-[0.68rem] font-extrabold uppercase tracking-[0.16em] text-[#c8ff2b]">01 / Sense</span><Sprout className="h-5 w-5 text-[#c8ff2b]" /></div><h3 className="mt-14 font-display text-3xl tracking-[-0.035em] text-white">Capture what matters.</h3><p className="mt-4 text-sm leading-7 text-white/65">Collect soil, water, crop, climate, and operational context without asking the farmer to translate the field into a dashboard first.</p></article>
+                <article className="bg-[#173f33] p-7 md:p-8"><div className="flex items-center justify-between"><span className="text-[0.68rem] font-extrabold uppercase tracking-[0.16em] text-[#c8ff2b]">02 / Compute</span><Satellite className="h-5 w-5 text-[#c8ff2b]" /></div><h3 className="mt-14 font-display text-3xl tracking-[-0.035em] text-white">Keep intelligence close.</h3><p className="mt-4 text-sm leading-7 text-white/65">Support local processing and offline continuity so useful signals can remain available when network conditions change.</p></article>
+                <article className="bg-[#c8ff2b] p-7 text-[#113128] md:p-8"><div className="flex items-center justify-between"><span className="text-[0.68rem] font-extrabold uppercase tracking-[0.16em] text-[#3d5d50]">03 / Carry</span><Check className="h-5 w-5 text-[#113128]" /></div><h3 className="mt-14 font-display text-3xl tracking-[-0.035em]">Keep the record moving.</h3><p className="mt-4 text-sm leading-7 text-[#38594d]">Carry trusted field records between people, devices, and connected moments without losing the context that made them valuable.</p></article>
+              </div>
             </div>
           </div>
         </section>

@@ -184,3 +184,9 @@
 - [ ] Add an offline first AI Predictive Model section with agricultural inputs, outputs, and honest limitations.
 - [ ] Add navigation and internal SEO access to the new section.
 - [ ] Validate responsive rendering and production build, then save the update.
+
+## Edge Physical Infrastructure
+- [ ] Audit current edge hardware and farmer first infrastructure messaging.
+- [ ] Add an Edge Physical Infrastructure section with hardware, offline, and trusted capture concepts.
+- [ ] Add navigation and internal access to the new section.
+- [ ] Validate responsive rendering and production build, then save the update.

@@ -173,3 +173,8 @@
 - [ ] Identify the previous logo and symbol URLs currently replaced by the redesign.
 - [ ] Restore the previous logo across site media and metadata.
 - [ ] Validate the restored logo and save the rollback checkpoint.
+
+## GitHub Synchronization
+- [ ] Inspect local status, current branch, and configured remote.
+- [ ] Commit and push the restored-logo website state to RedArrow-Main/MuonsWeb1.
+- [ ] Verify the remote branch and commit.

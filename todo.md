@@ -122,3 +122,23 @@
 - [x] Replace all canonical, sitemap, robots, social, structured-data, and route URLs with https://muonstechnology.com/.
 - [x] Rename production-facing image asset paths so no Fieldwise filename remains in image URLs or code.
 - [x] Scan the repository and build output for remaining Fieldwise references, validate, and save the Muons-only revision.
+
+## Final Muons Media Verification
+- [ ] Verify the seven Muons-named public Blob media URLs.
+- [ ] Replace broken domain-based media paths with verified Muons Blob URLs.
+- [ ] Validate the build, scan for old names, and save the final revision.
+
+## Vercel-First Deployment Preparation
+- [ ] Confirm that the code deployment and image hosting are configured separately for Vercel.
+- [ ] Prepare the exact Muons-only Blob upload names and official-domain settings without publishing broken image URLs.
+- [ ] Validate the Vercel build and provide the user the final upload/redeploy sequence.
+
+## Official Domain Connection
+- [x] Verify the current hosting target for muonstechnology.com and compare it with the new Muons deployment.
+- [x] Identify the exact Vercel custom-domain or DNS change required to serve the new site.
+- [ ] Confirm the switch and verify that the new images render on the official domain.
+
+## Hardcoded Image Sources
+- [x] Resolve direct public URLs for all Muons-named compressed images.
+- [x] Hardcode the verified image URLs in the homepage and metadata.
+- [x] Validate direct image responses, build output, and remaining old-name references.

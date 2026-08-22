@@ -251,3 +251,8 @@
 - [ ] Locate the original edge image and its stable source.
 - [ ] Hardcode the restored public image URL in the homepage.
 - [ ] Validate the image and push the restoration to GitHub.
+
+## Farmer Economics Hero
+- [ ] Rewrite the hero around Save, Protect, and New Revenue.
+- [ ] Connect the CTA and supporting copy to farmer profitability.
+- [ ] Validate desktop and mobile presentation and save the update.

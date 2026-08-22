@@ -279,35 +279,35 @@ export default function Home() {
             <div className="max-w-4xl">
               <div className="animate-rise flex max-w-[19rem] items-start gap-3 text-[0.62rem] font-extrabold uppercase leading-5 tracking-[0.2em] text-[#c8ff2b] sm:max-w-none sm:items-center sm:text-[0.68rem] sm:leading-normal sm:tracking-[0.23em]">
                 <span className="grid h-6 w-6 place-items-center rounded-full border border-[#c8ff2b]/45 bg-[#c8ff2b]/10"><span className="h-1.5 w-1.5 rounded-full bg-[#c8ff2b]" /></span>
-                Regenerative farming starts with healthy soil
+                Farmer first profitability for every field and every season
               </div>
               <h1 className="animate-rise animate-delay-1 mt-6 max-w-[20rem] font-display text-[clamp(3.35rem,14vw,7.85rem)] font-normal leading-[0.88] tracking-[-0.055em] text-white sm:mt-7 sm:max-w-4xl sm:text-[clamp(3.6rem,8vw,7.85rem)] sm:leading-[0.86]">
-                Farmer first ground truth for <em className="font-display text-[#c8ff2b]">global food security.</em>
+                Save more. <em className="font-display text-[#c8ff2b]">Protect what you grow.</em> Create new revenue.
               </h1>
               <div className="animate-rise animate-delay-2 mt-6 grid max-w-2xl gap-5 sm:mt-8 sm:gap-6 md:grid-cols-[1fr_auto] md:items-end">
                 <p className="max-w-xl text-[1rem] leading-7 text-white/78 md:text-[1.08rem]">
-                  You know your land best. Muons helps you keep track of the small changes that shape a season, from soil moisture and crop health to the choices that help your farm grow stronger.
+                  You carry every cost and every risk. Muons helps you see where money is being lost, protect yield and quality, and turn trusted farm records into better opportunities with buyers, programs, and partners.
                 </p>
                 <div className="flex items-center gap-3">
                   <button
                     type="button"
-                    onClick={() => scrollToSection("#signals")}
+                    onClick={() => scrollToSection("#edge-infrastructure")}
                     className="group inline-flex items-center gap-3 rounded-full bg-[#c8ff2b] px-5 py-3.5 text-[0.74rem] font-extrabold uppercase tracking-[0.12em] text-[#0d2e24] transition duration-200 hover:bg-white active:scale-[0.97]"
                   >
-                    Explore soil health <ArrowDownRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
+                    See how Muons pays back <ArrowDownRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
                   </button>
                 </div>
               </div>
               <div className="mt-6 flex max-w-[22rem] flex-wrap gap-2 sm:mt-7 sm:max-w-none sm:gap-2.5">
-                {["Ground data", "Edge hardware", "Offline intelligence", "Early warning"].map((item, index) => (
+                {["Save on inputs", "Protect yield", "Find new revenue", "Plan with confidence"].map((item, index) => (
                   <span key={item} className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-[#09251e]/50 px-3 py-1.5 text-[0.59rem] font-extrabold uppercase tracking-[0.12em] text-white/78 backdrop-blur-sm"><span className={index === 2 ? "h-1.5 w-1.5 rounded-full bg-[#c8ff2b]" : "h-1.5 w-1.5 rounded-full bg-white/45"} />{item}</span>
                 ))}
               </div>
             </div>
             <div className="animate-rise animate-delay-3 mt-10 grid max-w-3xl gap-4 border-t border-white/20 pt-5 sm:mt-14 sm:gap-5 sm:grid-cols-3">
-              <p className="text-[0.7rem] font-bold uppercase tracking-[0.15em] text-white/55">A clearer read</p>
-              <p className="text-[0.7rem] font-bold uppercase tracking-[0.15em] text-white/55">A stronger season</p>
-              <p className="text-[0.7rem] font-bold uppercase tracking-[0.15em] text-white/55">A shared direction</p>
+              <p className="text-[0.7rem] font-bold uppercase tracking-[0.15em] text-white/55">Save on inputs</p>
+              <p className="text-[0.7rem] font-bold uppercase tracking-[0.15em] text-white/55">Protect crop value</p>
+              <p className="text-[0.7rem] font-bold uppercase tracking-[0.15em] text-white/55">Create new revenue</p>
             </div>
             <div className="mt-5 flex max-w-3xl flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-white/10 pt-4 text-[0.55rem] font-bold uppercase tracking-[0.13em] text-white/45 sm:text-[0.6rem] sm:tracking-[0.15em]">
               <span>Field record / 2026.07</span><span className="hidden sm:inline">Parcel: 08 / maize belt</span><span>Signal: active</span>
@@ -317,14 +317,14 @@ export default function Home() {
 
         <section className="border-y border-[#123329]/10 bg-[#e3e1d7] px-5 py-5 md:px-8">
           <div className="mx-auto flex max-w-[1440px] flex-col justify-between gap-3 text-[#0f3027] sm:flex-row sm:items-center">
-            <p className="flex items-center gap-3 text-[0.72rem] font-extrabold uppercase tracking-[0.16em]"><span className="h-2.5 w-2.5 rounded-full bg-[#c8ff2b] shadow-[0_0_0_5px_rgba(200,255,43,0.28)]" /> Build a healthier season from the ground up</p>
-            <p className="text-sm font-medium text-[#46645b]">Built for farmers who need useful answers where the work happens.</p>
+            <p className="flex items-center gap-3 text-[0.72rem] font-extrabold uppercase tracking-[0.16em]"><span className="h-2.5 w-2.5 rounded-full bg-[#c8ff2b] shadow-[0_0_0_5px_rgba(200,255,43,0.28)]" /> Keep more of what your farm earns</p>
+            <p className="text-sm font-medium text-[#46645b]">Built for farmers who need a clearer path to profit.</p>
           </div>
         </section>
 
         <section aria-label="Muons operating principles" className="overflow-hidden bg-[#0d2d24] px-5 py-3.5 md:px-8">
           <div className="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-x-8 gap-y-3 text-[0.63rem] font-extrabold uppercase tracking-[0.15em] text-white/67">
-            {["Ground data", "Edge hardware", "Offline intelligence", "Early warning"].map((item) => <span key={item} className="flex items-center gap-2.5"><span className="h-1.5 w-1.5 rounded-full bg-[#c8ff2b]" />{item}</span>)}
+            {["Save on inputs", "Protect yield", "Find new revenue", "Plan with confidence"].map((item) => <span key={item} className="flex items-center gap-2.5"><span className="h-1.5 w-1.5 rounded-full bg-[#c8ff2b]" />{item}</span>)}
           </div>
         </section>
 

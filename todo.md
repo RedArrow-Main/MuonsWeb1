@@ -168,3 +168,8 @@
 - [ ] Generate transparent logo and symbol assets for header, footer, favicon, and metadata.
 - [ ] Upload and integrate the redesigned logo across the website.
 - [ ] Validate logo legibility, responsive rendering, and production build.
+
+## Restore Previous Logo
+- [ ] Identify the previous logo and symbol URLs currently replaced by the redesign.
+- [ ] Restore the previous logo across site media and metadata.
+- [ ] Validate the restored logo and save the rollback checkpoint.

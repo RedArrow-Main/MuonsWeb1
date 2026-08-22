@@ -23,8 +23,8 @@ const heroImage = `${mediaOrigin}/muons-technology-hero.jpg`;
 const sensorImage = `${mediaOrigin}/muons-technology-sensor.jpg`;
 const aerialImage = `${mediaOrigin}/muons-technology-aerial.jpg`;
 const harvestImage = `${mediaOrigin}/muons-technology-harvest.jpg`;
-const muonsLogo = "https://files.manuscdn.com/user_upload_by_module/session_file/310419663029649704/YUDpZFQLAeNaKRvL.png";
-const muonsSymbol = "https://files.manuscdn.com/user_upload_by_module/session_file/310419663029649704/TRIMnvmZrnmpOQXh.png";
+const muonsLogo = `${mediaOrigin}/muons-technology-logo-dark.png`;
+const muonsSymbol = `${mediaOrigin}/muons-technology-symbol.png`;
 
 const navItems = [
   { label: "Approach", href: "#approach" },

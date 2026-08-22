@@ -732,7 +732,7 @@ export default function Home() {
                 Ready for a more useful view of the season?
               </h2>
               <p className="mt-9 max-w-xl text-xl font-semibold leading-8 text-[#c8ff2b] md:text-2xl">Start a grounded infrastructure conversation for the season ahead.</p>
-              <p className="mt-5 max-w-xl text-sm leading-7 text-white/65">For growers, cooperatives, public institutions, and mission-aligned partners building more resilient food systems, Muons turns ground signals into infrastructure teams can act on.</p>
+              <p className="mt-5 max-w-xl text-sm leading-7 text-white/65">For growers, cooperatives, public institutions, and mission aligned partners building more resilient food systems, Muons turns ground signals into infrastructure teams can act on.</p>
             </div>
             <div className="rounded-[1.5rem] border border-white/15 bg-white/[0.06] p-6 backdrop-blur-sm md:p-8">
               <p className="text-[0.72rem] font-extrabold uppercase tracking-[0.16em] text-[#c8ff2b]">Contact Muons Technology</p>

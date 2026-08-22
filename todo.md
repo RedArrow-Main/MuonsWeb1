@@ -158,3 +158,7 @@
 - [ ] Draft a concise paragraph for the Contact section.
 - [ ] Add the paragraph with matching editorial styling.
 - [ ] Validate the contact layout and save the copy update.
+
+## Contact Copy Punctuation
+- [ ] Remove the dash from the newly added Contact supporting paragraph.
+- [ ] Validate the copy change and save the updated checkpoint.

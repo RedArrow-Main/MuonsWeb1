@@ -297,3 +297,18 @@
 - [ ] Define and generate a farmer field video suitable for the hero.
 - [ ] Integrate muted autoplay video with poster and mobile fallbacks.
 - [ ] Add reduced-motion behavior and validate production playback.
+
+## Hero Video GitHub Sync
+- [ ] Inspect local and remote Git state.
+- [ ] Push the hero background video update to MuonsWeb1.
+- [ ] Verify the remote commit.
+
+## American Farm Truck Hero Replacement
+- [ ] Generate a cinematic American farm truck scene with a visible American flag for the homepage hero.
+- [ ] Replace the current hero video and preserve a reliable static fallback plus reduced-motion behavior.
+- [ ] Validate desktop and mobile rendering, then save the updated checkpoint.
+
+## From Field to Market Replacement
+- [x] Replace the Farmer Economics section with a concise From Field to Market narrative.
+- [x] Explain how trusted farm records support USDA programs, crop insurance, lenders, carbon verification, and supply-chain buyers.
+- [ ] Validate the revised section on desktop and mobile, then save the updated checkpoint.

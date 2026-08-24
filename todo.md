@@ -317,3 +317,4 @@
 - [x] Fix the mobile gap and horizontal overflow around the field-to-market cards while preserving justified text.
 - [x] Diagnose the remaining gap or overflow in the actual rendered web page.
 - [x] Apply and validate the web-specific layout correction, then save a checkpoint.
+- [x] Remove the upper gap by top-aligning the From Field to Market text and card grid.

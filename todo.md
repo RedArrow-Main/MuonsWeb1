@@ -328,3 +328,8 @@
 - [ ] Inspect local state and compare it with MuonsWeb1 main.
 - [ ] Commit and push the latest footer update.
 - [ ] Verify the remote commit.
+
+## Leadership Portrait Standardization
+- [x] Audit the current portrait image sources, aspect ratios, and focal positions.
+- [x] Apply one uniform portrait crop and visual treatment across all leadership cards.
+- [x] Validate desktop and mobile portrait rendering, then save the updated checkpoint.

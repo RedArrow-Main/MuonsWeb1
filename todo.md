@@ -292,3 +292,8 @@
 - [ ] Prepare a muted background video or animated image with a static mobile fallback.
 - [ ] Add reduced-motion and accessibility safeguards.
 - [ ] Validate performance, responsive rendering, and the production build.
+
+## Hero Background Video
+- [ ] Define and generate a farmer field video suitable for the hero.
+- [ ] Integrate muted autoplay video with poster and mobile fallbacks.
+- [ ] Add reduced-motion behavior and validate production playback.

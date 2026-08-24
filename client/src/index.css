@@ -130,3 +130,18 @@
     transform: none;
   }
 }
+
+/* Field Ledger hero video: quiet, muted motion behind the farmer-first message. */
+.hero-video {
+  z-index: 1;
+}
+
+.hero-drift {
+  z-index: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-video {
+    display: none;
+  }
+}

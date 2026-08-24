@@ -20,6 +20,7 @@ import { Link } from "wouter";
 // compressed files, so the Field Ledger experience remains fast and crawlable.
 const mediaOrigin = "https://qirz61kx5dixbar2.public.blob.vercel-storage.com";
 const heroImage = `${mediaOrigin}/muons-technology-hero.jpg`;
+const heroVideo = "https://files.manuscdn.com/user_upload_by_module/session_file/310419663029649704/wWrRpROuEhumPldG.mp4";
 const sensorImage = `${mediaOrigin}/muons-technology-sensor.jpg`;
 const aerialImage = `${mediaOrigin}/muons-technology-aerial.jpg`;
 const harvestImage = `${mediaOrigin}/muons-technology-harvest.jpg`;
@@ -272,6 +273,9 @@ export default function Home() {
       <main>
         <section id="top" className="relative min-h-[700px] overflow-hidden bg-[#0b211b] text-white sm:min-h-[800px]">
           <img src={heroImage} alt="Farmer standing in a maize field at sunset" fetchPriority="high" decoding="async" className="hero-drift absolute inset-0 h-full w-full object-cover object-[69%_center]" />
+          <video className="hero-video absolute inset-0 h-full w-full object-cover object-[69%_center]" autoPlay muted loop playsInline preload="metadata" poster={heroImage} aria-hidden="true">
+            <source src={heroVideo} type="video/mp4" />
+          </video>
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,26,21,0.97)_0%,rgba(7,26,21,0.78)_37%,rgba(7,26,21,0.22)_72%,rgba(7,26,21,0.38)_100%)]" />
           <div className="contours absolute inset-0 opacity-45" aria-hidden="true" />
           <div className="relative z-10 mx-auto flex min-h-[700px] max-w-[1440px] flex-col justify-end px-5 pb-12 pt-32 sm:pb-16 sm:pt-36 md:min-h-[800px] md:px-8 md:pb-20 lg:pb-24">

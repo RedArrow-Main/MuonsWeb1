@@ -311,4 +311,6 @@
 ## From Field to Market Replacement
 - [x] Replace the Farmer Economics section with a concise From Field to Market narrative.
 - [x] Explain how trusted farm records support USDA programs, crop insurance, lenders, carbon verification, and supply-chain buyers.
-- [ ] Validate the revised section on desktop and mobile, then save the updated checkpoint.
+- [x] Validate the revised section on desktop and mobile, then save the updated checkpoint.
+- [x] Justify the supporting paragraph for a cleaner editorial composition.
+- [x] Add a complete sixth field-to-market point and balance the card grid.

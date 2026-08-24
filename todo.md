@@ -276,3 +276,8 @@
 - [ ] Add the exact USDA ready, crop insurance, carbon credit, lender program, and supply chain buyer wording.
 - [ ] Validate the placement and responsive wrapping.
 - [ ] Save the updated homepage copy.
+
+## Remove Outcomes and Season Cycle
+- [ ] Locate the Outcomes and Season cycle sections and related navigation.
+- [ ] Remove both sections and clean broken references.
+- [ ] Validate the page flow and save the updated checkpoint.

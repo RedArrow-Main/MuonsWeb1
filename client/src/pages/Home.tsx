@@ -32,7 +32,6 @@ const navItems = [
   { label: "Signals", href: "#signals" },
   { label: "AI Model", href: "#predictive-model" },
   { label: "Edge Hardware", href: "#edge-infrastructure" },
-  { label: "Impact", href: "#outcomes" },
   { label: "Regenerative", href: "#regenerative" },
   { label: "Security", href: "#security" },
   { label: "Company", href: "#muons" },
@@ -344,7 +343,7 @@ export default function Home() {
               <p className="mt-6 text-base leading-7 text-[#406057]">
                 The hard part is not gathering more data. It is getting reliable intelligence from the ground to the people who need it, even when connectivity is limited.
               </p>
-              <button type="button" onClick={() => scrollToSection("#outcomes")} className="group mt-9 inline-flex items-center gap-2 text-[0.72rem] font-extrabold uppercase tracking-[0.14em] text-[#113128]">
+              <button type="button" onClick={() => scrollToSection("#signals")} className="group mt-9 inline-flex items-center gap-2 text-[0.72rem] font-extrabold uppercase tracking-[0.14em] text-[#113128]">
                 What changes <span className="grid h-7 w-7 place-items-center rounded-full bg-[#113128] text-[#c8ff2b] transition-transform group-hover:translate-x-1"><ArrowDownRight className="h-4 w-4" /></span>
               </button>
             </div>
@@ -516,85 +515,6 @@ export default function Home() {
             </div>
 
             <article className="mt-8 rounded-[1.7rem] border border-white/15 bg-[#102d25] p-7 text-white md:p-9"><div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end"><div><p className="text-[0.65rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">06 · Farmer economics</p><h3 className="mt-5 max-w-xl font-display text-4xl leading-[0.98] tracking-[-0.04em]">Protect and increase farmer profitability.</h3><p className="mt-5 max-w-lg text-sm leading-7 text-white/65">A simple pilot benchmark: aim for 2.5% of crop value per acre through savings, protected value, and new revenue. These are pilot targets, not guarantees.</p></div><div className="grid gap-px overflow-hidden rounded-xl border border-white/15 bg-white/15 sm:grid-cols-2"><div className="bg-[#173b31] p-5"><p className="text-[0.62rem] font-extrabold uppercase tracking-[0.14em] text-[#c8ff2b]">Hardware benchmark</p><p className="mt-3 font-display text-3xl">$220 <span className="font-sans text-sm text-white/60">per node</span></p><p className="mt-2 text-sm text-white/60">12.35 acres watched per node · $3.56 per acre per year over five years.</p></div><div className="bg-[#173b31] p-5"><p className="text-[0.62rem] font-extrabold uppercase tracking-[0.14em] text-[#c8ff2b]">Illustrative $1,000 acre</p><p className="mt-3 font-display text-3xl">~$21.44 <span className="font-sans text-sm text-white/60">net target</span></p><p className="mt-2 text-sm text-white/60">$10 saved · $10 protected · $5 new revenue · less $3.56 hardware benchmark.</p></div></div></div></article>
-          </div>
-        </section>
-
-        <section id="cycle" className="relative overflow-hidden bg-[#e9e8df] px-5 py-24 md:px-8 md:py-32">
-          <div className="absolute inset-y-0 right-0 w-[39%] border-l border-[#123329]/8 bg-[linear-gradient(135deg,transparent_25%,rgba(18,51,41,0.035)_25%,rgba(18,51,41,0.035)_50%,transparent_50%,transparent_75%,rgba(18,51,41,0.035)_75%)] bg-[size:28px_28px]" aria-hidden="true" />
-          <div className="relative mx-auto max-w-[1440px]">
-            <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
-              <div>
-                <p className="section-kicker">The season cycle</p>
-                <h2 className="mt-6 max-w-xl font-display text-5xl leading-[0.94] tracking-[-0.05em] text-[#113128] md:text-6xl">From field observation to a stronger next move.</h2>
-              </div>
-              <p className="max-w-lg text-base leading-7 text-[#4d6c62] lg:justify-self-end">A useful system should clarify the work in front of people, then carry the record forward when the season turns. Muons keeps that cycle legible.</p>
-            </div>
-            <div className="mt-16 grid gap-px overflow-hidden border border-[#123329]/15 bg-[#123329]/15 md:grid-cols-2 lg:grid-cols-4">
-              {[
-                ["01", "Observe", "Capture the practical context of the field, while it is happening."],
-                ["02", "Interpret", "Bring scattered signals together into a read people can discuss."],
-                ["03", "Coordinate", "Connect the next useful action across the people responsible for it."],
-                ["04", "Carry forward", "Keep the season record available for the next decision, not buried in it."],
-              ].map(([number, title, copy], index) => (
-                <article key={number} className={`min-h-[245px] bg-[#e9e8df] p-7 transition-colors hover:bg-white md:p-8 ${index % 2 === 1 ? "lg:translate-y-7 lg:border-t lg:border-[#123329]/15" : ""}`}><div className="flex items-center justify-between"><span className="text-[0.68rem] font-extrabold tracking-[0.15em] text-[#5f7c72]">{number}</span><span className="text-[0.53rem] font-bold uppercase tracking-[0.12em] text-[#739087]">Season note</span></div><h3 className="mt-14 font-display text-3xl tracking-[-0.035em] text-[#113128]">{title}</h3><p className="mt-4 max-w-[15rem] text-sm leading-6 text-[#526f66]">{copy}</p></article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="outcomes" className="relative overflow-hidden bg-[#f7f6ef] px-5 py-24 md:px-8 md:py-32">
-          <div className="mx-auto max-w-[1440px]">
-            <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-              <div>
-                <p className="section-kicker">Outcomes that stay grounded</p>
-                <h2 className="mt-6 max-w-2xl font-display text-5xl leading-[0.94] tracking-[-0.05em] text-[#113128] md:text-6xl">
-                  More confidence. Better timing. Stronger connection.
-                </h2>
-              </div>
-              <p className="max-w-lg text-[1rem] leading-7 text-[#4e6b62] lg:justify-self-end">
-                Muons is built around the decisions that have to happen season after season — from the individual growing block to the regional production plan.
-              </p>
-            </div>
-
-            <div className="mt-14 grid gap-7 lg:grid-cols-[1.1fr_0.9fr]">
-              <div className="relative min-h-[420px] overflow-hidden rounded-[1.8rem] bg-[#183e33] md:min-h-[515px]">
-                <img src={aerialImage} alt="Aerial view of irrigated agricultural fields and crop patterns" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#092019]/85 via-[#092019]/0 to-transparent" />
-                <div className="absolute inset-x-5 top-5 flex items-center justify-between border border-white/25 bg-[#0e3127]/75 px-3 py-2 text-[0.56rem] font-extrabold uppercase tracking-[0.14em] text-white backdrop-blur-sm"><span>Seasonal record / north block</span><span className="text-[#c8ff2b]">parcel 12A</span></div>
-                <div className="absolute right-7 top-16 h-24 w-32 rounded-bl-[2rem] border-b border-l border-white/65" aria-hidden="true" />
-                <div className="absolute right-7 top-44 flex items-center gap-2 text-[0.58rem] font-bold uppercase tracking-[0.13em] text-white/85"><span className="h-1.5 w-1.5 rounded-full bg-[#c8ff2b]" /> irrigation line</div>
-                <div className="absolute inset-x-0 bottom-0 p-7 text-white md:p-10">
-                  <span className="rounded-full border border-white/35 px-3 py-1 text-[0.62rem] font-extrabold uppercase tracking-[0.14em] text-white">Season view</span>
-                  <h3 className="mt-5 max-w-md font-display text-[2.5rem] leading-[0.96] tracking-[-0.045em]">A fuller picture of every field, all season long.</h3>
-                </div>
-              </div>
-              <div className="flex flex-col justify-between rounded-[1.8rem] bg-[#d9d8cd] p-7 md:p-10">
-                <div>
-                  <div className="flex items-center justify-between border-b border-[#123329]/15 pb-4">
-                    <p className="text-[0.68rem] font-extrabold uppercase tracking-[0.17em] text-[#547067]">Built around practice</p>
-                    <span className="h-2.5 w-2.5 rounded-full bg-[#c8ff2b] shadow-[0_0_0_5px_rgba(200,255,43,0.23)]" />
-                  </div>
-                  <div className="mt-7 space-y-7">
-                    {[
-                      ["Grow with context", "Use the detail beneath the aggregate to make local decisions that hold up."],
-                      ["Coordinate with clarity", "Give field teams, advisors, and partners one useful operating picture."],
-                      ["Protect the next season", "Carry learning forward instead of restarting the conversation every year."],
-                    ].map(([title, copy], index) => (
-                      <div key={title} className="grid grid-cols-[1.85rem_1fr] gap-3">
-                        <span className="pt-0.5 text-[0.72rem] font-extrabold tracking-[0.14em] text-[#739087]">0{index + 1}</span>
-                        <div>
-                          <h3 className="font-display text-2xl tracking-[-0.03em] text-[#113128]">{title}</h3>
-                          <p className="mt-2 max-w-sm text-sm leading-6 text-[#4d6a60]">{copy}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="mt-10 border-t border-[#123329]/15 pt-6">
-                  <div className="relative"><img src={harvestImage} alt="Farmers examining a fresh corn harvest in the field" loading="lazy" decoding="async" className="h-28 w-full rounded-xl object-cover object-center" /><span className="absolute bottom-2 left-2 rounded-sm bg-[#102d25]/85 px-2 py-1 text-[0.52rem] font-extrabold uppercase tracking-[0.12em] text-white">Harvest note / shared learning</span></div>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
 

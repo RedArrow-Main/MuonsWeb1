@@ -314,3 +314,4 @@
 - [x] Validate the revised section on desktop and mobile, then save the updated checkpoint.
 - [x] Justify the supporting paragraph for a cleaner editorial composition.
 - [x] Add a complete sixth field-to-market point and balance the card grid.
+- [x] Fix the mobile gap and horizontal overflow around the field-to-market cards while preserving justified text.

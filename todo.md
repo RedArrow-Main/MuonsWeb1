@@ -318,3 +318,8 @@
 - [x] Diagnose the remaining gap or overflow in the actual rendered web page.
 - [x] Apply and validate the web-specific layout correction, then save a checkpoint.
 - [x] Remove the upper gap by top-aligning the From Field to Market text and card grid.
+
+## Footer Refinement
+- [x] Audit footer structure, branding, links, contact details, and responsive spacing.
+- [x] Refine the footer into a clear Muons Technology closing section with useful navigation and contact action.
+- [x] Validate the footer on desktop and mobile, then save the updated checkpoint.

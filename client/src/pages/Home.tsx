@@ -751,16 +751,36 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="bg-[#0c261f] px-5 py-6 text-white/56 md:px-8">
-        <div className="mx-auto flex max-w-[1440px] flex-col gap-3 text-[0.67rem] font-bold uppercase tracking-[0.13em] sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-3"><img src={muonsLogo} alt="Muons Technology" className="h-auto w-44 object-contain" /><span className="hidden text-white/55 sm:inline">Agricultural infrastructure</span></div>
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-            <Link href="/solutions/edge-agriculture-infrastructure" className="transition-colors hover:text-[#c8ff2b]">Edge infrastructure</Link>
-            <Link href="/solutions/offline-first-ai-for-farmers" className="transition-colors hover:text-[#c8ff2b]">Offline-first AI</Link>
-            <Link href="/solutions/blockchain-agricultural-records" className="transition-colors hover:text-[#c8ff2b]">Trusted records</Link>
-            <Link href="/insights/early-food-insecurity-signals" className="transition-colors hover:text-[#c8ff2b]">Food security field note</Link>
+      <footer className="relative overflow-hidden bg-[#0a211a] px-5 py-10 text-white/65 md:px-8 md:py-14">
+        <div className="contours contours--dark absolute inset-0 opacity-20" aria-hidden="true" />
+        <div className="relative mx-auto max-w-[1440px]">
+          <div className="grid gap-10 border-b border-white/15 pb-10 lg:grid-cols-[1.15fr_0.85fr_0.9fr] lg:gap-14">
+            <div>
+              <a href="#top" className="inline-flex" aria-label="Muons Technology home"><img src={muonsLogo} alt="Muons Technology" className="h-auto w-48 object-contain" /></a>
+              <p className="mt-6 max-w-sm text-sm leading-7 text-white/58">Farmer-first edge infrastructure for clearer decisions, stronger seasons, and more resilient food systems.</p>
+              <a href="#contact" className="group mt-7 inline-flex items-center gap-2 text-[0.67rem] font-extrabold uppercase tracking-[0.14em] text-[#c8ff2b] transition-colors hover:text-white">Start a grounded conversation <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></a>
+            </div>
+            <div>
+              <p className="text-[0.62rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">Explore Muons</p>
+              <nav className="mt-5 grid gap-3 text-sm font-medium text-white/70" aria-label="Footer navigation">
+                <Link href="/solutions/edge-agriculture-infrastructure" className="transition-colors hover:text-[#c8ff2b]">Edge infrastructure</Link>
+                <Link href="/solutions/offline-first-ai-for-farmers" className="transition-colors hover:text-[#c8ff2b]">Offline-first AI</Link>
+                <Link href="/solutions/blockchain-agricultural-records" className="transition-colors hover:text-[#c8ff2b]">Trusted records</Link>
+                <Link href="/insights/early-food-insecurity-signals" className="transition-colors hover:text-[#c8ff2b]">Food security field note</Link>
+              </nav>
+            </div>
+            <div>
+              <p className="text-[0.62rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">Built at the edge</p>
+              <p className="mt-5 font-display text-2xl leading-[1.02] tracking-[-0.03em] text-white">The field is where useful intelligence begins.</p>
+              <p className="mt-4 text-sm leading-6 text-white/55">Muons Technology<br />Delaware, USA</p>
+              <a href="#contact" className="mt-5 inline-flex text-[0.62rem] font-extrabold uppercase tracking-[0.13em] text-white/70 transition-colors hover:text-[#c8ff2b]">Talk to the team <ArrowUpRight className="ml-2 h-3.5 w-3.5" /></a>
+            </div>
           </div>
-          <p>© 2026 Muons Technology. Built for the growing edge.</p>
+          <div className="flex flex-col gap-3 pt-6 text-[0.61rem] font-bold uppercase tracking-[0.13em] text-white/42 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
+            <p>© 2026 Muons Technology</p>
+            <p>American patent-pending edge infrastructure</p>
+            <p>Built for the growing edge.</p>
+          </div>
         </div>
       </footer>
     </div>

@@ -285,9 +285,14 @@ export default function Home() {
                 Save more. <em className="font-display text-[#c8ff2b]">Protect what you grow.</em> Create new revenue.
               </h1>
               <div className="animate-rise animate-delay-2 mt-6 grid max-w-2xl gap-5 sm:mt-8 sm:gap-6 md:grid-cols-[1fr_auto] md:items-end">
-                <p className="max-w-xl text-[1rem] leading-7 text-white/78 md:text-[1.08rem]">
-                  You carry every cost and every risk. Muons helps you see where money is being lost, protect yield and quality, and turn trusted farm records into better opportunities with buyers, programs, and partners.
-                </p>
+                <div className="max-w-xl">
+                  <p className="text-[1rem] leading-7 text-white/78 md:text-[1.08rem]">
+                    You carry every cost and every risk. Muons helps you see where money is being lost, protect yield and quality, and turn trusted farm records into better opportunities with buyers, programs, and partners.
+                  </p>
+                  <p className="mt-3 text-[0.82rem] leading-6 text-[#c8ff2b]/85 md:text-[0.9rem] md:leading-7">
+                    USDA ready farm records, crop insurance underwriting, carbon credit verification, lenders program, supply chain buyers.
+                  </p>
+                </div>
                 <div className="flex items-center gap-3">
                   <button
                     type="button"

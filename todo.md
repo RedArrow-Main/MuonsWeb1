@@ -256,3 +256,23 @@
 - [ ] Rewrite the hero around Save, Protect, and New Revenue.
 - [ ] Connect the CTA and supporting copy to farmer profitability.
 - [ ] Validate desktop and mobile presentation and save the update.
+
+## GitHub Farmer Economics Hero Update
+- [ ] Inspect local and MuonsWeb1 main state.
+- [ ] Push the farmer economics hero update.
+- [ ] Verify the remote commit.
+
+## Diagnose Live Site Visibility
+- [ ] Check the live Vercel URL response.
+- [ ] Compare deployment state with the latest GitHub commit and domain configuration.
+- [ ] Report the exact recovery step.
+
+## Inspect Provided Predeploy
+- [ ] Inspect the provided predeploy homepage.
+- [ ] Compare hero, farmer economics, edge image, and live deployment content.
+- [ ] Report the deployment difference and next action.
+
+## Farmer Economics Opportunity Copy
+- [ ] Add the exact USDA ready, crop insurance, carbon credit, lender program, and supply chain buyer wording.
+- [ ] Validate the placement and responsive wrapping.
+- [ ] Save the updated homepage copy.

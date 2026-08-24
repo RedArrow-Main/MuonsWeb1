@@ -1,0 +1,3 @@
+# Live Layout Diagnosis
+
+The rendered From Field to Market section currently has a two-column top layout at a 1280px browser viewport. The section spans the viewport without page-level horizontal overflow, while the right card grid occupies the second column. To prevent desktop-style side-by-side composition from creating a visible gap on tablet or constrained web embeds, the layout should remain one column until the wider `xl` breakpoint. The card grid should also remain one column until `md`, with explicit `min-w-0` and `max-w-full` constraints. The supporting paragraph keeps justified alignment with the final line left-aligned.

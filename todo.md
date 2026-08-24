@@ -315,3 +315,5 @@
 - [x] Justify the supporting paragraph for a cleaner editorial composition.
 - [x] Add a complete sixth field-to-market point and balance the card grid.
 - [x] Fix the mobile gap and horizontal overflow around the field-to-market cards while preserving justified text.
+- [x] Diagnose the remaining gap or overflow in the actual rendered web page.
+- [x] Apply and validate the web-specific layout correction, then save a checkpoint.

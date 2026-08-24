@@ -286,3 +286,9 @@
 - [ ] Replace the approach paragraph with the exact Physical AI and food security wording.
 - [ ] Validate the approach section on mobile and desktop.
 - [ ] Save the updated checkpoint.
+
+## Homepage Motion
+- [ ] Audit the hero image treatment and choose a lightweight motion approach.
+- [ ] Prepare a muted background video or animated image with a static mobile fallback.
+- [ ] Add reduced-motion and accessibility safeguards.
+- [ ] Validate performance, responsive rendering, and the production build.

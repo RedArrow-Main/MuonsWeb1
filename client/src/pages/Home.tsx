@@ -341,7 +341,7 @@ export default function Home() {
                 Infrastructure that starts where the data lives.
               </h2>
               <p className="mt-6 text-base leading-7 text-[#406057]">
-                The hard part is not gathering more data. It is getting reliable intelligence from the ground to the people who need it, even when connectivity is limited.
+                American patent pending offline-first Physical AI Edge Infrastructure that predicts food insecurity early on using ground agriculture data.
               </p>
               <button type="button" onClick={() => scrollToSection("#signals")} className="group mt-9 inline-flex items-center gap-2 text-[0.72rem] font-extrabold uppercase tracking-[0.14em] text-[#113128]">
                 What changes <span className="grid h-7 w-7 place-items-center rounded-full bg-[#113128] text-[#c8ff2b] transition-transform group-hover:translate-x-1"><ArrowDownRight className="h-4 w-4" /></span>

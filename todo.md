@@ -281,3 +281,8 @@
 - [ ] Locate the Outcomes and Season cycle sections and related navigation.
 - [ ] Remove both sections and clean broken references.
 - [ ] Validate the page flow and save the updated checkpoint.
+
+## The Muons Approach Positioning
+- [ ] Replace the approach paragraph with the exact Physical AI and food security wording.
+- [ ] Validate the approach section on mobile and desktop.
+- [ ] Save the updated checkpoint.

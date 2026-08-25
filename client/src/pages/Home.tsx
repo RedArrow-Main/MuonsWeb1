@@ -135,7 +135,7 @@ const leaders = [
     initials: "GM",
     name: "Gordon Mitchell",
     role: "COO",
-    bio: "Operations, market expansion, and business development. Leading operational strategy and market growth initiatives.",
+    bio: "Leads operations, market expansion, and business development, building the partnerships, workflows, and execution discipline that help Muons move from field pilots to durable agricultural infrastructure.",
     linkedin: "https://www.linkedin.com/in/gordon-mitchell-527953b/",
     image: `${mediaOrigin}/muons-technology-gordon-mitchell.jpg`,
   },
@@ -676,11 +676,11 @@ export default function Home() {
               <p className="max-w-2xl text-[1.02rem] leading-8 text-[#4e6c62] lg:justify-self-end">A multidisciplinary team spanning digital transformation, secure systems, global operations, and agricultural infrastructure. Each portrait is presented as an approved record in the Muons leadership dossier.</p>
             </div>
 
-            <div className="mt-16 grid gap-7 md:grid-cols-2 xl:grid-cols-3">
+            <div className="mt-16 grid items-stretch gap-7 md:grid-cols-2 xl:grid-cols-3">
               {leaders.map((leader, index) => (
                 <article key={leader.name} className="group overflow-hidden rounded-[1.5rem] border border-[#123329]/12 bg-[#e6e6dc] transition-transform duration-300 hover:-translate-y-1">
                   <div className={`relative aspect-[4/5] overflow-hidden border-b border-[#123329]/12 ${index % 2 === 0 ? "bg-[#153b30] text-white" : "bg-[#d4d7c7] text-[#113128]"}`}>
-                    {leader.image ? <><img src={leader.image} alt={`${leader.name}, ${leader.role}`} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover object-[50%_22%] brightness-[0.96] saturate-[0.9]" /><div className="absolute inset-0 bg-gradient-to-t from-[#0b211b]/82 via-[#0b211b]/5 to-transparent" /></> : <div className="absolute inset-0 opacity-35 [background-image:linear-gradient(135deg,transparent_30%,rgba(200,255,43,0.22)_30%,rgba(200,255,43,0.22)_31%,transparent_31%)] [background-size:34px_34px]" aria-hidden="true" />}
+                    {leader.image ? <><img src={leader.image} alt={`${leader.name}, ${leader.role}`} loading="lazy" decoding="async" className={`absolute inset-0 h-full w-full object-cover object-[50%_22%] brightness-[0.96] saturate-[0.9] ${index === 0 ? "scale-[1.18]" : ""}` } /><div className="absolute inset-0 bg-gradient-to-t from-[#0b211b]/82 via-[#0b211b]/5 to-transparent" /></> : <div className="absolute inset-0 opacity-35 [background-image:linear-gradient(135deg,transparent_30%,rgba(200,255,43,0.22)_30%,rgba(200,255,43,0.22)_31%,transparent_31%)] [background-size:34px_34px]" aria-hidden="true" />}
                     <div className="absolute inset-5 flex items-center justify-between border-b border-current/20 pb-3 text-[0.54rem] font-extrabold uppercase tracking-[0.13em] opacity-70"><span>Muons dossier</span><span>Record 0{index + 1}</span></div>
                     {!leader.image && <div className="absolute inset-0 grid place-items-center"><span className={`grid h-24 w-24 place-items-center rounded-full border text-4xl font-display ${index % 2 === 0 ? "border-[#c8ff2b]/60 bg-black/15 text-[#c8ff2b]" : "border-[#113128]/25 bg-white/20 text-[#113128]"}`}>{leader.initials}</span></div>}
                     <p className="absolute inset-x-5 bottom-5 text-[0.55rem] font-bold uppercase tracking-[0.12em] opacity-70">{leader.image ? "Approved portrait / leadership file" : "Portrait pending / record slot"}</p>

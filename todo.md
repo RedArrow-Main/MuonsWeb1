@@ -334,3 +334,8 @@
 - [x] Apply one uniform portrait crop and visual treatment across all leadership cards.
 - [x] Validate desktop and mobile portrait rendering, then save the updated checkpoint.
 - [x] Remove staggered top offsets so all leadership portrait cards align evenly.
+
+## Leadership Card Refinement
+- [x] Inspect the CEO portrait crop, Gordon Mitchell content, and leadership card spacing.
+- [x] Zoom the CEO portrait and add stronger COO content for Gordon Mitchell.
+- [x] Remove any remaining visual gap and validate desktop/mobile cards, then save a checkpoint.

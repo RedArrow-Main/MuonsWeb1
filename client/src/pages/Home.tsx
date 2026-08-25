@@ -19,8 +19,8 @@ import { Link } from "wouter";
 // Production media is intentionally served from a fixed public domain with
 // compressed files, so the Field Ledger experience remains fast and crawlable.
 const mediaOrigin = "https://qirz61kx5dixbar2.public.blob.vercel-storage.com";
-const heroImage = `${mediaOrigin}/muons-technology-hero.jpg`;
-const heroVideo = "https://files.manuscdn.com/user_upload_by_module/session_file/310419663029649704/wWrRpROuEhumPldG.mp4";
+const heroImage = "/manus-storage/muons-american-farm-truck-hero-poster_890f896d.jpg";
+const heroVideo = "/manus-storage/muons-american-farm-truck-hero_d00fb4a2.mp4";
 const sensorImage = `${mediaOrigin}/muons-technology-sensor.jpg`;
 const aerialImage = `${mediaOrigin}/muons-technology-aerial.jpg`;
 const harvestImage = `${mediaOrigin}/muons-technology-harvest.jpg`;

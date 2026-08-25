@@ -334,8 +334,3 @@
 - [x] Apply one uniform portrait crop and visual treatment across all leadership cards.
 - [x] Validate desktop and mobile portrait rendering, then save the updated checkpoint.
 - [x] Remove staggered top offsets so all leadership portrait cards align evenly.
-
-## American Farm Truck Hero Video
-- [x] Generate a cinematic hero video with a truck moving through an American field and a visible American flag.
-- [x] Replace the current hero media while preserving fallback, framing, and reduced-motion behavior.
-- [x] Validate the hero video on desktop and mobile, then save the updated checkpoint.

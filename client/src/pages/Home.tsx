@@ -678,7 +678,7 @@ export default function Home() {
 
             <div className="mt-16 grid gap-7 md:grid-cols-2 xl:grid-cols-3">
               {leaders.map((leader, index) => (
-                <article key={leader.name} className={`group overflow-hidden rounded-[1.5rem] border border-[#123329]/12 bg-[#e6e6dc] transition-transform duration-300 hover:-translate-y-1 ${index === 1 ? "xl:mt-10" : index === 2 ? "xl:mt-5" : ""}`}>
+                <article key={leader.name} className="group overflow-hidden rounded-[1.5rem] border border-[#123329]/12 bg-[#e6e6dc] transition-transform duration-300 hover:-translate-y-1">
                   <div className={`relative aspect-[4/5] overflow-hidden border-b border-[#123329]/12 ${index % 2 === 0 ? "bg-[#153b30] text-white" : "bg-[#d4d7c7] text-[#113128]"}`}>
                     {leader.image ? <><img src={leader.image} alt={`${leader.name}, ${leader.role}`} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover object-[50%_22%] brightness-[0.96] saturate-[0.9]" /><div className="absolute inset-0 bg-gradient-to-t from-[#0b211b]/82 via-[#0b211b]/5 to-transparent" /></> : <div className="absolute inset-0 opacity-35 [background-image:linear-gradient(135deg,transparent_30%,rgba(200,255,43,0.22)_30%,rgba(200,255,43,0.22)_31%,transparent_31%)] [background-size:34px_34px]" aria-hidden="true" />}
                     <div className="absolute inset-5 flex items-center justify-between border-b border-current/20 pb-3 text-[0.54rem] font-extrabold uppercase tracking-[0.13em] opacity-70"><span>Muons dossier</span><span>Record 0{index + 1}</span></div>

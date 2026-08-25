@@ -333,3 +333,4 @@
 - [x] Audit the current portrait image sources, aspect ratios, and focal positions.
 - [x] Apply one uniform portrait crop and visual treatment across all leadership cards.
 - [x] Validate desktop and mobile portrait rendering, then save the updated checkpoint.
+- [x] Remove staggered top offsets so all leadership portrait cards align evenly.

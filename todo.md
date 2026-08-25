@@ -339,3 +339,8 @@
 - [x] Inspect the CEO portrait crop, Gordon Mitchell content, and leadership card spacing.
 - [x] Zoom the CEO portrait and add stronger COO content for Gordon Mitchell.
 - [x] Remove any remaining visual gap and validate desktop/mobile cards, then save a checkpoint.
+
+## Leadership Interaction Refinement
+- [x] Move the CEO portrait crop slightly higher to focus on his face.
+- [x] Add a subtle hover lift, shadow, and border response to leadership cards.
+- [x] Validate desktop and mobile behavior, then save the updated checkpoint.

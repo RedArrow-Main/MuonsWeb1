@@ -344,3 +344,8 @@
 - [x] Move the CEO portrait crop slightly higher to focus on his face.
 - [x] Add a subtle hover lift, shadow, and border response to leadership cards.
 - [x] Validate desktop and mobile behavior, then save the updated checkpoint.
+
+## Leadership GitHub Sync
+- [ ] Inspect local state and compare it with MuonsWeb1 main.
+- [ ] Commit and push the CEO crop and leadership hover update.
+- [ ] Verify the remote commit.

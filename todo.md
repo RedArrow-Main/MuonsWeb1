@@ -349,3 +349,13 @@
 - [ ] Inspect local state and compare it with MuonsWeb1 main.
 - [ ] Commit and push the CEO crop and leadership hover update.
 - [ ] Verify the remote commit.
+
+## Hostinger Migration
+- [x] Build the current static website for Hostinger deployment.
+- [x] Package the production files for upload into Hostinger public_html.
+- [x] Verify the package and document the Hostinger upload and DNS steps.
+
+## Latest GitHub Sync
+- [ ] Inspect the current local state and MuonsWeb1 main.
+- [ ] Commit and push the latest project state.
+- [ ] Verify the remote commit.

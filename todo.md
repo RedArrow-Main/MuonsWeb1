@@ -359,3 +359,8 @@
 - [ ] Inspect the current local state and MuonsWeb1 main.
 - [ ] Commit and push the latest project state.
 - [ ] Verify the remote commit.
+
+## GitHub Actions to Hostinger
+- [x] Add a secure GitHub Actions workflow that builds the static site and uploads dist/public to Hostinger.
+- [x] Document the required Hostinger repository secrets and public_html target.
+- [x] Validate the workflow YAML and production build, then synchronize it to MuonsWeb1.

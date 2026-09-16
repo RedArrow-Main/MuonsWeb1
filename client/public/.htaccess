@@ -43,3 +43,16 @@
   AddType image/webp .webp
   AddType image/avif .avif
 </IfModule>
+
+# --- Endpoint hardening -----------------------------------------------------
+# The vendored PHPMailer sources are included by contact.php and must never be
+# requested directly.
+<IfModule mod_rewrite.c>
+  RewriteRule ^lib/ - [F,L]
+</IfModule>
+
+# Belt and braces if a config file is ever placed inside the web root by
+# mistake; it belongs one level above it.
+<FilesMatch "^muons-contact-config\.php$">
+  Require all denied
+</FilesMatch>

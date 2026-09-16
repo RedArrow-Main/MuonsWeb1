@@ -1,37 +1,70 @@
 # Contact form delivery
 
-The homepage contact form posts JSON to `contact.php`, which sends the message
-with PHP's `mail()`. Hostinger runs PHP, so the site sends its own mail: no
-third-party form service, no API key, no monthly submission cap, and no one else
-holding your enquiries.
+The homepage contact form posts JSON to `contact.php`, which relays the message
+over authenticated SMTP through **Microsoft 365** using PHPMailer.
 
-Submissions go to **Andre.James@muonstechnology.com** (set as `RECIPIENT` at the
-top of `client/public/contact.php`).
+This matters: `muonstechnology.com` keeps its MX on Microsoft 365 and publishes
+`v=spf1 include:spf.protection.outlook.com -all`. That is a hard fail, and the
+Hostinger server is not in it, so mail sent directly from the web server would be
+rejected or junked. Sending through the tenant means SPF and DKIM align and the
+message reaches the inbox.
 
-## How it ships
+Submissions go to **Andre.James@muonstechnology.com**.
 
-`client/public/contact.php` is copied into `dist/public/` by the Vite build like
-any other public file, and the GitHub Action uploads `dist/public/` to
-Hostinger's `public_html/`. It ends up at `https://muonstechnology.com/contact.php`.
-Nothing extra to configure — no environment variables, no secrets.
+## One-time setup
 
-Requires PHP 7.4 or newer, which every current Hostinger plan provides. The PHP
-version is set in hPanel under **Advanced → PHP Configuration**.
+### 1. Allow SMTP AUTH on the mailbox
+
+Microsoft disables authenticated SMTP by default. In the **Microsoft 365 admin
+centre** → Users → Active users → Andre James → Mail → **Manage email apps**,
+tick **Authenticated SMTP** and save. It can take a few minutes to apply.
+
+If the tenant has Security Defaults enabled, SMTP AUTH stays blocked until
+Security Defaults are turned off or a Conditional Access exclusion is made.
+
+### 2. Create an app password
+
+With MFA on the account, the normal password will not work for SMTP. Generate an
+app password from the account's security settings and use that instead.
+
+### 3. Upload the credentials file
+
+Copy `contact-config.sample.php` to the server as `muons-contact-config.php`,
+fill in the app password, and place it **one level above `public_html`**:
+
+    domains/muonstechnology.com/
+      muons-contact-config.php   <-- here, not web-readable
+      public_html/
+        contact.php
+
+Upload it once by FTP or the hPanel File Manager. The deploy workflow only
+writes into `public_html/`, so deploys will not overwrite or remove it.
+
+**Never commit the real file.** It is in `.gitignore`, and keeping it outside the
+web root means it cannot be fetched over HTTP even if the PHP handler breaks.
+
+Requires PHP 7.4 or newer (PHP 8 is what the site runs). PHPMailer 6.9.3 is
+vendored at `client/public/lib/phpmailer/`, so Composer is not needed.
 
 ## Testing it
 
 PHP does not run under the Vite dev server, so **the form cannot be tested
-locally**. `pnpm run dev` will serve `contact.php` as plain text, the response
-will not parse as JSON, and the form will report that the contact service is not
-responding. That is expected and is not a bug.
+locally**. `pnpm run dev` serves `contact.php` as plain text and the form will
+report that the contact service is not responding. That is expected.
 
-Test it on the deployed site:
+Test on the deployed site: submit once, then check the inbox and Junk. If nothing
+arrives, the PHP error log records the SMTP error and the full submission, so the
+enquiry can be recovered and the cause diagnosed. Find it in hPanel under
+**Advanced → PHP Configuration → Error log**.
 
-1. Submit the form once on `https://muonstechnology.com`.
-2. Check Andre's inbox, including spam.
-3. If nothing arrives, check hPanel → **Emails → Email Logs**, and the PHP error
-   log under **Advanced → PHP Configuration → Error log**. `contact.php` writes a
-   line there when `mail()` fails.
+Common SMTP errors:
+
+| Message | Cause |
+|---|---|
+| `535 5.7.139 Authentication unsuccessful` | SMTP AUTH not enabled for the mailbox, or Security Defaults blocking it |
+| `535` with a correct password | MFA is on and a normal password was used instead of an app password |
+| `550 5.7.60 SendAsDenied` | `From` is not the authenticated mailbox |
+| Connection timeout | Outbound port 587 blocked; try `'smtp_secure' => 'ssl'` with port 465 |
 
 ## Behaviour
 

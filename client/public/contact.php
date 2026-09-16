@@ -4,18 +4,30 @@
  *
  * Deployed to Hostinger's public_html/ as part of dist/public/. The site is
  * otherwise static; this is the only server-side file. It accepts a JSON POST
- * from the homepage contact form and emails it to the address below.
+ * from the homepage contact form and relays it over authenticated SMTP.
+ *
+ * Mail goes through Microsoft 365, which holds the MX for muonstechnology.com.
+ * Sending from inside the tenant means SPF and DKIM align, so messages reach
+ * the inbox. Sending directly from this server would fail the domain's
+ * `-all` SPF record.
+ *
+ * Credentials live in muons-contact-config.php ONE LEVEL ABOVE the web root,
+ * so they are never web-readable and never in the repository. See
+ * CONTACT_FORM.md and contact-config.sample.php.
  *
  * Responses are always JSON: {"success": bool, "message": string}
  */
 
 declare(strict_types=1);
 
-const RECIPIENT     = 'Andre.James@muonstechnology.com';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception as MailerException;
+
+const MAX_BODY_SIZE = 20000;   // bytes; a contact message is never this big
+const RATE_WINDOW   = 60;      // seconds
+const RATE_MAX      = 3;       // submissions per window, per IP
 const SITE_DOMAIN   = 'muonstechnology.com';
-const MAX_BODY_SIZE = 20000;          // bytes; a contact message is never this big
-const RATE_WINDOW   = 60;             // seconds
-const RATE_MAX      = 3;              // submissions per window, per IP
 
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
@@ -26,19 +38,41 @@ function respond(bool $ok, string $message, int $status = 200) {
     exit;
 }
 
-/**
- * Strip CR/LF so a submitted value can never inject extra mail headers.
- * This is the critical defence for anything interpolated into a header line.
- */
+/** Strip CR/LF so a submitted value can never inject extra mail headers. */
 function headerSafe(string $value): string {
     return trim(str_replace(["\r", "\n", "%0a", "%0d", "%0A", "%0D"], ' ', $value));
 }
 
+/**
+ * Record a submission that could not be sent, so it can still be recovered.
+ * A failed enquiry in the log beats an enquiry that only got counted.
+ */
+function logFailure(string $why, array $f) {
+    error_log(sprintf(
+        'Muons contact form FAILED (%s) from=%s name=%s org=%s interest=%s message=%s',
+        $why, $f['email'] ?? '', $f['name'] ?? '', $f['org'] ?? '', $f['topic'] ?? '',
+        str_replace(["\r", "\n"], ' ', $f['message'] ?? '')
+    ));
+}
+
+// --- Configuration ----------------------------------------------------------
+$configPath = __DIR__ . '/../muons-contact-config.php';
+$config = is_readable($configPath) ? require $configPath : [];
+
+$smtpHost = $config['smtp_host'] ?? getenv('MUONS_SMTP_HOST') ?: 'smtp.office365.com';
+$smtpPort = (int) ($config['smtp_port'] ?? getenv('MUONS_SMTP_PORT') ?: 587);
+$smtpUser = $config['smtp_user'] ?? getenv('MUONS_SMTP_USER') ?: '';
+$smtpPass = $config['smtp_pass'] ?? getenv('MUONS_SMTP_PASS') ?: '';
+$recipient = $config['recipient'] ?? getenv('MUONS_RECIPIENT') ?: 'Andre.James@' . SITE_DOMAIN;
+// 'tls' (STARTTLS, port 587), 'ssl' (SMTPS, port 465), or 'none' for a
+// local relay. Microsoft 365 wants STARTTLS.
+$smtpSecure = strtolower((string) ($config['smtp_secure'] ?? getenv('MUONS_SMTP_SECURE') ?: 'tls'));
+
+// --- Request gate -----------------------------------------------------------
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
     respond(false, 'Method not allowed.', 405);
 }
 
-// Same-origin only. Blocks other sites from POSTing through this endpoint.
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 if ($origin !== '') {
     $host = parse_url($origin, PHP_URL_HOST) ?? '';
@@ -78,14 +112,16 @@ if (mb_strlen($message) > 5000) {
     respond(false, 'That message is too long. Please shorten it.', 422);
 }
 
-// --- Simple per-IP rate limit -----------------------------------------------
+$fields = ['email' => $email, 'name' => $name, 'org' => $org, 'topic' => $topic, 'message' => $message];
+
+// --- Per-IP rate limit ------------------------------------------------------
 $ip    = (string) ($_SERVER['REMOTE_ADDR'] ?? 'unknown');
 $stamp = sys_get_temp_dir() . '/muons-contact-' . md5($ip);
 $hits  = [];
 if (is_readable($stamp)) {
     $hits = array_filter(
         (array) json_decode((string) file_get_contents($stamp), true),
-        static fn($t) => is_numeric($t) && $t > time() - RATE_WINDOW
+        static function ($t) { return is_numeric($t) && $t > time() - RATE_WINDOW; }
     );
 }
 if (count($hits) >= RATE_MAX) {
@@ -94,8 +130,15 @@ if (count($hits) >= RATE_MAX) {
 $hits[] = time();
 @file_put_contents($stamp, json_encode(array_values($hits)), LOCK_EX);
 
-// --- Compose ----------------------------------------------------------------
-$subject = 'Muons website enquiry — ' . ($topic !== '' ? $topic : 'General');
+// --- Send -------------------------------------------------------------------
+if ($smtpUser === '' || $smtpPass === '') {
+    logFailure('SMTP not configured', $fields);
+    respond(false, 'The contact service is not configured. Please email us directly.', 503);
+}
+
+require __DIR__ . '/lib/phpmailer/Exception.php';
+require __DIR__ . '/lib/phpmailer/PHPMailer.php';
+require __DIR__ . '/lib/phpmailer/SMTP.php';
 
 $body = "New enquiry from the Muons Technology website.\n\n"
       . "Name:         {$name}\n"
@@ -107,29 +150,45 @@ $body = "New enquiry from the Muons Technology website.\n\n"
       . "-------------------------------------------------------------\n\n"
       . $message . "\n";
 
-// From must be on our own domain or the mail server will reject or spam-file it.
-// The visitor's address goes in Reply-To so a reply reaches them directly.
-$headers = implode("\r\n", [
-    'From: Muons Website <noreply@' . SITE_DOMAIN . '>',
-    'Reply-To: ' . $name . ' <' . $email . '>',
-    'MIME-Version: 1.0',
-    'Content-Type: text/plain; charset=UTF-8',
-    'X-Mailer: PHP/' . phpversion(),
-]);
+$mail = new PHPMailer(true);
 
-$sent = @mail(RECIPIENT, $subject, $body, $headers, '-f noreply@' . SITE_DOMAIN);
+try {
+    $mail->isSMTP();
+    $mail->Host       = $smtpHost;
+    $mail->Port       = $smtpPort;
+    $mail->SMTPAuth   = true;
+    $mail->Username   = $smtpUser;
+    $mail->Password   = $smtpPass;
+    $mail->Timeout    = 20;
 
-if (!$sent) {
-    // Log the whole submission, not just the failure. The domain's mail is on
-    // Microsoft 365 and this server is not in its SPF record, so delivery can
-    // fail for reasons outside this script. An enquiry recorded in the PHP
-    // error log can still be recovered; one that is only counted cannot.
-    error_log(
-        'Muons contact form: mail() failed. '
-        . 'from=' . $email . ' name=' . $name . ' org=' . $org
-        . ' interest=' . $topic
-        . ' message=' . str_replace(["\r", "\n"], ' ', $message)
-    );
+    if ($smtpSecure === 'ssl') {
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+    } elseif ($smtpSecure === 'none') {
+        $mail->SMTPSecure  = '';
+        $mail->SMTPAutoTLS = false;
+    } else {
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    }
+
+    $mail->CharSet    = PHPMailer::CHARSET_UTF8;
+
+    // Microsoft 365 requires the From address to be the authenticated mailbox
+    // (or one it holds Send As rights for), so the sender is the account
+    // itself. The visitor goes in Reply-To, so replying reaches them.
+    $mail->setFrom($smtpUser, 'Muons Website');
+    $mail->addAddress($recipient);
+    $mail->addReplyTo($email, $name);
+
+    $mail->Subject = 'Muons website enquiry — ' . ($topic !== '' ? $topic : 'General');
+    $mail->Body    = $body;
+    $mail->isHTML(false);
+
+    $mail->send();
+} catch (MailerException $e) {
+    logFailure('SMTP: ' . $mail->ErrorInfo, $fields);
+    respond(false, 'We could not deliver that message. Please email us directly.', 502);
+} catch (Throwable $e) {
+    logFailure('unexpected: ' . $e->getMessage(), $fields);
     respond(false, 'We could not deliver that message. Please email us directly.', 502);
 }
 

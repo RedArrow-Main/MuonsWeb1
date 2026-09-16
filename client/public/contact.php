@@ -126,8 +126,8 @@ $cfg = [
     'tenant_id'     => $config['tenant_id']     ?? getenv('MUONS_TENANT_ID')     ?: '',
     'client_id'     => $config['client_id']     ?? getenv('MUONS_CLIENT_ID')     ?: '',
     'client_secret' => $config['client_secret'] ?? getenv('MUONS_CLIENT_SECRET') ?: '',
-    'sender'        => $config['sender']        ?? getenv('MUONS_SENDER')        ?: 'Andre.James@' . SITE_DOMAIN,
-    'recipient'     => $config['recipient']     ?? getenv('MUONS_RECIPIENT')     ?: 'Andre.James@' . SITE_DOMAIN,
+    'sender'        => $config['sender']        ?? getenv('MUONS_SENDER')        ?: 'contact@' . SITE_DOMAIN,
+    'recipient'     => $config['recipient']     ?? getenv('MUONS_RECIPIENT')     ?: 'contact@' . SITE_DOMAIN,
 ];
 
 // --- Request gate -----------------------------------------------------------

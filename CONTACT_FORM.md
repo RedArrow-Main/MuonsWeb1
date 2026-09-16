@@ -11,7 +11,7 @@ authentication for SMTP AUTH on **30 April 2026**, so app passwords no longer
 work for SMTP either. Graph sends from inside the tenant, so SPF and DKIM align
 and the message reaches the inbox.
 
-Submissions go to **Andre.James@muonstechnology.com**.
+Submissions go to **contact@muonstechnology.com**.
 
 ## One-time setup
 
@@ -44,7 +44,7 @@ in Exchange Online PowerShell:
 ```powershell
 New-ApplicationAccessPolicy `
   -AppId <application-client-id> `
-  -PolicyScopeGroupId Andre.James@muonstechnology.com `
+  -PolicyScopeGroupId contact@muonstechnology.com `
   -AccessRight RestrictAccess `
   -Description "Restrict the website contact form to one mailbox"
 ```

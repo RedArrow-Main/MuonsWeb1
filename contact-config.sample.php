@@ -30,9 +30,11 @@ return [
     // it lapses, or the form stops sending.
     'client_secret' => 'REPLACE_WITH_CLIENT_SECRET_VALUE',
 
-    // The mailbox the message is sent AS. Must be a real mailbox in the tenant.
-    'sender' => 'Andre.James@muonstechnology.com',
+    // The mailbox the message is sent AS. Must be a real mailbox in the tenant
+    // (a user mailbox or a shared mailbox). A distribution list or a bare alias
+    // will NOT work here and Graph answers 404 — set a real mailbox instead.
+    'sender' => 'contact@muonstechnology.com',
 
     // Where enquiries are delivered. May be the same mailbox.
-    'recipient' => 'Andre.James@muonstechnology.com',
+    'recipient' => 'contact@muonstechnology.com',
 ];

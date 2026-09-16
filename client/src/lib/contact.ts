@@ -6,7 +6,7 @@
  * service, no access key, no monthly submission cap. See CONTACT_FORM.md.
  */
 
-export const CONTACT_INBOX = "Andre.James@muonstechnology.com";
+export const CONTACT_INBOX = "contact@muonstechnology.com";
 
 const ENDPOINT = "/contact.php";
 

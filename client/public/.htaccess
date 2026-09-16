@@ -1,0 +1,45 @@
+# Field Ledger reminder: keep production serving quiet, explicit, and dependable.
+# Deployed to Hostinger's public_html/ as part of dist/public/.
+
+# --- SPA fallback -----------------------------------------------------------
+# Direct hits to /solutions/... and /insights/... must reach the React app.
+# Real files and the pre-rendered SEO directories are served as-is; everything
+# else falls back to index.html so wouter can route it.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Never rewrite something that exists on disk.
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# --- Security headers -------------------------------------------------------
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+
+  # Hashed build assets are immutable; the HTML entry points must not be.
+  <FilesMatch "\.(js|css|woff2?|svg|jpg|jpeg|png|webp|avif|mp4)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# --- Compression ------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json image/svg+xml
+</IfModule>
+
+# --- Correct types ----------------------------------------------------------
+<IfModule mod_mime.c>
+  AddType application/json .json
+  AddType image/webp .webp
+  AddType image/avif .avif
+</IfModule>

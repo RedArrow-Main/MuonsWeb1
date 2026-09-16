@@ -23,6 +23,10 @@ Use the exact values shown in Hostinger hPanel. Do not put credentials in source
 5. Choose **Run workflow** on `main`.
 6. After the job succeeds, open the domain over `https://` and verify the homepage, contact section, footer, and direct `/solutions/...` and `/insights/...` URLs.
 
-The workflow uses FTPS on port 21 and does not run a Node.js server on Hostinger. The website is served as static files, and the included `.htaccess` file provides the React fallback for direct application routes.
+The workflow uses FTPS on port 21 and does not run a Node.js server on Hostinger. The website is served as static files. `client/public/.htaccess` is copied into `dist/public/` at build time and provides the React fallback for direct application routes, the security headers, and cache control.
+
+## Contact form
+
+The contact form is handled by `client/public/contact.php`, which is copied into `dist/public/` at build time and uploaded with the rest of the site. It sends mail through Hostinger's PHP and needs no keys or environment variables. It does require PHP 7.4 or newer, set in hPanel under **Advanced → PHP Configuration**. PHP does not run under the Vite dev server, so the form can only be tested on the deployed site. See `CONTACT_FORM.md`.
 
 If Hostinger requires SFTP rather than FTPS for the account, the workflow’s deployment step must be changed to an SFTP action and the corresponding SSH secrets must be added. Do not change this until the connection type shown in Hostinger hPanel is confirmed.

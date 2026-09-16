@@ -1,6 +1,7 @@
-# Temporary diagnostic. Uploads a uniquely named marker into each candidate
-# document root, then fetching https://muonstechnology.com/<marker> shows which
-# directory the web server actually serves. Delete this workflow once known.
+# Temporary diagnostic. Reports the SHAPE of the stored FTP secrets (lengths,
+# stray whitespace, wrong prefixes) without revealing them, then lists the
+# directory tree and drops markers so the served directory can be identified.
+# Delete this workflow once the deploy works.
 name: Probe web root
 
 on:
@@ -14,44 +15,80 @@ permissions:
 
 jobs:
   probe:
-    name: Locate the served directory
+    name: Check credentials and locate the served directory
     runs-on: ubuntu-latest
 
     steps:
-      - name: List the FTP tree and drop markers
+      - name: Report the shape of the stored secrets
         env:
           H: ${{ secrets.HOSTINGER_FTP_SERVER }}
           U: ${{ secrets.HOSTINGER_FTP_USERNAME }}
           P: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
         run: |
           set +e
-          ftp_ls () {
-            echo "--- listing: ${1:-/} ---"
-            curl -sS --ssl-reqd --connect-timeout 20 --max-time 60 \
-                 -u "$U:$P" --list-only "ftp://$H/$1" || echo "(could not list $1)"
-          }
-
-          echo "=================== DIRECTORY TREE ==================="
-          ftp_ls ""
-          ftp_ls "domains/"
-          ftp_ls "domains/muonstechnology.com/"
-          ftp_ls "public_html/"
-
-          echo "=================== DROPPING MARKERS ================="
-          put () {   # $1 = remote dir, $2 = marker filename
-            echo "web root is: $1" > /tmp/marker.txt
-            if curl -sS --ssl-reqd --ftp-create-dirs --connect-timeout 20 --max-time 60 \
-                    -u "$U:$P" -T /tmp/marker.txt "ftp://$H/$1$2"; then
-              echo "  placed $2 in /$1"
-            else
-              echo "  FAILED to place $2 in /$1"
+          shape () {   # $1 = label, $2 = value
+            local v="$2"
+            local n=${#v}
+            local trimmed
+            trimmed="$(printf '%s' "$v" | tr -d '[:space:]')"
+            echo "$1:"
+            echo "   length            : $n"
+            echo "   length if trimmed : ${#trimmed}"
+            if [ "$n" -ne "${#trimmed}" ]; then
+              echo "   >>> CONTAINS WHITESPACE - this alone can cause 530 <<<"
+            fi
+            if [ "$n" -eq 0 ]; then
+              echo "   >>> EMPTY - the secret is missing or was not saved <<<"
             fi
           }
 
+          echo "================ SECRET SHAPE ================"
+          shape "HOSTINGER_FTP_SERVER"   "$H"
+          shape "HOSTINGER_FTP_USERNAME" "$U"
+          shape "HOSTINGER_FTP_PASSWORD" "$P"
+
+          case "$H" in
+            *://*) echo "SERVER contains '://' - remove the scheme, use the bare host" ;;
+            */*)   echo "SERVER contains '/' - remove any path, use the bare host" ;;
+            *)     echo "SERVER looks like a bare host. Good." ;;
+          esac
+
+          case "$U" in
+            u*.*) echo "USERNAME looks like Hostinger's prefixed form (u<digits>.<name>). Good." ;;
+            u*)   echo "USERNAME looks like a bare account id (u<digits>)." ;;
+            *)    echo "USERNAME does NOT start with 'u' - Hostinger usernames normally do." ;;
+          esac
+
+          echo "================ LOGIN TEST ================"
+          if curl -sS --ssl-reqd --connect-timeout 20 --max-time 45 \
+                  -u "$U:$P" --list-only "ftp://$H/" >/tmp/ls.txt 2>/tmp/err.txt; then
+            echo "LOGIN OK. Top-level listing:"
+            cat /tmp/ls.txt
+          else
+            echo "LOGIN FAILED:"
+            sed -e "s/$U/<username>/g" /tmp/err.txt
+            exit 1
+          fi
+
+      - name: List the tree and drop markers
+        env:
+          H: ${{ secrets.HOSTINGER_FTP_SERVER }}
+          U: ${{ secrets.HOSTINGER_FTP_USERNAME }}
+          P: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+        run: |
+          set +e
+          for d in "" "domains/" "domains/muonstechnology.com/" "public_html/"; do
+            echo "--- listing /$d ---"
+            curl -sS --ssl-reqd --connect-timeout 20 --max-time 60 \
+                 -u "$U:$P" --list-only "ftp://$H/$d" || echo "(cannot list /$d)"
+          done
+
+          put () {
+            echo "web root is: /$1" > /tmp/marker.txt
+            curl -sS --ssl-reqd --ftp-create-dirs --connect-timeout 20 --max-time 60 \
+                 -u "$U:$P" -T /tmp/marker.txt "ftp://$H/$1$2" \
+              && echo "  placed $2 in /$1" || echo "  FAILED to place $2 in /$1"
+          }
           put ""                                        "whereami-root.txt"
           put "public_html/"                            "whereami-ph.txt"
           put "domains/muonstechnology.com/public_html/" "whereami-dom.txt"
-          put "public_html/public_html/"                "whereami-nested.txt"
-
-          echo "Done. Fetch each whereami-*.txt over HTTP; the one that returns"
-          echo "200 identifies the served directory."

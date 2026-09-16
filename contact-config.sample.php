@@ -21,8 +21,12 @@
  */
 
 return [
-    // Entra admin centre → the app registration → Overview.
-    'tenant_id' => 'REPLACE_WITH_DIRECTORY_TENANT_ID',
+    // The tenant. Microsoft accepts either the Directory (tenant) ID GUID or
+    // the primary domain, and the domain is easier to verify at a glance.
+    'tenant_id' => 'muonstechnology.com',
+
+    // Entra admin centre → the app registration → Overview →
+    // Application (client) ID.
     'client_id' => 'REPLACE_WITH_APPLICATION_CLIENT_ID',
 
     // Certificates & secrets → New client secret. Copy the VALUE, not the ID;

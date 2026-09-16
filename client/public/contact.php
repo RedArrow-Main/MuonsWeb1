@@ -123,7 +123,8 @@ $configPath = __DIR__ . '/../muons-contact-config.php';
 $config = is_readable($configPath) ? require $configPath : [];
 
 $cfg = [
-    'tenant_id'     => $config['tenant_id']     ?? getenv('MUONS_TENANT_ID')     ?: '',
+    // Microsoft accepts the primary domain in place of the tenant GUID.
+    'tenant_id'     => $config['tenant_id']     ?? getenv('MUONS_TENANT_ID')     ?: SITE_DOMAIN,
     'client_id'     => $config['client_id']     ?? getenv('MUONS_CLIENT_ID')     ?: '',
     'client_secret' => $config['client_secret'] ?? getenv('MUONS_CLIENT_SECRET') ?: '',
     'sender'        => $config['sender']        ?? getenv('MUONS_SENDER')        ?: 'contact@' . SITE_DOMAIN,

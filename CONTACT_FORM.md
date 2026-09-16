@@ -24,16 +24,24 @@ registrations → **New registration**:
 - Supported account types: **Accounts in this organizational directory only**
 - Redirect URI: leave blank (this is a daemon app, no sign-in)
 
-From the app's **Overview** page copy the **Directory (tenant) ID** and the
-**Application (client) ID**.
+From the app's **Overview** page copy the **Application (client) ID**.
+
+You do not need the Directory (tenant) ID: Microsoft accepts the primary domain
+in its place, so `tenant_id` is `muonstechnology.com`. The GUID works equally
+well if you prefer it.
 
 ### 2. Grant Mail.Send
 
 In the app → **API permissions** → Add a permission → Microsoft Graph →
 **Application permissions** → search `Mail.Send` → add it.
 
-Then click **Grant admin consent for <tenant>**. The permission does not work
-until the status column reads "Granted". This step needs a Global Administrator.
+Then click **Grant admin consent for Muons Technology**. The permission does
+nothing until the Status column reads **Granted**.
+
+This step needs Global Administrator, Privileged Role Administrator, or Cloud
+Application Administrator. A normal user account can create the registration and
+add the permission, but cannot consent to it — the button will be unavailable.
+If your account shows "No roles assigned", someone else has to do this step.
 
 ### 3. Restrict it to one mailbox (strongly recommended)
 

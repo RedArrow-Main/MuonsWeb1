@@ -120,7 +120,16 @@ $headers = implode("\r\n", [
 $sent = @mail(RECIPIENT, $subject, $body, $headers, '-f noreply@' . SITE_DOMAIN);
 
 if (!$sent) {
-    error_log('Muons contact form: mail() failed for ' . $email);
+    // Log the whole submission, not just the failure. The domain's mail is on
+    // Microsoft 365 and this server is not in its SPF record, so delivery can
+    // fail for reasons outside this script. An enquiry recorded in the PHP
+    // error log can still be recovered; one that is only counted cannot.
+    error_log(
+        'Muons contact form: mail() failed. '
+        . 'from=' . $email . ' name=' . $name . ' org=' . $org
+        . ' interest=' . $topic
+        . ' message=' . str_replace(["\r", "\n"], ' ', $message)
+    );
     respond(false, 'We could not deliver that message. Please email us directly.', 502);
 }
 

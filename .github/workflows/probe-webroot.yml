@@ -1,0 +1,57 @@
+# Temporary diagnostic. Uploads a uniquely named marker into each candidate
+# document root, then fetching https://muonstechnology.com/<marker> shows which
+# directory the web server actually serves. Delete this workflow once known.
+name: Probe web root
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    name: Locate the served directory
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: List the FTP tree and drop markers
+        env:
+          H: ${{ secrets.HOSTINGER_FTP_SERVER }}
+          U: ${{ secrets.HOSTINGER_FTP_USERNAME }}
+          P: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+        run: |
+          set +e
+          ftp_ls () {
+            echo "--- listing: ${1:-/} ---"
+            curl -sS --ssl-reqd --connect-timeout 20 --max-time 60 \
+                 -u "$U:$P" --list-only "ftp://$H/$1" || echo "(could not list $1)"
+          }
+
+          echo "=================== DIRECTORY TREE ==================="
+          ftp_ls ""
+          ftp_ls "domains/"
+          ftp_ls "domains/muonstechnology.com/"
+          ftp_ls "public_html/"
+
+          echo "=================== DROPPING MARKERS ================="
+          put () {   # $1 = remote dir, $2 = marker filename
+            echo "web root is: $1" > /tmp/marker.txt
+            if curl -sS --ssl-reqd --ftp-create-dirs --connect-timeout 20 --max-time 60 \
+                    -u "$U:$P" -T /tmp/marker.txt "ftp://$H/$1$2"; then
+              echo "  placed $2 in /$1"
+            else
+              echo "  FAILED to place $2 in /$1"
+            fi
+          }
+
+          put ""                                        "whereami-root.txt"
+          put "public_html/"                            "whereami-ph.txt"
+          put "domains/muonstechnology.com/public_html/" "whereami-dom.txt"
+          put "public_html/public_html/"                "whereami-nested.txt"
+
+          echo "Done. Fetch each whereami-*.txt over HTTP; the one that returns"
+          echo "200 identifies the served directory."

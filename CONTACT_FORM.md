@@ -1,36 +1,70 @@
 # Contact form delivery
 
-The homepage contact form posts JSON to `contact.php`, which relays the message
-over authenticated SMTP through **Microsoft 365** using PHPMailer.
+The homepage contact form posts JSON to `contact.php`, which sends the message
+through the **Microsoft Graph API** using OAuth 2.0 client credentials.
 
-This matters: `muonstechnology.com` keeps its MX on Microsoft 365 and publishes
-`v=spf1 include:spf.protection.outlook.com -all`. That is a hard fail, and the
-Hostinger server is not in it, so mail sent directly from the web server would be
-rejected or junked. Sending through the tenant means SPF and DKIM align and the
-message reaches the inbox.
+Why Graph and not SMTP: `muonstechnology.com` keeps its MX on Microsoft 365 and
+publishes `v=spf1 include:spf.protection.outlook.com -all`. That is a hard fail,
+and the Hostinger server is not in it, so mail sent directly from the web server
+would be rejected or junked. Microsoft also finished disabling basic
+authentication for SMTP AUTH on **30 April 2026**, so app passwords no longer
+work for SMTP either. Graph sends from inside the tenant, so SPF and DKIM align
+and the message reaches the inbox.
 
 Submissions go to **Andre.James@muonstechnology.com**.
 
 ## One-time setup
 
-### 1. Allow SMTP AUTH on the mailbox
+### 1. Register an application
 
-Microsoft disables authenticated SMTP by default. In the **Microsoft 365 admin
-centre** → Users → Active users → Andre James → Mail → **Manage email apps**,
-tick **Authenticated SMTP** and save. It can take a few minutes to apply.
+In the **Microsoft Entra admin centre** → Identity → Applications → App
+registrations → **New registration**:
 
-If the tenant has Security Defaults enabled, SMTP AUTH stays blocked until
-Security Defaults are turned off or a Conditional Access exclusion is made.
+- Name: `Muons Website Contact Form`
+- Supported account types: **Accounts in this organizational directory only**
+- Redirect URI: leave blank (this is a daemon app, no sign-in)
 
-### 2. Create an app password
+From the app's **Overview** page copy the **Directory (tenant) ID** and the
+**Application (client) ID**.
 
-With MFA on the account, the normal password will not work for SMTP. Generate an
-app password from the account's security settings and use that instead.
+### 2. Grant Mail.Send
 
-### 3. Upload the credentials file
+In the app → **API permissions** → Add a permission → Microsoft Graph →
+**Application permissions** → search `Mail.Send` → add it.
+
+Then click **Grant admin consent for <tenant>**. The permission does not work
+until the status column reads "Granted". This step needs a Global Administrator.
+
+### 3. Restrict it to one mailbox (strongly recommended)
+
+`Mail.Send` as an application permission allows sending as **any** mailbox in
+the tenant. Scope it down to the one mailbox with an application access policy,
+in Exchange Online PowerShell:
+
+```powershell
+New-ApplicationAccessPolicy `
+  -AppId <application-client-id> `
+  -PolicyScopeGroupId Andre.James@muonstechnology.com `
+  -AccessRight RestrictAccess `
+  -Description "Restrict the website contact form to one mailbox"
+```
+
+Without this, a leaked client secret would let someone send mail as anyone in
+the organisation.
+
+### 4. Create a client secret
+
+App → **Certificates & secrets** → **New client secret**. Choose the shortest
+expiry that is practical. Copy the **Value** immediately — it is shown only
+once, and the Secret ID is not the secret.
+
+**Secrets expire.** When it lapses the form stops sending and the PHP error log
+records `AADSTS7000222`. Put the expiry date in a calendar now.
+
+### 5. Upload the credentials file
 
 Copy `contact-config.sample.php` to the server as `muons-contact-config.php`,
-fill in the app password, and place it **one level above `public_html`**:
+fill in the four values, and place it **one level above `public_html`**:
 
     domains/muonstechnology.com/
       muons-contact-config.php   <-- here, not web-readable
@@ -40,11 +74,12 @@ fill in the app password, and place it **one level above `public_html`**:
 Upload it once by FTP or the hPanel File Manager. The deploy workflow only
 writes into `public_html/`, so deploys will not overwrite or remove it.
 
-**Never commit the real file.** It is in `.gitignore`, and keeping it outside the
-web root means it cannot be fetched over HTTP even if the PHP handler breaks.
+**Never commit the real file.** It is in `.gitignore`, and keeping it outside
+the web root means it cannot be fetched over HTTP even if the PHP handler
+breaks.
 
-Requires PHP 7.4 or newer (PHP 8 is what the site runs). PHPMailer 6.9.3 is
-vendored at `client/public/lib/phpmailer/`, so Composer is not needed.
+Requires PHP 7.4+ (the site runs PHP 8) with the cURL extension, which
+Hostinger enables by default. No Composer and no vendored library.
 
 ## Testing it
 
@@ -52,19 +87,21 @@ PHP does not run under the Vite dev server, so **the form cannot be tested
 locally**. `pnpm run dev` serves `contact.php` as plain text and the form will
 report that the contact service is not responding. That is expected.
 
-Test on the deployed site: submit once, then check the inbox and Junk. If nothing
-arrives, the PHP error log records the SMTP error and the full submission, so the
-enquiry can be recovered and the cause diagnosed. Find it in hPanel under
-**Advanced → PHP Configuration → Error log**.
+Test on the deployed site: submit once, then check the inbox and Junk. If
+nothing arrives, the PHP error log records the Graph error and the full
+submission, so the enquiry can be recovered and the cause diagnosed. Find it in
+hPanel under **Advanced → PHP Configuration → Error log**.
 
-Common SMTP errors:
+Common errors:
 
-| Message | Cause |
+| Logged error | Cause |
 |---|---|
-| `535 5.7.139 Authentication unsuccessful` | SMTP AUTH not enabled for the mailbox, or Security Defaults blocking it |
-| `535` with a correct password | MFA is on and a normal password was used instead of an app password |
-| `550 5.7.60 SendAsDenied` | `From` is not the authenticated mailbox |
-| Connection timeout | Outbound port 587 blocked; try `'smtp_secure' => 'ssl'` with port 465 |
+| `AADSTS7000215` | Wrong client secret — the Secret ID was copied instead of the Value |
+| `AADSTS7000222` | The client secret has expired; create a new one |
+| `AADSTS700016` | Wrong client ID, or the app is in a different tenant |
+| `sendMail 403` with `ErrorAccessDenied` | Admin consent for `Mail.Send` was never granted |
+| `sendMail 403` after adding the access policy | The policy excludes the sender mailbox; check the AppId and mailbox in step 3 |
+| `sendMail 404` | The `sender` address is not a real mailbox in the tenant |
 
 ## Behaviour
 
@@ -74,9 +111,12 @@ Common SMTP errors:
 - On failure an inline `role="alert"` message appears with the direct mailto
   address as a fallback, and the typed content is preserved so the visitor can
   retry without retyping.
-- Mail is sent `From: noreply@muonstechnology.com` with the visitor's address in
-  `Reply-To`, so replying in your mail client reaches them directly. Sending
-  `From:` the visitor's own address would fail SPF and land in spam.
+- Mail is sent as the configured mailbox with the visitor's address in
+  `replyTo`, so replying in Outlook reaches them directly. Sending as the
+  visitor's own address is not possible through Graph and would fail SPF anyway.
+- `saveToSentItems` is false, so website enquiries do not clutter Sent Items.
+- The OAuth token is cached on disk until shortly before it expires, so a burst
+  of submissions does not request a new token each time.
 
 ## Abuse protection
 
@@ -88,18 +128,16 @@ Common SMTP errors:
   header-injection through the name or email field.
 - Request bodies over 20 KB and messages over 5000 characters are rejected.
 
-## If mail lands in spam
+## Renewing the client secret
 
-`mail()` sends through Hostinger's local mail server. Delivery to a mailbox on
-the same domain is usually reliable, but if messages land in spam or do not
-arrive:
+This is the one piece of scheduled maintenance. When the secret expires the form
+stops sending, visitors see the failure message with the mailto fallback, and
+the PHP error log fills with `AADSTS7000222`. Submissions are still written to
+that log, so nothing is lost, but nobody is notified.
 
-1. Confirm the domain's SPF record includes Hostinger, in hPanel under
-   **Emails → DNS Records**.
-2. If it still misbehaves, switch `contact.php` to authenticated SMTP with
-   PHPMailer using the mailbox credentials from hPanel. That is more reliable
-   but introduces a password that must live in a file outside the repository —
-   never commit it.
+To renew: create a new client secret in the app registration, update
+`client_secret` in `muons-contact-config.php` on the server, and delete the old
+secret. No redeploy is needed — the config file is read on every request.
 
 ## Not covered
 

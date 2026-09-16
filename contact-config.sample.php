@@ -15,22 +15,24 @@
  *
  * Upload it once by FTP or hPanel File Manager. The deploy workflow only
  * writes into public_html/, so it will not be touched by future deploys.
+ *
+ * All four values come from the Entra (Azure) app registration. See
+ * CONTACT_FORM.md for how to create it.
  */
 
 return [
-    // Microsoft 365. Leave as-is unless the tenant uses a different endpoint.
-    'smtp_host' => 'smtp.office365.com',
-    'smtp_port' => 587,
+    // Entra admin centre → the app registration → Overview.
+    'tenant_id' => 'REPLACE_WITH_DIRECTORY_TENANT_ID',
+    'client_id' => 'REPLACE_WITH_APPLICATION_CLIENT_ID',
 
-    // The mailbox that authenticates AND appears as the sender. Microsoft 365
-    // rejects a From address that is not this mailbox (or one it has Send As
-    // rights for), so these are deliberately the same account.
-    'smtp_user' => 'Andre.James@muonstechnology.com',
+    // Certificates & secrets → New client secret. Copy the VALUE, not the ID;
+    // it is shown only once. Secrets expire — note the date and renew before
+    // it lapses, or the form stops sending.
+    'client_secret' => 'REPLACE_WITH_CLIENT_SECRET_VALUE',
 
-    // NOT the normal account password if MFA is enabled — generate an app
-    // password in the Microsoft account security settings and use that.
-    'smtp_pass' => 'REPLACE_WITH_APP_PASSWORD',
+    // The mailbox the message is sent AS. Must be a real mailbox in the tenant.
+    'sender' => 'Andre.James@muonstechnology.com',
 
-    // Where enquiries are delivered.
+    // Where enquiries are delivered. May be the same mailbox.
     'recipient' => 'Andre.James@muonstechnology.com',
 ];

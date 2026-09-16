@@ -4,12 +4,14 @@
  *
  * Deployed to Hostinger's public_html/ as part of dist/public/. The site is
  * otherwise static; this is the only server-side file. It accepts a JSON POST
- * from the homepage contact form and relays it over authenticated SMTP.
+ * from the homepage contact form and sends it through the Microsoft Graph API.
  *
- * Mail goes through Microsoft 365, which holds the MX for muonstechnology.com.
- * Sending from inside the tenant means SPF and DKIM align, so messages reach
- * the inbox. Sending directly from this server would fail the domain's
- * `-all` SPF record.
+ * Why Graph rather than SMTP: muonstechnology.com keeps its MX on Microsoft 365
+ * and publishes `v=spf1 include:spf.protection.outlook.com -all`, so mail sent
+ * straight from this server would fail SPF. Microsoft also finished disabling
+ * basic authentication for SMTP AUTH on 30 April 2026, so app passwords no
+ * longer work. Graph uses OAuth 2.0 client credentials and sends from inside
+ * the tenant, so SPF and DKIM align.
  *
  * Credentials live in muons-contact-config.php ONE LEVEL ABOVE the web root,
  * so they are never web-readable and never in the repository. See
@@ -20,14 +22,11 @@
 
 declare(strict_types=1);
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception as MailerException;
-
 const MAX_BODY_SIZE = 20000;   // bytes; a contact message is never this big
 const RATE_WINDOW   = 60;      // seconds
 const RATE_MAX      = 3;       // submissions per window, per IP
 const SITE_DOMAIN   = 'muonstechnology.com';
+const HTTP_TIMEOUT  = 15;      // seconds, per Microsoft call
 
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
@@ -55,18 +54,81 @@ function logFailure(string $why, array $f) {
     ));
 }
 
+/** POST and decode JSON. Returns [status, decodedBody, transportError]. */
+function httpPost(string $url, $body, array $headers): array {
+    $ch = curl_init($url);
+    curl_setopt_array($ch, [
+        CURLOPT_POST           => true,
+        CURLOPT_POSTFIELDS     => is_string($body) ? $body : http_build_query($body),
+        CURLOPT_HTTPHEADER     => $headers,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT        => HTTP_TIMEOUT,
+        CURLOPT_SSL_VERIFYPEER => true,
+        CURLOPT_SSL_VERIFYHOST => 2,
+    ]);
+    $raw    = curl_exec($ch);
+    $status = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $err    = curl_error($ch);
+    curl_close($ch);
+
+    return [$status, json_decode((string) $raw, true), $err];
+}
+
+/**
+ * Client-credentials token for Graph, cached on disk until shortly before it
+ * expires so a burst of submissions does not mint a token each time.
+ */
+function graphToken(array $cfg, array $fields): string {
+    $cacheFile = sys_get_temp_dir() . '/muons-graph-token-' . md5($cfg['client_id']);
+
+    if (is_readable($cacheFile)) {
+        $cached = json_decode((string) file_get_contents($cacheFile), true);
+        if (is_array($cached) && ($cached['expires'] ?? 0) > time() + 60 && !empty($cached['token'])) {
+            return (string) $cached['token'];
+        }
+    }
+
+    [$status, $body, $err] = httpPost(
+        'https://login.microsoftonline.com/' . rawurlencode($cfg['tenant_id']) . '/oauth2/v2.0/token',
+        [
+            'client_id'     => $cfg['client_id'],
+            'client_secret' => $cfg['client_secret'],
+            'scope'         => 'https://graph.microsoft.com/.default',
+            'grant_type'    => 'client_credentials',
+        ],
+        ['Content-Type: application/x-www-form-urlencoded']
+    );
+
+    if ($err !== '') {
+        logFailure('token transport: ' . $err, $fields);
+        respond(false, 'We could not deliver that message. Please email us directly.', 502);
+    }
+    if ($status !== 200 || empty($body['access_token'])) {
+        // AADSTS7000222 = expired client secret, the most likely failure here.
+        logFailure('token HTTP ' . $status . ': ' . ($body['error_description'] ?? 'no token'), $fields);
+        respond(false, 'We could not deliver that message. Please email us directly.', 502);
+    }
+
+    @file_put_contents($cacheFile, json_encode([
+        'token'   => $body['access_token'],
+        'expires' => time() + (int) ($body['expires_in'] ?? 3600),
+    ]), LOCK_EX);
+    @chmod($cacheFile, 0600);
+
+    return (string) $body['access_token'];
+}
+
 // --- Configuration ----------------------------------------------------------
 $configPath = __DIR__ . '/../muons-contact-config.php';
 $config = is_readable($configPath) ? require $configPath : [];
 
-$smtpHost = $config['smtp_host'] ?? getenv('MUONS_SMTP_HOST') ?: 'smtp.office365.com';
-$smtpPort = (int) ($config['smtp_port'] ?? getenv('MUONS_SMTP_PORT') ?: 587);
-$smtpUser = $config['smtp_user'] ?? getenv('MUONS_SMTP_USER') ?: '';
-$smtpPass = $config['smtp_pass'] ?? getenv('MUONS_SMTP_PASS') ?: '';
-$recipient = $config['recipient'] ?? getenv('MUONS_RECIPIENT') ?: 'Andre.James@' . SITE_DOMAIN;
-// 'tls' (STARTTLS, port 587), 'ssl' (SMTPS, port 465), or 'none' for a
-// local relay. Microsoft 365 wants STARTTLS.
-$smtpSecure = strtolower((string) ($config['smtp_secure'] ?? getenv('MUONS_SMTP_SECURE') ?: 'tls'));
+$cfg = [
+    'tenant_id'     => $config['tenant_id']     ?? getenv('MUONS_TENANT_ID')     ?: '',
+    'client_id'     => $config['client_id']     ?? getenv('MUONS_CLIENT_ID')     ?: '',
+    'client_secret' => $config['client_secret'] ?? getenv('MUONS_CLIENT_SECRET') ?: '',
+    'sender'        => $config['sender']        ?? getenv('MUONS_SENDER')        ?: 'Andre.James@' . SITE_DOMAIN,
+    'recipient'     => $config['recipient']     ?? getenv('MUONS_RECIPIENT')     ?: 'Andre.James@' . SITE_DOMAIN,
+];
 
 // --- Request gate -----------------------------------------------------------
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
@@ -131,14 +193,17 @@ $hits[] = time();
 @file_put_contents($stamp, json_encode(array_values($hits)), LOCK_EX);
 
 // --- Send -------------------------------------------------------------------
-if ($smtpUser === '' || $smtpPass === '') {
-    logFailure('SMTP not configured', $fields);
+if ($cfg['tenant_id'] === '' || $cfg['client_id'] === '' || $cfg['client_secret'] === '') {
+    logFailure('Graph not configured', $fields);
     respond(false, 'The contact service is not configured. Please email us directly.', 503);
 }
 
-require __DIR__ . '/lib/phpmailer/Exception.php';
-require __DIR__ . '/lib/phpmailer/PHPMailer.php';
-require __DIR__ . '/lib/phpmailer/SMTP.php';
+if (!function_exists('curl_init')) {
+    logFailure('php curl extension missing', $fields);
+    respond(false, 'The contact service is unavailable. Please email us directly.', 503);
+}
+
+$token = graphToken($cfg, $fields);
 
 $body = "New enquiry from the Muons Technology website.\n\n"
       . "Name:         {$name}\n"
@@ -150,45 +215,33 @@ $body = "New enquiry from the Muons Technology website.\n\n"
       . "-------------------------------------------------------------\n\n"
       . $message . "\n";
 
-$mail = new PHPMailer(true);
+// The message is sent as the configured mailbox. The visitor goes in replyTo,
+// so replying in Outlook reaches them directly.
+$payload = [
+    'message' => [
+        'subject'      => 'Muons website enquiry — ' . ($topic !== '' ? $topic : 'General'),
+        'body'         => ['contentType' => 'Text', 'content' => $body],
+        'toRecipients' => [['emailAddress' => ['address' => $cfg['recipient']]]],
+        'replyTo'      => [['emailAddress' => ['address' => $email, 'name' => $name]]],
+    ],
+    'saveToSentItems' => false,
+];
 
-try {
-    $mail->isSMTP();
-    $mail->Host       = $smtpHost;
-    $mail->Port       = $smtpPort;
-    $mail->SMTPAuth   = true;
-    $mail->Username   = $smtpUser;
-    $mail->Password   = $smtpPass;
-    $mail->Timeout    = 20;
+[$status, $response, $err] = httpPost(
+    'https://graph.microsoft.com/v1.0/users/' . rawurlencode($cfg['sender']) . '/sendMail',
+    json_encode($payload, JSON_UNESCAPED_UNICODE),
+    ['Authorization: Bearer ' . $token, 'Content-Type: application/json']
+);
 
-    if ($smtpSecure === 'ssl') {
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-    } elseif ($smtpSecure === 'none') {
-        $mail->SMTPSecure  = '';
-        $mail->SMTPAutoTLS = false;
-    } else {
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    }
-
-    $mail->CharSet    = PHPMailer::CHARSET_UTF8;
-
-    // Microsoft 365 requires the From address to be the authenticated mailbox
-    // (or one it holds Send As rights for), so the sender is the account
-    // itself. The visitor goes in Reply-To, so replying reaches them.
-    $mail->setFrom($smtpUser, 'Muons Website');
-    $mail->addAddress($recipient);
-    $mail->addReplyTo($email, $name);
-
-    $mail->Subject = 'Muons website enquiry — ' . ($topic !== '' ? $topic : 'General');
-    $mail->Body    = $body;
-    $mail->isHTML(false);
-
-    $mail->send();
-} catch (MailerException $e) {
-    logFailure('SMTP: ' . $mail->ErrorInfo, $fields);
+if ($err !== '') {
+    logFailure('sendMail transport: ' . $err, $fields);
     respond(false, 'We could not deliver that message. Please email us directly.', 502);
-} catch (Throwable $e) {
-    logFailure('unexpected: ' . $e->getMessage(), $fields);
+}
+
+// Graph answers 202 Accepted on success and returns no body.
+if ($status !== 202) {
+    $detail = $response['error']['message'] ?? ('HTTP ' . $status);
+    logFailure('sendMail ' . $status . ': ' . $detail, $fields);
     respond(false, 'We could not deliver that message. Please email us directly.', 502);
 }
 

@@ -239,9 +239,12 @@ $body = '<!doctype html><html><body style="margin:0;padding:0;background:#eceae2
 
   // Header
   . '<tr><td style="background:#113128;padding:22px 28px;">'
-  . '<div style="font:700 20px/1 Georgia,\'Times New Roman\',serif;color:#ffffff;letter-spacing:-.02em;">MUONS'
-  . '<span style="font:800 9px/1 -apple-system,BlinkMacSystemFont,\'Segoe UI\',Arial,sans-serif;letter-spacing:.18em;color:#c8ff2b;margin-left:8px;text-transform:uppercase;">Technology</span>'
-  . '</div>'
+  // The official wordmark. It is light artwork on transparency, so it sits on
+  // the dark header. Many clients block remote images by default, hence the
+  // alt text and an explicit light colour so that fallback stays readable.
+  . '<img src="https://muonstechnology.com/media/muons-technology-logo-dark.png"'
+  . ' alt="Muons Technology" width="170" height="45"'
+  . ' style="display:block;border:0;outline:none;text-decoration:none;width:170px;height:45px;color:#ffffff;font:700 18px/45px Georgia,serif;">'
   . '<div style="margin-top:10px;font:800 11px/1.4 -apple-system,BlinkMacSystemFont,\'Segoe UI\',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.62);">New website enquiry</div>'
   . '</td></tr>'
   . '<tr><td style="height:3px;background:#c8ff2b;line-height:3px;font-size:0;">&nbsp;</td></tr>'

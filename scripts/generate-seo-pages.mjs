@@ -129,4 +129,42 @@ for (const page of pages) {
   await writeFile(outputPath, html);
 }
 
+// --- sitemap ---------------------------------------------------------------
+// Generated from the same data as the pages, so a new entry in seoPages.ts
+// cannot be forgotten here. Previously hand-maintained, which is a standing
+// invitation to drift.
+//
+// On the hints: Google ignores <priority> and <changefreq> outright, and has
+// said so for years - they are set assertively because Bing does still read
+// them, not because they move Google. <lastmod> is the one Google acts on, and
+// only while it stays honest: a sitemap claiming everything changed today gets
+// its lastmod discounted. So each page carries its own `updated` date, bumped
+// when the wording changes rather than on every deploy.
+const HOME_UPDATED = "2026-09-17";
+
+const entries = [
+  { loc: `${siteUrl}/`, lastmod: HOME_UPDATED, changefreq: "weekly", priority: "1.0" },
+  ...pages.map((page) => ({
+    loc: `${siteUrl}/${page.kind === "solution" ? "solutions" : "insights"}/${page.slug}/`,
+    lastmod: page.updated,
+    changefreq: "weekly",
+    priority: "0.9",
+  })),
+];
+
+const sitemap =
+  '<?xml version="1.0" encoding="UTF-8"?>\n' +
+  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+  entries
+    .map(
+      (e) =>
+        `  <url><loc>${e.loc}</loc><lastmod>${e.lastmod}</lastmod>` +
+        `<changefreq>${e.changefreq}</changefreq><priority>${e.priority}</priority></url>`
+    )
+    .join("\n") +
+  "\n</urlset>\n";
+
+await writeFile(path.join(outputRoot, "sitemap.xml"), sitemap);
+
 console.log(`Pre-rendered ${pages.length} SEO routes.`);
+console.log(`Wrote sitemap.xml with ${entries.length} URLs.`);

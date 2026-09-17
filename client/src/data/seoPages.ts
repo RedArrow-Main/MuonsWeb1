@@ -17,6 +17,13 @@ export type SeoPage = {
   detail: Array<{ heading: string; paragraphs: string[] }>;
   /** Answers to questions a real reader arrives with. */
   faq: Array<{ question: string; answer: string }>;
+  /**
+   * Date this page's content last genuinely changed, as YYYY-MM-DD. Feeds
+   * <lastmod> in the sitemap. Bump it when the wording changes, not on every
+   * deploy: a sitemap where everything changed today gets its lastmod
+   * distrusted, and lastmod is the one hint Google actually acts on.
+   */
+  updated: string;
   related: string[];
 };
 
@@ -62,6 +69,7 @@ export const seoPages: SeoPage[] = [
       { question: "What happens when there is no connectivity at all?", answer: "Collection and local interpretation are designed to continue. Reconciliation with wider systems happens when a connection returns. The absence of a network is treated as an ordinary operating condition rather than an error state." },
       { question: "Is the hardware available to buy today?", answer: "Muons Technology is building this infrastructure and the patent application is pending. Availability, specifications, and deployment timelines should be confirmed directly rather than inferred from this page." },
     ],
+    updated: "2026-09-17",
     related: ["offline-first-ai-for-farmers", "early-food-insecurity-signals"],
   },
   {
@@ -105,6 +113,7 @@ export const seoPages: SeoPage[] = [
       { question: "What happens to data collected while offline?", answer: "It is retained locally with the context around it — who observed it, where, and when — and reconciled when a connection is available. The context is what makes a later reading of the record meaningful." },
       { question: "Is a smartphone required?", answer: "Offline-first design treats connectivity and device limits as starting conditions rather than late-stage exceptions. Specific requirements should be confirmed directly." },
     ],
+    updated: "2026-09-17",
     related: ["edge-agriculture-infrastructure", "blockchain-agricultural-records"],
   },
   {
@@ -148,6 +157,7 @@ export const seoPages: SeoPage[] = [
       { question: "Is the system quantum-proof?", answer: "No, and that claim should be treated sceptically wherever it appears. Muons describes a quantum-resilient direction: a development posture, not a certification or a guarantee." },
       { question: "Do growers need to understand blockchain to use this?", answer: "No. Traceability should be understandable to farmers and operators as a clear, reviewable record. If using it requires understanding the underlying mechanism, the design has failed." },
     ],
+    updated: "2026-09-17",
     related: ["edge-agriculture-infrastructure", "offline-first-ai-for-farmers"],
   },
   {
@@ -191,6 +201,7 @@ export const seoPages: SeoPage[] = [
       { question: "How is this different from satellite monitoring?", answer: "It is complementary. Remote sensing covers ground quickly; ground observation supplies the local meaning that distinguishes a drought from a shifted planting calendar. Read together they are more useful than either alone." },
       { question: "Who is this intended for?", answer: "Growers, cooperatives, and public institutions coordinating a response — the people for whom a change in conditions implies a decision." },
     ],
+    updated: "2026-09-17",
     related: ["edge-agriculture-infrastructure", "offline-first-ai-for-farmers"],
   },
 ];

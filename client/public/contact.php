@@ -37,6 +37,24 @@ function respond(bool $ok, string $message, int $status = 200) {
     exit;
 }
 
+/**
+ * Normalise a recipient setting into Graph's recipient array. Accepts a PHP
+ * array or a comma/semicolon separated string, so extra people can be added by
+ * editing the config file on the server without a redeploy. Invalid entries are
+ * dropped rather than failing the send: one typo should not lose an enquiry.
+ */
+function recipients($value): array {
+    $list = is_array($value) ? $value : preg_split('/[,;]+/', (string) $value);
+    $out = [];
+    foreach ($list as $address) {
+        $address = trim((string) $address);
+        if ($address !== '' && filter_var($address, FILTER_VALIDATE_EMAIL)) {
+            $out[] = ['emailAddress' => ['address' => $address]];
+        }
+    }
+    return $out;
+}
+
 /** Strip CR/LF so a submitted value can never inject extra mail headers. */
 function headerSafe(string $value): string {
     return trim(str_replace(["\r", "\n", "%0a", "%0d", "%0A", "%0D"], ' ', $value));
@@ -129,6 +147,7 @@ $cfg = [
     'client_secret' => $config['client_secret'] ?? getenv('MUONS_CLIENT_SECRET') ?: '',
     'sender'        => $config['sender']        ?? getenv('MUONS_SENDER')        ?: 'contact@' . SITE_DOMAIN,
     'recipient'     => $config['recipient']     ?? getenv('MUONS_RECIPIENT')     ?: 'contact@' . SITE_DOMAIN,
+    'cc'            => $config['cc']            ?? getenv('MUONS_CC')            ?: '',
 ];
 
 // --- Request gate -----------------------------------------------------------
@@ -278,15 +297,27 @@ $body = '<!doctype html><html><body style="margin:0;padding:0;background:#eceae2
 
 // The message is sent as the configured mailbox. The visitor goes in replyTo,
 // so replying in Outlook reaches them directly.
+$toList = recipients($cfg['recipient']);
+$ccList = recipients($cfg['cc']);
+
+if (!$toList) {
+    logFailure('no valid recipient configured', $fields);
+    respond(false, 'The contact service is not configured. Please email us directly.', 503);
+}
+
 $payload = [
     'message' => [
         'subject'      => 'Muons website enquiry — ' . ($topic !== '' ? $topic : 'General'),
         'body'         => ['contentType' => 'HTML', 'content' => $body],
-        'toRecipients' => [['emailAddress' => ['address' => $cfg['recipient']]]],
+        'toRecipients' => $toList,
         'replyTo'      => [['emailAddress' => ['address' => $email, 'name' => $name]]],
     ],
     'saveToSentItems' => false,
 ];
+
+if ($ccList) {
+    $payload['message']['ccRecipients'] = $ccList;
+}
 
 [$status, $response, $err] = httpPost(
     'https://graph.microsoft.com/v1.0/users/' . rawurlencode($cfg['sender']) . '/sendMail',

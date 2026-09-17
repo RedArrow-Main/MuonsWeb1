@@ -13,6 +13,23 @@ and the message reaches the inbox.
 
 Submissions go to **contact@muonstechnology.com**.
 
+### Sending to more than one person
+
+`recipient` in `muons-contact-config.php` takes a comma-separated list:
+
+```php
+'recipient' => 'contact@muonstechnology.com, andre.james@muonstechnology.com, gordon@muonstechnology.com',
+'cc'        => '',
+```
+
+That file lives on the server, so recipients can be changed without a redeploy —
+edit and save, and the next submission uses the new list. Invalid addresses are
+ignored rather than failing the send, so one typo cannot lose an enquiry.
+
+A Microsoft 365 distribution list is the tidier option if the recipients change
+often: point `recipient` at the list and manage membership in Microsoft 365. Note
+that `sender` cannot be a distribution list — Graph needs a real mailbox there.
+
 ## One-time setup
 
 ### 1. Register an application

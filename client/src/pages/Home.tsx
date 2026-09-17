@@ -143,6 +143,7 @@ export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeLens, setActiveLens] = useState(0);
+  const [heroVideoReady, setHeroVideoReady] = useState(false);
   const [contactSubmitted, setContactSubmitted] = useState(false);
   const [contactSending, setContactSending] = useState(false);
   const [contactError, setContactError] = useState<string | null>(null);
@@ -268,7 +269,16 @@ export default function Home() {
       <main>
         <section id="top" className="relative min-h-[700px] overflow-hidden bg-[#0b211b] text-white sm:min-h-[800px]">
           <img src={heroImage} alt="Farmer standing in a maize field at sunset" fetchPriority="high" decoding="async" className="hero-drift absolute inset-0 h-full w-full object-cover object-[69%_center]" />
-          <video className="hero-video absolute inset-0 h-full w-full object-cover object-[69%_center]" autoPlay muted loop playsInline preload="metadata" poster={heroImage} aria-hidden="true">
+          <video
+            className={`hero-video absolute inset-0 h-full w-full object-cover object-[69%_center] ${heroVideoReady ? "is-ready" : ""}`}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            onPlaying={() => setHeroVideoReady(true)}
+            aria-hidden="true"
+          >
             <source src={heroVideo} type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,26,21,0.97)_0%,rgba(7,26,21,0.78)_37%,rgba(7,26,21,0.22)_72%,rgba(7,26,21,0.38)_100%)]" />

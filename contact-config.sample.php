@@ -39,6 +39,12 @@ return [
     // will NOT work here and Graph answers 404 — set a real mailbox instead.
     'sender' => 'contact@muonstechnology.com',
 
-    // Where enquiries are delivered. May be the same mailbox.
+    // Who receives enquiries. One address, or several separated by commas:
+    //   'recipient' => 'contact@muonstechnology.com, andre.james@muonstechnology.com',
+    // This file lives on the server, so recipients can be changed without a
+    // redeploy. Invalid entries are ignored rather than failing the send.
     'recipient' => 'contact@muonstechnology.com',
+
+    // Optional: copied in rather than addressed directly. Leave '' for none.
+    'cc' => '',
 ];

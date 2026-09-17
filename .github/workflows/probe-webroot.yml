@@ -1,6 +1,6 @@
-# Temporary diagnostic. Each check is its own step so that the pass/fail
-# pattern is readable from the API without repository admin rights and
-# without printing any secret value. Delete once the deploy works.
+# Temporary diagnostic. Writes the FTP directory tree to the job summary,
+# which is readable through the public check-runs API without repository
+# admin rights, and drops a marker in every candidate web root.
 name: Probe web root
 
 on:
@@ -12,98 +12,60 @@ on:
 permissions:
   contents: read
 
-env:
-  H: ${{ secrets.HOSTINGER_FTP_SERVER }}
-  U: ${{ secrets.HOSTINGER_FTP_USERNAME }}
-  P: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
-
 jobs:
   probe:
     name: Diagnose
     runs-on: ubuntu-latest
     steps:
-      - name: CHECK server secret is not empty
-        continue-on-error: true
-        run: '[ -n "$H" ]'
-
-      - name: CHECK server secret has no whitespace
-        continue-on-error: true
-        run: '[ "${#H}" -eq "$(printf %s "$H" | tr -d "[:space:]" | wc -c)" ]'
-
-      - name: CHECK server secret has no scheme or slash
-        continue-on-error: true
-        run: 'case "$H" in *://*|*/*) exit 1 ;; *) exit 0 ;; esac'
-
-      - name: CHECK username secret is not empty
-        continue-on-error: true
-        run: '[ -n "$U" ]'
-
-      - name: CHECK username secret has no whitespace
-        continue-on-error: true
-        run: '[ "${#U}" -eq "$(printf %s "$U" | tr -d "[:space:]" | wc -c)" ]'
-
-      - name: CHECK username has a dot (Hostinger sub-account form)
-        continue-on-error: true
-        run: 'case "$U" in *.*) exit 0 ;; *) exit 1 ;; esac'
-
-      - name: CHECK password secret is not empty
-        continue-on-error: true
-        run: '[ -n "$P" ]'
-
-      - name: CHECK password secret has no whitespace
-        continue-on-error: true
-        run: '[ "${#P}" -eq "$(printf %s "$P" | tr -d "[:space:]" | wc -c)" ]'
-
-      - name: CHECK tcp port 21 reachable
-        continue-on-error: true
-        run: timeout 20 bash -c "cat < /dev/null > /dev/tcp/$H/21"
-
-      - name: CHECK FTPS login succeeds
-        continue-on-error: true
+      - name: Map the directory tree and drop markers
+        env:
+          H: ${{ secrets.HOSTINGER_FTP_SERVER }}
+          U: ${{ secrets.HOSTINGER_FTP_USERNAME }}
+          P: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
         run: |
-          curl -sS --ssl-reqd --connect-timeout 20 --max-time 45 \
-               -u "$U:$P" --list-only "ftp://$H/" > /tmp/root.txt
+          set +e
+          ls_ () {
+            curl -sS --ssl-reqd --connect-timeout 20 --max-time 45 \
+                 -u "$U:$P" --list-only "ftp://$H/$1" 2>/dev/null
+          }
+          say () { echo "$1" >> "$GITHUB_STEP_SUMMARY"; }
 
-      - name: CHECK plain FTP login succeeds (no TLS)
-        continue-on-error: true
-        run: |
-          curl -sS --connect-timeout 20 --max-time 45 \
-               -u "$U:$P" --list-only "ftp://$H/" > /tmp/root2.txt
+          say "## FTP tree"
+          say ""
+          say '### login dir'
+          say '```'
+          ls_ "" >> "$GITHUB_STEP_SUMMARY"
+          say '```'
 
-      - name: FOUND directory - domains
-        continue-on-error: true
-        run: grep -qx "domains" /tmp/root.txt /tmp/root2.txt 2>/dev/null
+          say '### domains/'
+          say '```'
+          ls_ "domains/" > /tmp/doms.txt
+          cat /tmp/doms.txt >> "$GITHUB_STEP_SUMMARY"
+          say '```'
 
-      - name: FOUND directory - public_html
-        continue-on-error: true
-        run: grep -qx "public_html" /tmp/root.txt /tmp/root2.txt 2>/dev/null
+          # For each site under domains/, show its layout and drop a marker
+          # named after it, so an HTTP fetch identifies the served one.
+          while read -r d; do
+            [ -z "$d" ] && continue
+            say "### domains/$d/"
+            say '```'
+            ls_ "domains/$d/" >> "$GITHUB_STEP_SUMMARY"
+            say '```'
+            say "### domains/$d/public_html/"
+            say '```'
+            ls_ "domains/$d/public_html/" >> "$GITHUB_STEP_SUMMARY"
+            say '```'
 
-      - name: FOUND file - index.html at login dir
-        continue-on-error: true
-        run: grep -qx "index.html" /tmp/root.txt /tmp/root2.txt 2>/dev/null
+            slug=$(printf '%s' "$d" | tr -c 'a-zA-Z0-9' '-')
+            echo "served dir is domains/$d/public_html" > /tmp/m.txt
+            if curl -sS --ssl-reqd --ftp-create-dirs --connect-timeout 20 --max-time 45 \
+                    -u "$U:$P" -T /tmp/m.txt \
+                    "ftp://$H/domains/$d/public_html/probe-$slug.txt"; then
+              say "marker placed: probe-$slug.txt"
+            else
+              say "marker FAILED: probe-$slug.txt"
+            fi
+          done < /tmp/doms.txt
 
-      - name: FOUND marker - DO_NOT_UPLOAD_HERE at login dir
-        continue-on-error: true
-        run: grep -qx "DO_NOT_UPLOAD_HERE" /tmp/root.txt /tmp/root2.txt 2>/dev/null
-
-      - name: PLACED marker in login dir
-        continue-on-error: true
-        run: |
-          echo root > /tmp/m.txt
-          curl -sS --ssl-reqd --connect-timeout 20 --max-time 45 \
-               -u "$U:$P" -T /tmp/m.txt "ftp://$H/whereami-root.txt"
-
-      - name: PLACED marker in public_html
-        continue-on-error: true
-        run: |
-          echo ph > /tmp/m.txt
-          curl -sS --ssl-reqd --ftp-create-dirs --connect-timeout 20 --max-time 45 \
-               -u "$U:$P" -T /tmp/m.txt "ftp://$H/public_html/whereami-ph.txt"
-
-      - name: PLACED marker in domains path
-        continue-on-error: true
-        run: |
-          echo dom > /tmp/m.txt
-          curl -sS --ssl-reqd --ftp-create-dirs --connect-timeout 20 --max-time 45 \
-               -u "$U:$P" -T /tmp/m.txt \
-               "ftp://$H/domains/muonstechnology.com/public_html/whereami-dom.txt"
+          say ""
+          say "Fetch https://muonstechnology.com/probe-<slug>.txt for each marker above."

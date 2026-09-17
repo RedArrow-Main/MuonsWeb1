@@ -290,15 +290,15 @@ export default function Home() {
             <div className="max-w-4xl">
               <div className="animate-rise flex max-w-[19rem] items-start gap-3 text-[0.62rem] font-extrabold uppercase leading-5 tracking-[0.2em] text-[#c8ff2b] sm:max-w-none sm:items-center sm:text-[0.68rem] sm:leading-normal sm:tracking-[0.23em]">
                 <span className="grid h-6 w-6 place-items-center rounded-full border border-[#c8ff2b]/45 bg-[#c8ff2b]/10"><span className="h-1.5 w-1.5 rounded-full bg-[#c8ff2b]" /></span>
-                Farmer first profitability for every field and every season
+                Edge agriculture infrastructure for farmer-first food security
               </div>
               <h1 className="animate-rise animate-delay-1 mt-6 max-w-[20rem] font-display text-[clamp(3.35rem,14vw,7.85rem)] font-normal leading-[0.88] tracking-[-0.055em] text-white sm:mt-7 sm:max-w-4xl sm:text-[clamp(3.6rem,8vw,7.85rem)] sm:leading-[0.86]">
-                Save more. <em className="font-display text-[#c8ff2b]">Protect what you grow.</em> Create new revenue.
+                Ground truth for every field. <em className="font-display text-[#c8ff2b]">Protect what you grow.</em> Save more, create new revenue.
               </h1>
               <div className="animate-rise animate-delay-2 mt-6 grid max-w-2xl gap-5 sm:mt-8 sm:gap-6 md:grid-cols-[1fr_auto] md:items-end">
                 <div className="max-w-xl">
                   <p className="text-[1rem] leading-7 text-white/78 md:text-[1.08rem]">
-                    You carry every cost and every risk. Muons helps you see where money is being lost, protect yield and quality, and turn trusted farm records into better opportunities with buyers, programs, and partners.
+                    You carry every cost and every risk. Muons combines edge hardware, offline-first AI, and ground agriculture data so you can see where money is being lost, protect yield and quality, and turn trusted farm records into better opportunities with buyers, programs, and partners.
                   </p>
                   <p className="mt-3 text-[0.82rem] leading-6 text-[#c8ff2b]/85 md:text-[0.9rem] md:leading-7">
                     USDA ready farm records, crop insurance underwriting, carbon credit verification, lenders program, supply chain buyers.

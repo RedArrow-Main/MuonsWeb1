@@ -33,12 +33,14 @@ export default function SeoTopic() {
     // actually answers 200.
     const path = `/${page.kind === "solution" ? "solutions" : "insights"}/${page.slug}/`;
     const canonical = `${siteUrl}${path}`;
-    document.title = `${page.title} | Muons Technology`;
+    document.title = page.metaTitle;
     setMeta("name", "description", page.description);
-    setMeta("property", "og:title", `${page.title} | Muons Technology`);
+    setMeta("property", "og:title", page.metaTitle);
     setMeta("property", "og:description", page.description);
     setMeta("property", "og:url", canonical);
-    setMeta("name", "twitter:title", `${page.title} | Muons Technology`);
+    setMeta("property", "og:image", `${siteUrl}/media/muons-technology-share.jpg`);
+    setMeta("name", "twitter:image", `${siteUrl}/media/muons-technology-share.jpg`);
+    setMeta("name", "twitter:title", page.metaTitle);
     setMeta("name", "twitter:description", page.description);
     let link = document.head.querySelector("link[rel=canonical]") as HTMLLinkElement | null;
     if (!link) {
@@ -64,6 +66,25 @@ export default function SeoTopic() {
       mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
     });
     document.head.appendChild(schema);
+
+    // The questions are on the page, so they are eligible for FAQ markup.
+    const faqId = "seo-topic-faq";
+    document.getElementById(faqId)?.remove();
+    if (page.faq.length > 0) {
+      const faqSchema = document.createElement("script");
+      faqSchema.id = faqId;
+      faqSchema.type = "application/ld+json";
+      faqSchema.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: page.faq.map((entry) => ({
+          "@type": "Question",
+          name: entry.question,
+          acceptedAnswer: { "@type": "Answer", text: entry.answer },
+        })),
+      });
+      document.head.appendChild(faqSchema);
+    }
   }, [page]);
 
   if (!page) {
@@ -105,6 +126,38 @@ export default function SeoTopic() {
           <p className="text-[0.65rem] font-extrabold uppercase tracking-[0.16em] text-[#58766b]">Muons Technology / field note</p>
           <p className="mt-4 text-sm leading-7 text-[#4e6c62]">This page describes Muons Technology’s current infrastructure direction. It does not represent a granted patent, a guarantee of outcomes, or a substitute for local agricultural, food-security, legal, or security expertise.</p>
         </div>
+        {page.detail.length > 0 && (
+          <div className="mt-16 grid gap-12 border-t border-[#123329]/15 pt-12 md:grid-cols-[0.9fr_1.1fr] md:gap-16">
+            <div>
+              <p className="section-kicker">In more detail</p>
+            </div>
+            <div className="space-y-11">
+              {page.detail.map((block) => (
+                <section key={block.heading}>
+                  <h2 className="font-display text-3xl leading-[1.02] tracking-[-0.035em] md:text-4xl">{block.heading}</h2>
+                  {block.paragraphs.map((paragraph) => (
+                    <p key={paragraph.slice(0, 40)} className="mt-5 text-[1.02rem] leading-8 text-[#49685e]">{paragraph}</p>
+                  ))}
+                </section>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {page.faq.length > 0 && (
+          <div className="mt-16 border-t border-[#123329]/15 pt-12">
+            <p className="section-kicker">Common questions</p>
+            <dl className="mt-8 grid gap-px overflow-hidden rounded-[1.5rem] border border-[#123329]/15 bg-[#123329]/15">
+              {page.faq.map((entry) => (
+                <div key={entry.question} className="bg-[#f7f6ef] p-6 md:p-8">
+                  <dt className="font-display text-2xl leading-[1.05] tracking-[-0.03em]">{entry.question}</dt>
+                  <dd className="mt-4 text-[0.98rem] leading-7 text-[#4e6c62]">{entry.answer}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        )}
+
         {relatedPages.length > 0 && (
           <nav className="mt-14 border-t border-[#123329]/15 pt-8" aria-label="Related Muons Technology pages">
             <p className="section-kicker">Continue the record</p>

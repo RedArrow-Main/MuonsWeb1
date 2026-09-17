@@ -108,45 +108,19 @@
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
 }
 
-/* Field Ledger motion: keep the farmer and field image alive with a slow, quiet drift. */
-.hero-drift {
-  animation: hero-drift 24s ease-in-out infinite alternate;
-  transform: scale(1.04) translate3d(0, 0, 0);
-  will-change: transform;
-}
-
-@keyframes hero-drift {
-  0% {
-    transform: scale(1.04) translate3d(0, 0, 0);
-  }
-  100% {
-    transform: scale(1.09) translate3d(-1.2%, -0.8%, 0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-drift {
-    animation: none;
-    transform: none;
-  }
-}
-
 /* Field Ledger hero video: quiet, muted motion behind the farmer-first message. */
 .hero-video {
   z-index: 1;
-  /* Held back until the video is actually playing, so the still image beneath
-     carries the hero until then. Without this the poster painted over the
-     drifting image and cut hard to the first frame on every reload. */
+  /* Held back until the video is genuinely playing, so the hero fades up from
+     the section's own colour rather than cutting in. The still image that used
+     to sit behind it now renders only under reduced motion, where this video
+     is hidden anyway. */
   opacity: 0;
   transition: opacity 900ms ease;
 }
 
 .hero-video.is-ready {
   opacity: 1;
-}
-
-.hero-drift {
-  z-index: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {

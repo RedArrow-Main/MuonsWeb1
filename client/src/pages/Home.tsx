@@ -144,6 +144,15 @@ export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeLens, setActiveLens] = useState(0);
   const [heroVideoReady, setHeroVideoReady] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const apply = () => setPrefersReducedMotion(query.matches);
+    apply();
+    query.addEventListener("change", apply);
+    return () => query.removeEventListener("change", apply);
+  }, []);
   const [contactSubmitted, setContactSubmitted] = useState(false);
   const [contactSending, setContactSending] = useState(false);
   const [contactError, setContactError] = useState<string | null>(null);
@@ -268,7 +277,14 @@ export default function Home() {
 
       <main>
         <section id="top" className="relative min-h-[700px] overflow-hidden bg-[#0b211b] text-white sm:min-h-[800px]">
-          <img src={heroImage} alt="Farmer standing in a maize field at sunset" fetchPriority="high" decoding="async" className="hero-drift absolute inset-0 h-full w-full object-cover object-[69%_center]" />
+          {prefersReducedMotion && (
+            <img
+              src={heroImage}
+              alt="Farmer standing in a maize field at sunset"
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-cover object-[69%_center]"
+            />
+          )}
           <video
             className={`hero-video absolute inset-0 h-full w-full object-cover object-[69%_center] ${heroVideoReady ? "is-ready" : ""}`}
             autoPlay

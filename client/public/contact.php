@@ -206,22 +206,79 @@ if (!function_exists('curl_init')) {
 
 $token = graphToken($cfg, $fields);
 
-$body = "New enquiry from the Muons Technology website.\n\n"
-      . "Name:         {$name}\n"
-      . "Email:        {$email}\n"
-      . "Organization: " . ($org !== '' ? $org : 'Not provided') . "\n"
-      . "Interest:     " . ($topic !== '' ? $topic : 'Not selected') . "\n"
-      . "Received:     " . gmdate('Y-m-d H:i:s') . " UTC\n"
-      . "IP:           {$ip}\n\n"
-      . "-------------------------------------------------------------\n\n"
-      . $message . "\n";
+// Every submitted value is escaped before it reaches the markup: the body is
+// HTML, so an unescaped angle bracket would let a visitor inject tags into a
+// message a colleague opens.
+$e = function (string $v): string {
+    return htmlspecialchars($v, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+};
+
+$rows = [
+    ['Name',         $e($name)],
+    ['Email',        '<a href="mailto:' . $e($email) . '" style="color:#1b6b4f;text-decoration:none;">' . $e($email) . '</a>'],
+    ['Organization', $org !== '' ? $e($org) : '<span style="color:#8a9a93;">Not provided</span>'],
+    ['Interest',     $topic !== '' ? $e($topic) : '<span style="color:#8a9a93;">Not selected</span>'],
+];
+
+$rowsHtml = '';
+foreach ($rows as [$label, $value]) {
+    $rowsHtml .= '<tr>'
+        . '<td style="padding:10px 0;width:130px;vertical-align:top;font:600 12px/1.4 -apple-system,BlinkMacSystemFont,\'Segoe UI\',Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#6a887c;">'
+        . $label . '</td>'
+        . '<td style="padding:10px 0;vertical-align:top;font:400 15px/1.5 -apple-system,BlinkMacSystemFont,\'Segoe UI\',Arial,sans-serif;color:#113128;">'
+        . $value . '</td>'
+        . '</tr>';
+}
+
+// Tables and inline styles throughout: Outlook ignores stylesheets and modern
+// layout, so this is the shape that survives every mail client.
+$body = '<!doctype html><html><body style="margin:0;padding:0;background:#eceae2;">'
+  . '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#eceae2;padding:24px 12px;">'
+  . '<tr><td align="center">'
+  . '<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:100%;background:#f7f6ef;border:1px solid rgba(18,51,41,.15);border-radius:14px;overflow:hidden;">'
+
+  // Header
+  . '<tr><td style="background:#113128;padding:22px 28px;">'
+  . '<div style="font:700 20px/1 Georgia,\'Times New Roman\',serif;color:#ffffff;letter-spacing:-.02em;">MUONS'
+  . '<span style="font:800 9px/1 -apple-system,BlinkMacSystemFont,\'Segoe UI\',Arial,sans-serif;letter-spacing:.18em;color:#c8ff2b;margin-left:8px;text-transform:uppercase;">Technology</span>'
+  . '</div>'
+  . '<div style="margin-top:10px;font:800 11px/1.4 -apple-system,BlinkMacSystemFont,\'Segoe UI\',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.62);">New website enquiry</div>'
+  . '</td></tr>'
+  . '<tr><td style="height:3px;background:#c8ff2b;line-height:3px;font-size:0;">&nbsp;</td></tr>'
+
+  // Fields
+  . '<tr><td style="padding:22px 28px 6px;">'
+  . '<table role="presentation" width="100%" cellpadding="0" cellspacing="0">' . $rowsHtml . '</table>'
+  . '</td></tr>'
+
+  // Message
+  . '<tr><td style="padding:14px 28px 4px;">'
+  . '<div style="font:800 11px/1.4 -apple-system,BlinkMacSystemFont,\'Segoe UI\',Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#6a887c;margin-bottom:10px;">Message</div>'
+  . '<div style="border-left:3px solid #c8ff2b;background:#ffffff;padding:16px 18px;font:400 15px/1.65 -apple-system,BlinkMacSystemFont,\'Segoe UI\',Arial,sans-serif;color:#2c4a40;white-space:pre-wrap;word-break:break-word;">'
+  . nl2br($e($message))
+  . '</div></td></tr>'
+
+  // Reply hint
+  . '<tr><td style="padding:18px 28px 4px;">'
+  . '<div style="font:400 13px/1.5 -apple-system,BlinkMacSystemFont,\'Segoe UI\',Arial,sans-serif;color:#4e6c62;">'
+  . 'Replying to this email goes straight to <strong style="color:#113128;">' . $e($name) . '</strong>.'
+  . '</div></td></tr>'
+
+  // Footer
+  . '<tr><td style="padding:20px 28px 24px;">'
+  . '<div style="border-top:1px solid rgba(18,51,41,.13);padding-top:14px;font:400 11px/1.6 -apple-system,BlinkMacSystemFont,\'Segoe UI\',Arial,sans-serif;color:#8a9a93;">'
+  . 'Sent from the contact form at muonstechnology.com<br>'
+  . 'Received ' . gmdate('j M Y, H:i') . ' UTC &nbsp;&middot;&nbsp; IP ' . $e($ip)
+  . '</div></td></tr>'
+
+  . '</table></td></tr></table></body></html>';
 
 // The message is sent as the configured mailbox. The visitor goes in replyTo,
 // so replying in Outlook reaches them directly.
 $payload = [
     'message' => [
         'subject'      => 'Muons website enquiry — ' . ($topic !== '' ? $topic : 'General'),
-        'body'         => ['contentType' => 'Text', 'content' => $body],
+        'body'         => ['contentType' => 'HTML', 'content' => $body],
         'toRecipients' => [['emailAddress' => ['address' => $cfg['recipient']]]],
         'replyTo'      => [['emailAddress' => ['address' => $email, 'name' => $name]]],
     ],

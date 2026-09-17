@@ -1,7 +1,6 @@
-# Temporary diagnostic. Reports the SHAPE of the stored FTP secrets (lengths,
-# stray whitespace, wrong prefixes) without revealing them, then lists the
-# directory tree and drops markers so the served directory can be identified.
-# Delete this workflow once the deploy works.
+# Temporary diagnostic. Each check is its own step so that the pass/fail
+# pattern is readable from the API without repository admin rights and
+# without printing any secret value. Delete once the deploy works.
 name: Probe web root
 
 on:
@@ -13,82 +12,98 @@ on:
 permissions:
   contents: read
 
+env:
+  H: ${{ secrets.HOSTINGER_FTP_SERVER }}
+  U: ${{ secrets.HOSTINGER_FTP_USERNAME }}
+  P: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+
 jobs:
   probe:
-    name: Check credentials and locate the served directory
+    name: Diagnose
     runs-on: ubuntu-latest
-
     steps:
-      - name: Report the shape of the stored secrets
-        env:
-          H: ${{ secrets.HOSTINGER_FTP_SERVER }}
-          U: ${{ secrets.HOSTINGER_FTP_USERNAME }}
-          P: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+      - name: CHECK server secret is not empty
+        continue-on-error: true
+        run: '[ -n "$H" ]'
+
+      - name: CHECK server secret has no whitespace
+        continue-on-error: true
+        run: '[ "${#H}" -eq "$(printf %s "$H" | tr -d "[:space:]" | wc -c)" ]'
+
+      - name: CHECK server secret has no scheme or slash
+        continue-on-error: true
+        run: 'case "$H" in *://*|*/*) exit 1 ;; *) exit 0 ;; esac'
+
+      - name: CHECK username secret is not empty
+        continue-on-error: true
+        run: '[ -n "$U" ]'
+
+      - name: CHECK username secret has no whitespace
+        continue-on-error: true
+        run: '[ "${#U}" -eq "$(printf %s "$U" | tr -d "[:space:]" | wc -c)" ]'
+
+      - name: CHECK username has a dot (Hostinger sub-account form)
+        continue-on-error: true
+        run: 'case "$U" in *.*) exit 0 ;; *) exit 1 ;; esac'
+
+      - name: CHECK password secret is not empty
+        continue-on-error: true
+        run: '[ -n "$P" ]'
+
+      - name: CHECK password secret has no whitespace
+        continue-on-error: true
+        run: '[ "${#P}" -eq "$(printf %s "$P" | tr -d "[:space:]" | wc -c)" ]'
+
+      - name: CHECK tcp port 21 reachable
+        continue-on-error: true
+        run: timeout 20 bash -c "cat < /dev/null > /dev/tcp/$H/21"
+
+      - name: CHECK FTPS login succeeds
+        continue-on-error: true
         run: |
-          set +e
-          shape () {   # $1 = label, $2 = value
-            local v="$2"
-            local n=${#v}
-            local trimmed
-            trimmed="$(printf '%s' "$v" | tr -d '[:space:]')"
-            echo "$1:"
-            echo "   length            : $n"
-            echo "   length if trimmed : ${#trimmed}"
-            if [ "$n" -ne "${#trimmed}" ]; then
-              echo "   >>> CONTAINS WHITESPACE - this alone can cause 530 <<<"
-            fi
-            if [ "$n" -eq 0 ]; then
-              echo "   >>> EMPTY - the secret is missing or was not saved <<<"
-            fi
-          }
+          curl -sS --ssl-reqd --connect-timeout 20 --max-time 45 \
+               -u "$U:$P" --list-only "ftp://$H/" > /tmp/root.txt
 
-          echo "================ SECRET SHAPE ================"
-          shape "HOSTINGER_FTP_SERVER"   "$H"
-          shape "HOSTINGER_FTP_USERNAME" "$U"
-          shape "HOSTINGER_FTP_PASSWORD" "$P"
-
-          case "$H" in
-            *://*) echo "SERVER contains '://' - remove the scheme, use the bare host" ;;
-            */*)   echo "SERVER contains '/' - remove any path, use the bare host" ;;
-            *)     echo "SERVER looks like a bare host. Good." ;;
-          esac
-
-          case "$U" in
-            u*.*) echo "USERNAME looks like Hostinger's prefixed form (u<digits>.<name>). Good." ;;
-            u*)   echo "USERNAME looks like a bare account id (u<digits>)." ;;
-            *)    echo "USERNAME does NOT start with 'u' - Hostinger usernames normally do." ;;
-          esac
-
-          echo "================ LOGIN TEST ================"
-          if curl -sS --ssl-reqd --connect-timeout 20 --max-time 45 \
-                  -u "$U:$P" --list-only "ftp://$H/" >/tmp/ls.txt 2>/tmp/err.txt; then
-            echo "LOGIN OK. Top-level listing:"
-            cat /tmp/ls.txt
-          else
-            echo "LOGIN FAILED:"
-            sed -e "s/$U/<username>/g" /tmp/err.txt
-            exit 1
-          fi
-
-      - name: List the tree and drop markers
-        env:
-          H: ${{ secrets.HOSTINGER_FTP_SERVER }}
-          U: ${{ secrets.HOSTINGER_FTP_USERNAME }}
-          P: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+      - name: CHECK plain FTP login succeeds (no TLS)
+        continue-on-error: true
         run: |
-          set +e
-          for d in "" "domains/" "domains/muonstechnology.com/" "public_html/"; do
-            echo "--- listing /$d ---"
-            curl -sS --ssl-reqd --connect-timeout 20 --max-time 60 \
-                 -u "$U:$P" --list-only "ftp://$H/$d" || echo "(cannot list /$d)"
-          done
+          curl -sS --connect-timeout 20 --max-time 45 \
+               -u "$U:$P" --list-only "ftp://$H/" > /tmp/root2.txt
 
-          put () {
-            echo "web root is: /$1" > /tmp/marker.txt
-            curl -sS --ssl-reqd --ftp-create-dirs --connect-timeout 20 --max-time 60 \
-                 -u "$U:$P" -T /tmp/marker.txt "ftp://$H/$1$2" \
-              && echo "  placed $2 in /$1" || echo "  FAILED to place $2 in /$1"
-          }
-          put ""                                        "whereami-root.txt"
-          put "public_html/"                            "whereami-ph.txt"
-          put "domains/muonstechnology.com/public_html/" "whereami-dom.txt"
+      - name: FOUND directory - domains
+        continue-on-error: true
+        run: grep -qx "domains" /tmp/root.txt /tmp/root2.txt 2>/dev/null
+
+      - name: FOUND directory - public_html
+        continue-on-error: true
+        run: grep -qx "public_html" /tmp/root.txt /tmp/root2.txt 2>/dev/null
+
+      - name: FOUND file - index.html at login dir
+        continue-on-error: true
+        run: grep -qx "index.html" /tmp/root.txt /tmp/root2.txt 2>/dev/null
+
+      - name: FOUND marker - DO_NOT_UPLOAD_HERE at login dir
+        continue-on-error: true
+        run: grep -qx "DO_NOT_UPLOAD_HERE" /tmp/root.txt /tmp/root2.txt 2>/dev/null
+
+      - name: PLACED marker in login dir
+        continue-on-error: true
+        run: |
+          echo root > /tmp/m.txt
+          curl -sS --ssl-reqd --connect-timeout 20 --max-time 45 \
+               -u "$U:$P" -T /tmp/m.txt "ftp://$H/whereami-root.txt"
+
+      - name: PLACED marker in public_html
+        continue-on-error: true
+        run: |
+          echo ph > /tmp/m.txt
+          curl -sS --ssl-reqd --ftp-create-dirs --connect-timeout 20 --max-time 45 \
+               -u "$U:$P" -T /tmp/m.txt "ftp://$H/public_html/whereami-ph.txt"
+
+      - name: PLACED marker in domains path
+        continue-on-error: true
+        run: |
+          echo dom > /tmp/m.txt
+          curl -sS --ssl-reqd --ftp-create-dirs --connect-timeout 20 --max-time 45 \
+               -u "$U:$P" -T /tmp/m.txt \
+               "ftp://$H/domains/muonstechnology.com/public_html/whereami-dom.txt"

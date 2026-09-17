@@ -131,7 +131,7 @@ const leaders = [
     role: "COO",
     bio: "Leads operations, market expansion, and business development, building the partnerships, workflows, and execution discipline that help Muons move from field pilots to durable agricultural infrastructure.",
     linkedin: "https://www.linkedin.com/in/gordon-mitchell-527953b/",
-    image: `${mediaOrigin}/muons-technology-gordon-mitchell.webp`,
+    image: `${mediaOrigin}/muons-technology-gordon-mitchell-v2.webp`,
   },
 ];
 

@@ -28,7 +28,10 @@ export default function SeoTopic() {
 
   useEffect(() => {
     if (!page) return;
-    const path = `/${page.kind === "solution" ? "solutions" : "insights"}/${page.slug}`;
+    // Trailing slash: these are directory index files, so the server
+    // redirects the slashless form. The canonical must name the URL that
+    // actually answers 200.
+    const path = `/${page.kind === "solution" ? "solutions" : "insights"}/${page.slug}/`;
     const canonical = `${siteUrl}${path}`;
     document.title = `${page.title} | Muons Technology`;
     setMeta("name", "description", page.description);

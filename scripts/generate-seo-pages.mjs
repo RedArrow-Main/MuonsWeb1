@@ -41,7 +41,7 @@ function replaceMeta(html, selector, replacement) {
 }
 
 for (const page of pages) {
-  const canonical = `${siteUrl}/${page.folder}`;
+  const canonical = `${siteUrl}/${page.folder}/`;
   const schema = JSON.stringify({
     "@context": "https://schema.org",
     "@type": page.type,
@@ -63,7 +63,7 @@ for (const page of pages) {
   html = replaceMeta(html, /<meta property="og:url" content="[^"]*" \/>/, `<meta property="og:url" content="${canonical}" />`);
   html = replaceMeta(html, /<meta name="twitter:title" content="[^"]*" \/>/, `<meta name="twitter:title" content="${page.title}" />`);
   html = replaceMeta(html, /<meta name="twitter:description" content="[^"]*" \/>/, `<meta name="twitter:description" content="${page.description}" />`);
-  html = replaceMeta(html, /<script type="application\/ld\+json">[\s\S]*?<\/script>/, `<script type="application/ld+json">${schema}</script>`);
+  html = replaceMeta(html, /<script type="application\/ld\+json">[\s\S]*?<\/script>/, `<script type="application/ld+json" id="seo-topic-schema">${schema}</script>`);
 
   const outputPath = path.join(outputRoot, page.folder, "index.html");
   await mkdir(path.dirname(outputPath), { recursive: true });

@@ -203,10 +203,22 @@ function vitePluginStorageProxy(): Plugin {
   };
 }
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy()];
+// The AI builder's tooling is development-only. vitePluginManusRuntime inlines
+// roughly 358 KB into every page - its own copy of React included - and being
+// inline it is re-fetched on every page view rather than cached. jsxLocPlugin
+// stamps source locations onto JSX for the builder's click-to-edit. Neither is
+// wanted in a deployed site, so both are limited to dev.
+const devOnlyPlugins = () => [jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector()];
 
-export default defineConfig({
-  plugins,
+// Keyed off Vite's own command rather than NODE_ENV, which is set implicitly
+// during a build and would silently reinstate 358 KB per page if that changed.
+export default defineConfig(({ command }) => ({
+  plugins: [
+    react(),
+    tailwindcss(),
+    vitePluginStorageProxy(),
+    ...(command === "serve" ? devOnlyPlugins() : []),
+  ],
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
@@ -238,4 +250,4 @@ export default defineConfig({
       deny: ["**/.*"],
     },
   },
-});
+}));

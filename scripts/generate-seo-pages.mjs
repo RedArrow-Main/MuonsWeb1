@@ -166,5 +166,24 @@ const sitemap =
 
 await writeFile(path.join(outputRoot, "sitemap.xml"), sitemap);
 
+// --- 404 -------------------------------------------------------------------
+// Apache serves this for unknown paths, with a real 404 status. It is the app
+// shell, so the router still renders the NotFound page at the URL the visitor
+// asked for - they get the right page and search engines get the right status,
+// rather than the soft 404 a catch-all rewrite produces.
+let notFound = template;
+notFound = notFound.replace(/<title>[\s\S]*?<\/title>/, "<title>Page not found | Muons Technology</title>");
+notFound = notFound.replace(
+  /<meta name="description" content="[^"]*" \/>/,
+  '<meta name="description" content="This page could not be found." />\n    <meta name="robots" content="noindex" />'
+);
+notFound = notFound.replace(/<link rel="canonical" href="[^"]*" \/>/, "");
+notFound = notFound.replace(
+  /<noscript>[\s\S]*?<\/noscript>/,
+  '<noscript><main><h1>Page not found</h1><p>This page could not be found. <a href="/">Return to Muons Technology</a>.</p></main></noscript>'
+);
+await writeFile(path.join(outputRoot, "404.html"), notFound);
+
 console.log(`Pre-rendered ${pages.length} SEO routes.`);
+console.log("Wrote 404.html.");
 console.log(`Wrote sitemap.xml with ${entries.length} URLs.`);

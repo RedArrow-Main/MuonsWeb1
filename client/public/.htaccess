@@ -14,13 +14,16 @@
   RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
   RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
 
-  # Never rewrite something that exists on disk.
-  RewriteCond %{REQUEST_FILENAME} -f [OR]
-  RewriteCond %{REQUEST_FILENAME} -d
-  RewriteRule ^ - [L]
-
-  RewriteRule ^ index.html [L]
+  # Every route this app serves is pre-rendered to a real file, so there is no
+  # need to rewrite unknown paths to index.html. Doing so returned 200 for URLs
+  # that do not exist - a soft 404 - which wastes crawl budget and lets
+  # nonexistent routes be indexed. Unknown paths now fall through to Apache and
+  # are answered by ErrorDocument below, with a genuine 404 status.
 </IfModule>
+
+# The app shell, so the router still renders the NotFound page at the URL the
+# visitor requested, while the status code stays correct.
+ErrorDocument 404 /404.html
 
 # --- Security headers -------------------------------------------------------
 <IfModule mod_headers.c>

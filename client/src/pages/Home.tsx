@@ -126,14 +126,6 @@ const leaders = [
     image: `${mediaOrigin}/muons-technology-andre-james.webp`,
   },
   {
-    initials: "FK",
-    name: "Fred Kamuzinzi",
-    role: "Financial Advisor",
-    bio: "Brings experience across digital strategy, AI-led systems, and enterprise transformation. Advises Muons on financial readiness, capital strategy, and resilient growth planning.",
-    linkedin: "https://www.linkedin.com/in/fred-kamuzinzi/",
-    image: `${mediaOrigin}/muons-technology-fred-kamuzinzi.webp`,
-  },
-  {
     initials: "GM",
     name: "Gordon Mitchell",
     role: "COO",
@@ -689,17 +681,15 @@ export default function Home() {
           <div className="relative mx-auto max-w-[1440px]">
             <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
               <div><div className="flex items-center justify-between gap-4"><p className="section-kicker">Muons leadership</p><span className="flex items-center gap-2 text-[0.52rem] font-extrabold uppercase tracking-[0.13em] text-[#58776c]"><span className="grid h-7 w-7 place-items-center rounded-md border border-[#123329]/20 bg-white/50 p-0.5"><img src={muonsSymbol} alt="" className="h-full w-full object-contain" /></span>Leadership dossier / 03</span></div><h2 className="mt-6 max-w-xl font-display text-5xl leading-[0.93] tracking-[-0.05em] text-[#113128] md:text-7xl">People building agricultural infrastructure with Muons.</h2></div>
-              <p className="max-w-2xl text-[1.02rem] leading-8 text-[#4e6c62] lg:justify-self-end">A multidisciplinary team spanning digital transformation, secure systems, global operations, and agricultural infrastructure. Each portrait is presented as an approved record in the Muons leadership dossier.</p>
+              <p className="max-w-2xl text-[1.02rem] leading-8 text-[#4e6c62] lg:justify-self-end">A multidisciplinary team spanning digital transformation, secure systems, global operations, and agricultural infrastructure.</p>
             </div>
 
-            <div className="mt-16 grid items-stretch gap-7 md:grid-cols-2 xl:grid-cols-3">
+            <div className="mt-16 grid max-w-4xl items-stretch gap-7 md:grid-cols-2">
               {leaders.map((leader, index) => (
                 <article key={leader.name} className="group overflow-hidden rounded-[1.5rem] border border-[#123329]/12 bg-[#e6e6dc] motion-safe:transition-[transform,box-shadow,border-color] motion-safe:duration-300 hover:-translate-y-1 hover:border-[#c8ff2b]/45 hover:shadow-[0_18px_45px_rgba(17,49,40,0.16)]">
                   <div className={`relative aspect-[4/5] overflow-hidden border-b border-[#123329]/12 ${index % 2 === 0 ? "bg-[#153b30] text-white" : "bg-[#d4d7c7] text-[#113128]"}`}>
-                    {leader.image ? <><img src={leader.image} alt={`${leader.name}, ${leader.role}`} loading="lazy" decoding="async" className={`absolute inset-0 h-full w-full object-cover ${index === 0 ? "object-[50%_12%] scale-[1.18]" : "object-[50%_22%]"} brightness-[0.96] saturate-[0.9]` } /><div className="absolute inset-0 bg-gradient-to-t from-[#0b211b]/82 via-[#0b211b]/5 to-transparent" /></> : <div className="absolute inset-0 opacity-35 [background-image:linear-gradient(135deg,transparent_30%,rgba(200,255,43,0.22)_30%,rgba(200,255,43,0.22)_31%,transparent_31%)] [background-size:34px_34px]" aria-hidden="true" />}
-                    <div className="absolute inset-5 flex items-center justify-between border-b border-current/20 pb-3 text-[0.54rem] font-extrabold uppercase tracking-[0.13em] opacity-70"><span>Muons dossier</span><span>Record 0{index + 1}</span></div>
+                    {leader.image ? <><img src={leader.image} alt={`${leader.name}, ${leader.role}`} loading="lazy" decoding="async" className={`absolute inset-0 h-full w-full object-cover ${index === 0 ? "object-[50%_12%] scale-[1.18]" : "object-[50%_22%]"} `} /></> : <div className="absolute inset-0 opacity-35 [background-image:linear-gradient(135deg,transparent_30%,rgba(200,255,43,0.22)_30%,rgba(200,255,43,0.22)_31%,transparent_31%)] [background-size:34px_34px]" aria-hidden="true" />}
                     {!leader.image && <div className="absolute inset-0 grid place-items-center"><span className={`grid h-24 w-24 place-items-center rounded-full border text-4xl font-display ${index % 2 === 0 ? "border-[#c8ff2b]/60 bg-black/15 text-[#c8ff2b]" : "border-[#113128]/25 bg-white/20 text-[#113128]"}`}>{leader.initials}</span></div>}
-                    <p className="absolute inset-x-5 bottom-5 text-[0.55rem] font-bold uppercase tracking-[0.12em] opacity-70">{leader.image ? "Approved portrait / leadership file" : "Portrait pending / record slot"}</p>
                   </div>
                   <div className="p-6"><p className="text-[0.62rem] font-extrabold uppercase tracking-[0.15em] text-[#607e73]">{leader.role}</p><h3 className="mt-3 font-display text-3xl tracking-[-0.035em] text-[#113128]">{leader.name}</h3><p className="mt-4 text-sm leading-6 text-[#4e6d63]">{leader.bio}</p><a href={leader.linkedin} target="_blank" rel="noreferrer" className="group/link mt-6 inline-flex items-center gap-2 text-[0.62rem] font-extrabold uppercase tracking-[0.13em] text-[#113128]">LinkedIn profile <ArrowUpRight className="h-3.5 w-3.5 text-[#739087] transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" /></a></div>
                 </article>

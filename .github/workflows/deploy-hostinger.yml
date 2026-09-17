@@ -1,5 +1,13 @@
 # Field Ledger style reminder: keep deployment automation quiet, explicit, and dependable for the Muons Technology static site.
-name: Deploy Muons Technology to Hostinger
+#
+# Hostinger deploys this site with its own Git integration, which clones a
+# branch into the web root. The source tree has no index.html - that only
+# exists after a Vite build - so pointing Hostinger at `main` serves nothing.
+#
+# This workflow builds on every push to main and force-pushes the contents of
+# dist/public to the `deploy` branch, whose root IS the website. Hostinger is
+# configured to pull `deploy`.
+name: Publish built site to the deploy branch
 
 on:
   push:
@@ -8,25 +16,24 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: hostinger-production
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
-    name: Build and deploy production site
+  build-and-publish:
+    name: Build and publish
     runs-on: ubuntu-latest
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      # No version here on purpose: pnpm/action-setup@v4 fails outright when a
-      # version is given both here and as packageManager in package.json, which
-      # is what broke every previous run. package.json is the single source.
       - name: Set up pnpm
+        # No version here on purpose: pnpm/action-setup fails when a version is
+        # given both here and as packageManager in package.json.
         uses: pnpm/action-setup@v4
 
       - name: Set up Node.js
@@ -41,15 +48,22 @@ jobs:
       - name: Build production site
         run: pnpm run build
 
-      - name: Deploy dist/public to Hostinger
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.HOSTINGER_FTP_SERVER }}
-          username: ${{ secrets.HOSTINGER_FTP_USERNAME }}
-          password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
-          local-dir: ./dist/public/
-          server-dir: ./public_html/
-          protocol: ftps
-          port: 21
-          dangerous-clean-slate: false
-          log-level: standard
+      - name: Drop dev-only files from the build
+        run: rm -rf dist/public/__manus__ dist/public/.gitkeep
+
+      - name: Publish dist/public to the deploy branch
+        run: |
+          set -e
+          cd dist/public
+          git init -q
+          git checkout -q -b deploy
+          git add -A
+          git -c user.email="actions@github.com" \
+              -c user.name="GitHub Actions" \
+              commit -q -m "Build of ${GITHUB_SHA}"
+          git push -q --force \
+            "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" \
+            deploy
+          echo "Published $(git ls-files | wc -l) files to the deploy branch."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

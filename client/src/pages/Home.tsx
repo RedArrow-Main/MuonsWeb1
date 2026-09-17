@@ -154,19 +154,6 @@ export default function Home() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const handleSubscribe = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const form = event.currentTarget;
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-    form.reset();
-    toast.success("Your field-notes request is recorded.", {
-      description: "Expect occasional Muons intelligence updates from the growing edge.",
-    });
-  };
-
   const handleContact = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;

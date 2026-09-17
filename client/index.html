@@ -42,6 +42,27 @@
       </main>
     </noscript>
     <script type="module" src="/src/main.tsx"></script>
-    <script defer src="%VITE_ANALYTICS_ENDPOINT%/umami" data-website-id="%VITE_ANALYTICS_WEBSITE_ID%"></script>
+    <!-- Google Analytics 4. Replace G-XXXXXXXXXX with the real measurement ID;
+         a GA4 ID is public by design. The guard keeps the tag inert until then. -->
+    <script>
+      window.MUONS_GA_ID = "G-XXXXXXXXXX";
+    </script>
+    <script>
+      (function () {
+        var id = window.MUONS_GA_ID;
+        if (!id || id.indexOf("XXXX") !== -1) return;   // not configured yet
+        var s = document.createElement("script");
+        s.async = true;
+        s.src = "https://www.googletagmanager.com/gtag/js?id=" + id;
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { window.dataLayer.push(arguments); };
+        window.gtag("js", new Date());
+        // send_page_view is disabled because this is a single-page app: the
+        // router changes the URL without a reload, so views are sent manually
+        // from the app instead. Left on, only the first page of a visit counts.
+        window.gtag("config", id, { send_page_view: false });
+      })();
+    </script>
   </body>
 </html>

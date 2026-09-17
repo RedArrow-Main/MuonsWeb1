@@ -7,13 +7,8 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "@/pages/Home";
 import SeoTopic from "@/pages/SeoTopic";
-import { usePageViews } from "@/hooks/usePageViews";
 
 function Router() {
-  // Client-side navigation does not reload the document, so views are reported
-  // here rather than by the GA4 snippet.
-  usePageViews();
-
   return (
     <Switch>
       <Route path="/" component={Home} />

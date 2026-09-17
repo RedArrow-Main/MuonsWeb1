@@ -776,6 +776,7 @@ export default function Home() {
               <p className="text-[0.62rem] font-extrabold uppercase tracking-[0.17em] text-[#c8ff2b]">Built at the edge</p>
               <p className="mt-5 font-display text-2xl leading-[1.02] tracking-[-0.03em] text-white">The field is where useful intelligence begins.</p>
               <p className="mt-4 text-sm leading-6 text-white/55">Muons Technology<br />Delaware, USA</p>
+              <a href="https://www.linkedin.com/company/muons-technology/" target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-white/70 transition-colors hover:text-[#c8ff2b]">Muons Technology on LinkedIn <ArrowUpRight className="h-3.5 w-3.5" /></a>
               <a href="#contact" className="mt-5 inline-flex text-[0.62rem] font-extrabold uppercase tracking-[0.13em] text-white/70 transition-colors hover:text-[#c8ff2b]">Talk to the team <ArrowUpRight className="ml-2 h-3.5 w-3.5" /></a>
             </div>
           </div>

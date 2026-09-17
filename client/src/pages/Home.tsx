@@ -766,6 +766,10 @@ export default function Home() {
                 <Link href="/solutions/offline-first-ai-for-farmers" className="transition-colors hover:text-[#c8ff2b]">Offline-first AI</Link>
                 <Link href="/solutions/blockchain-agricultural-records" className="transition-colors hover:text-[#c8ff2b]">Trusted records</Link>
                 <Link href="/insights/early-food-insecurity-signals" className="transition-colors hover:text-[#c8ff2b]">Food security field note</Link>
+                <Link href="/solutions/farm-records-for-insurance-and-lending" className="transition-colors hover:text-[#c8ff2b]">Records for insurance and lending</Link>
+                <Link href="/solutions/carbon-credit-verification-farm-records" className="transition-colors hover:text-[#c8ff2b]">Carbon credit verification</Link>
+                <Link href="/insights/what-is-edge-computing-in-agriculture" className="transition-colors hover:text-[#c8ff2b]">What is edge computing in agriculture?</Link>
+                <Link href="/insights/who-owns-farm-data" className="transition-colors hover:text-[#c8ff2b]">Who owns farm data?</Link>
               </nav>
             </div>
             <div>

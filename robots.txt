@@ -1,0 +1,51 @@
+# Muons Technology
+#
+# Everything is open to every crawler, including AI crawlers, deliberately:
+# being quotable in AI answers is worth more to a company this size than
+# withholding content from training. The AI agents are named explicitly so a
+# later blanket rule cannot quietly reverse that decision, and so the intent is
+# obvious to whoever reads this next.
+#
+# Note: as of 17 Sep 2026 GPTBot receives HTTP 429 from the host itself, not
+# from this file. That is Hostinger's own bot protection and has to be changed
+# in hPanel; robots.txt cannot undo it.
+
+User-agent: *
+Allow: /
+
+# Search
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# AI assistants and retrieval
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://muonstechnology.com/sitemap.xml

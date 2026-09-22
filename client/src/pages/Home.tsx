@@ -511,6 +511,7 @@ export default function Home() {
               </div>
               <div className="max-w-2xl lg:justify-self-end">
                 <p className="text-[1.05rem] leading-8 text-white/72">Muons puts farmer first infrastructure where the data begins: at the field edge, in the collection point, and inside the daily operating rhythm of the people doing the work.</p>
+                <Link href="/solutions/edge-agriculture-infrastructure" className="mt-6 inline-flex items-center gap-2 text-[0.63rem] font-extrabold uppercase tracking-[0.13em] text-[#c8ff2b] hover:text-white transition-colors">Read the edge infrastructure brief <ArrowUpRight className="h-3.5 w-3.5" /></Link>
                 <p className="mt-5 border-l-2 border-[#c8ff2b] pl-4 text-sm leading-6 text-white/58">The physical layer is designed to extend useful intelligence into places where broadband, cloud access, or a smartphone cannot be assumed.</p>
               </div>
             </div>
@@ -553,6 +554,7 @@ export default function Home() {
               </div>
               <div className="max-w-2xl lg:justify-self-end">
                 <p className="text-[1.05rem] leading-8 text-[#49685e]">Regenerative agriculture starts with paying attention to the soil. Cover it, care for it, use water thoughtfully, and learn from each season. Muons helps you keep those observations together so the work you are doing today can strengthen the seasons ahead.</p>
+                <Link href="/solutions/carbon-credit-verification-farm-records" className="mt-6 inline-flex items-center gap-2 text-[0.63rem] font-extrabold uppercase tracking-[0.13em] text-[#113128] hover:text-[#6a887c] transition-colors">Documenting practice for verification <ArrowUpRight className="h-3.5 w-3.5" /></Link>
                 <p className="mt-5 border-l-2 border-[#c8ff2b] pl-4 text-sm leading-6 text-[#4f6d63]">There is no single right way to care for a farm. The important thing is seeing what is working and carrying that learning forward.</p>
               </div>
             </div>
@@ -609,6 +611,7 @@ export default function Home() {
               </div>
               <div className="max-w-2xl lg:justify-self-end">
                 <p className="text-[1.05rem] leading-8 text-white/72">Muons is shaping farmer-first edge infrastructure around record integrity: offline AI at the point of work, blockchain-backed continuity, and a clear chain of ground events that can be reviewed and carried forward.</p>
+                <Link href="/solutions/blockchain-agricultural-records" className="mt-6 inline-flex items-center gap-2 text-[0.63rem] font-extrabold uppercase tracking-[0.13em] text-[#c8ff2b] hover:text-white transition-colors">How trusted records work <ArrowUpRight className="h-3.5 w-3.5" /></Link>
                 <p className="mt-5 border-l-2 border-[#c8ff2b] pl-4 text-sm leading-6 text-white/56">The goal is practical trust — not complexity for its own sake. Farmers and operators should be able to understand what was recorded, when it changed, and why it matters.</p>
               </div>
             </div>

@@ -325,6 +325,12 @@ export default function Home() {
                   >
                     See how Muons pays back <ArrowDownRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
                   </button>
+                  <Link
+                    href="/insights/what-muons-does"
+                    className="inline-flex items-center gap-2 text-[0.7rem] font-extrabold uppercase tracking-[0.12em] text-white/70 underline-offset-4 transition-colors hover:text-[#c8ff2b] hover:underline"
+                  >
+                    New to this? Read the plain version <ArrowUpRight className="h-3.5 w-3.5" />
+                  </Link>
                 </div>
               </div>
               <div className="mt-6 flex max-w-[22rem] flex-wrap gap-2 sm:mt-7 sm:max-w-none sm:gap-2.5">

@@ -382,63 +382,6 @@ export const seoPages: SeoPage[] = [
     updated: "2026-09-17",
     related: ["blockchain-agricultural-records", "farm-records-for-insurance-and-lending"],
   },
-  {
-    slug: "what-muons-does",
-    kind: "insight",
-    eyebrow: "Plain language / start here",
-    title: "What Muons Does, in Plain Terms",
-    metaTitle: "What Muons Does, in Plain Terms | Muons",
-    description: "A plain explanation of what Muons Technology is building, what problem it solves for a grower, what it would look like to use, and what it will not do.",
-    intro: "Most of this website is written for people who fund and build infrastructure. This page is written for the person standing in the field. No jargon, and nothing dressed up as more finished than it is.",
-    sections: [
-      { heading: "What it is", body: "A small piece of hardware that sits where the work happens, and software that remembers what you saw. It keeps working when there is no signal, and catches up later." },
-      { heading: "What it is for", body: "You already know things about your fields that never get written down. This is a way to keep those things, so you still have them when someone asks." },
-      { heading: "Where it stands", body: "It is being built. The patent is filed, not granted. There is no product to buy today, and this page will not pretend otherwise." },
-    ],
-    detail: [
-      {
-        heading: "The problem, in one paragraph",
-        paragraphs: [
-          "You walk a block and notice something. Maybe a patch that is coming on slower. Maybe water sitting where it should not. You make a decision, and you move on to the next job. Months later a buyer asks what you did, or a programme asks for proof, or an insurer asks what the field looked like in June. The answer is in your head, on a note in the truck, or in a photo on a phone you no longer have.",
-          "Nothing here is a failure of record keeping. It is that the moment you noticed something and the moment someone needs proof of it are a long way apart, and nothing joins them up.",
-        ],
-      },
-      {
-        heading: "What using it would look like",
-        paragraphs: [
-          "You are in the field. You note what you see, the way you would tell a colleague. The device holds it, with the date, the place, and who saw it. No signal needed.",
-          "Later, when there is a connection, it catches up. What you noted is where the rest of your team can see it, and where you can find it again.",
-          "When a buyer, insurer, lender or programme asks what happened, the answer already exists. You are not rebuilding a season from memory the week before a deadline.",
-        ],
-      },
-      {
-        heading: "What it will not do",
-        paragraphs: [
-          "It will not farm for you. It does not tell you what to plant or when to spray. You know your ground; it keeps track of what you saw there.",
-          "It will not work if nothing goes in. If nobody notes anything, there is nothing to keep.",
-          "It will not get you a carbon credit, a lower premium, or a loan. It helps you show what you did. Whether that is worth anything is decided by the programme, the insurer or the lender, not by us. Anyone telling you otherwise is selling something.",
-          "It is not finished. The patent is filed and not granted, and the hardware is in development.",
-        ],
-      },
-      {
-        heading: "The same thing in the words used elsewhere on this site",
-        paragraphs: [
-          "If you read the rest of these pages you will meet some terms. They mean what is described above.",
-          "Edge hardware means the computer is in the field rather than in a data centre far away. Offline-first means it keeps working with no signal. Ground agriculture data means what people actually see in the field, rather than what a satellite guesses from above. A trusted or blockchain record means the history cannot be quietly changed later, so someone who was not there can rely on it.",
-          "None of those terms make the thing more useful. They are how the people who build and fund this work talk about it.",
-        ],
-      },
-    ],
-    faq: [
-      { question: "Can I buy this today?", answer: "No. It is in development and the patent is filed rather than granted. If you want to talk about it, or be told when there is something to try, use the contact form on the home page." },
-      { question: "Do I need internet in my fields?", answer: "No. It is built for places where there is no signal. It keeps what you record and catches up when a connection is available." },
-      { question: "Do I need a smartphone?", answer: "The point of building hardware for the field is not to assume everyone has a recent phone and a data plan. Exact requirements will be confirmed when there is something to try." },
-      { question: "Who owns what I record?", answer: "You should own what your operation produces, and you should be able to take a complete copy elsewhere. Ask that of anyone who collects your data, including us, and read the agreement before you sign it." },
-      { question: "Will this get me a carbon credit or a better insurance rate?", answer: "No. It helps you show what you did. The programme, insurer or lender decides what that is worth. Be careful of anyone who promises otherwise." },
-    ],
-    updated: "2026-09-22",
-    related: ["who-owns-farm-data", "what-is-edge-computing-in-agriculture"],
-  },
 ];
 
 export function getSeoPage(kind: SeoPage["kind"], slug: string | undefined) {

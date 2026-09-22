@@ -14,6 +14,16 @@
   RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
   RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
 
+  # URLs people and crawlers commonly guess, sent to the section that actually
+  # holds that content. These point at real content rather than the bare
+  # homepage: redirecting a missing page to "/" is treated as a soft 404, which
+  # is the thing the ErrorDocument below exists to avoid. NE keeps the fragment
+  # from being escaped.
+  RewriteRule ^about/?$   /#muons   [R=301,NE,L]
+  RewriteRule ^company/?$ /#muons   [R=301,NE,L]
+  RewriteRule ^team/?$    /#team    [R=301,NE,L]
+  RewriteRule ^contact/?$ /#contact [R=301,NE,L]
+
   # Every route this app serves is pre-rendered to a real file, so there is no
   # need to rewrite unknown paths to index.html. Doing so returned 200 for URLs
   # that do not exist - a soft 404 - which wastes crawl budget and lets

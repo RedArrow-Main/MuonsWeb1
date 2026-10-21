@@ -382,6 +382,61 @@ export const seoPages: SeoPage[] = [
     updated: "2026-09-17",
     related: ["blockchain-agricultural-records", "farm-records-for-insurance-and-lending"],
   },
+  {
+    slug: "quantum-computing-and-agricultural-records",
+    kind: "insight",
+    eyebrow: "Field note / long-lived records",
+    title: "What Quantum Computing Means for Long-Lived Agricultural Records",
+    metaTitle: "Quantum Computing and Farm Records | Muons",
+    description: "Why quantum computing matters to agricultural records that must stay verifiable for decades, what harvest-now-decrypt-later means in practice, and what is worth doing about it today.",
+    intro: "Most discussion of quantum computing concerns breaking encryption some years from now. For agriculture the question is narrower and more awkward: records created today are meant to be verifiable in twenty years, and the cryptography protecting them has to survive that long.",
+    sections: [
+      { heading: "The timeline is the problem", body: "A carbon project runs for decades. A land title outlives its owner. If a record must still be trustworthy in 2050, the cryptography signing it today has to hold until then." },
+      { heading: "Harvest now, decrypt later", body: "Encrypted data copied today can be stored and broken later, once the capability exists. For anything with a long life, the exposure begins when the record is created, not when the machine arrives." },
+      { heading: "What is worth doing now", body: "Not panic, and not claims of being quantum-proof. What matters is whether a system can change its cryptography later without invalidating the records already written under the old scheme." },
+    ],
+    detail: [
+      {
+        heading: "Why this lands on agriculture before most sectors",
+        paragraphs: [
+          "A payment record needs to resist tampering for seven years. A chat message matters for days. Agricultural records sit at the far end of the scale: a carbon project is credited over decades, a land boundary dispute can turn on a record from a generation ago, and a soil baseline is only valuable because it was captured long before anyone needed it.",
+          "That makes the useful question different from the one usually asked. It is not whether a quantum computer can break today\'s encryption today. It is whether a record signed this season will still mean something to a verifier who examines it in 2050, long after the signature scheme protecting it has been retired.",
+        ],
+      },
+      {
+        heading: "Harvest now, decrypt later, in plain terms",
+        paragraphs: [
+          "The phrase describes a straightforward tactic: copy encrypted data now, store it, and decrypt it when the capability exists. Nothing has to be broken today for the copying to be worthwhile.",
+          "For most data this is a limited concern, because by the time it could be read it has stopped mattering. For records designed to be consulted decades later, the calculation inverts. The data is valuable precisely because it is durable, and durability is what exposes it.",
+          "This is not an argument for alarm. It is an argument for noticing that a record intended to outlive its cryptography is a design decision, and one usually made without anyone deciding it.",
+        ],
+      },
+      {
+        heading: "The institutions are moving, which is the useful signal",
+        paragraphs: [
+          "NIST published its first post-quantum cryptography standards in 2024, which is what turned this from a research topic into a migration schedule for anyone maintaining long-lived systems.",
+          "Public money is following. In October 2026 New York City committed roughly 29 million dollars to a quantum fabrication facility at NYU, within a project of about 284 million, taking a share of resulting intellectual property. Whatever one makes of that structure, cities do not fund fabrication facilities for technologies they expect to stay theoretical.",
+          "None of this tells a grower when to act. It tells anyone building infrastructure that the timeline is being treated seriously by people who have to budget against it.",
+        ],
+      },
+      {
+        heading: "What a sensible posture looks like",
+        paragraphs: [
+          "Cryptographic agility: the ability to change algorithms later without rewriting history. A system that can re-sign or re-anchor existing records under a new scheme ages far better than one that cannot, regardless of which algorithm it chose first.",
+          "Honest language: Muons describes a quantum-resilient direction, which means the architecture is meant to adopt stronger cryptography as standards settle. It is not a certification, not a guarantee, and not a claim that anything here is quantum-proof. Treat any vendor using that word as having told you something useful about their marketing.",
+          "Proportion: for most farms in most seasons this is not the pressing problem. It matters where the record has to outlive the technology protecting it, which is exactly the case in carbon projects, land records, and long-term soil baselines.",
+        ],
+      },
+    ],
+    faq: [
+      { question: "Is my farm data at risk from quantum computers today?", answer: "No. There is no machine today that can break the cryptography in ordinary use. The concern is specific to records meant to stay verifiable for decades, where data copied now could be decrypted much later." },
+      { question: "What does quantum-resilient actually mean?", answer: "That the architecture is designed to adopt stronger cryptography as post-quantum standards settle. It describes a direction, not a certification. Nobody can honestly sell you quantum-proof." },
+      { question: "Should this change what I do this season?", answer: "For most operations, no. It is worth asking about where a record has to outlive the technology protecting it, such as a carbon project credited over decades or a soil baseline captured for later comparison." },
+      { question: "What should I ask a provider about this?", answer: "Whether they can change cryptographic algorithms later without invalidating records already written, and what happens to the existing record when they do. The answer tells you more than any claim about which algorithm they use now." },
+    ],
+    updated: "2026-10-21",
+    related: ["blockchain-agricultural-records", "who-owns-farm-data", "carbon-credit-verification-farm-records"],
+  },
 ];
 
 export function getSeoPage(kind: SeoPage["kind"], slug: string | undefined) {

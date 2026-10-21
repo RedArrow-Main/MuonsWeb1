@@ -799,6 +799,7 @@ export default function Home() {
                 <Link href="/solutions/carbon-credit-verification-farm-records" className="transition-colors hover:text-[#c8ff2b]">Carbon credit verification</Link>
                 <Link href="/insights/what-is-edge-computing-in-agriculture" className="transition-colors hover:text-[#c8ff2b]">What is edge computing in agriculture?</Link>
                 <Link href="/insights/who-owns-farm-data" className="transition-colors hover:text-[#c8ff2b]">Who owns farm data?</Link>
+                <Link href="/insights/quantum-computing-and-agricultural-records" className="transition-colors hover:text-[#c8ff2b]">Quantum and long-lived records</Link>
               </nav>
             </div>
             <div>
